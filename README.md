@@ -71,6 +71,8 @@ python main.py
 Outputs are written to `results/`:
 
 - `monthly_rankings.csv`
+- `current_month_portfolio.csv`
+- `current_month_portfolio.md`
 - `monthly_selections.csv`
 - `factor_breakdown.csv`
 - `ticker_selection_stats.csv`

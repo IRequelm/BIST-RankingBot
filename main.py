@@ -4,6 +4,7 @@ import pandas as pd
 
 import config
 from src.backtester import run_backtests
+from src.current_portfolio import generate_current_month_portfolio
 from src.data_loader import fetch_price_data, find_missing_tickers
 from src.ranking import build_monthly_rankings
 from src.reporting import (
@@ -110,6 +111,19 @@ def main() -> None:
     )
 
     if benchmark_prices is not None and not benchmark_prices.empty:
+        print("Generating current month portfolio recommendation...")
+        generate_current_month_portfolio(
+            stock_prices=stock_prices,
+            benchmark_prices=benchmark_prices,
+            factor_models=config.FACTOR_MODELS,
+            rankings_by_model=rankings_by_model,
+            results_dir=config.RESULTS_DIR,
+            base_model="volume_heavy",
+            base_portfolio_size=10,
+            defensive_model="low_volatility",
+            defensive_portfolio_size=5,
+        )
+
         print("Running BIST100 regime filter experiment...")
         regime_results, regime_signal = run_regime_policy_backtests(
             stock_prices=stock_prices,
