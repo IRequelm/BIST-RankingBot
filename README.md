@@ -31,6 +31,8 @@ Monthly stock ranking and backtesting MVP for BIST stocks.
   - portfolio size sensitivity
   - transaction cost sensitivity
 - Holds each portfolio for one month.
+- Reports whether selected stocks are frequently illiquid or speculative using
+  configurable traded-value and volatility thresholds.
 - Exports CSV files, charts, and Markdown reports.
 
 ## Project Structure
@@ -71,6 +73,7 @@ Outputs are written to `results/`:
 - `monthly_rankings.csv`
 - `monthly_selections.csv`
 - `factor_breakdown.csv`
+- `ticker_selection_stats.csv`
 - `backtest_results.csv`
 - `trades.csv`
 - `missing_tickers.csv`

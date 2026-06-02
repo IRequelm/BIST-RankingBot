@@ -96,8 +96,11 @@ def main() -> None:
         trades=trades,
         rankings=rankings,
         backtest_results=backtest_results,
+        stock_prices=stock_prices,
         benchmark_prices=benchmark_prices,
         factor_models=config.FACTOR_MODELS,
+        illiquid_avg_traded_value_threshold=config.ILLIQUID_AVG_TRADED_VALUE_THRESHOLD,
+        speculative_daily_volatility_threshold=config.SPECULATIVE_DAILY_VOLATILITY_THRESHOLD,
         results_dir=config.RESULTS_DIR,
     )
 

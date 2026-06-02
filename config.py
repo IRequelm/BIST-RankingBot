@@ -36,6 +36,10 @@ PORTFOLIO_SIZES = [3, 5, 10, 15]
 TRANSACTION_COST = 0.002  # 0.20% estimated round-trip monthly cost
 TRANSACTION_COSTS = [0.001, 0.002, 0.005, 0.01]
 
+# Selection diagnostics only. These do not filter the backtest universe.
+ILLIQUID_AVG_TRADED_VALUE_THRESHOLD = 5_000_000  # TRY, 21-day average
+SPECULATIVE_DAILY_VOLATILITY_THRESHOLD = 0.04  # 4% daily volatility
+
 # Split dates are month-end ranking dates. The best model is selected only
 # from the validation period, then checked on the out-of-sample period.
 TRAIN_START = "2018-01-01"

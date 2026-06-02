@@ -24,11 +24,31 @@ def _benchmark_momentum_1m(benchmark_prices: pd.DataFrame | None) -> pd.Series:
     return features["momentum_1m"].rename("benchmark_momentum_1m")
 
 
+def _liquidity_frame(stock_prices: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    rows = []
+    for symbol, prices in stock_prices.items():
+        frame = pd.DataFrame(index=prices.index)
+        frame["symbol"] = symbol
+        frame["avg_daily_volume_21"] = prices["Volume"].rolling(21).mean()
+        frame["avg_daily_traded_value_21"] = (prices["Close"] * prices["Volume"]).rolling(21).mean()
+        frame = frame.resample("ME").last()
+        frame["date"] = frame.index
+        rows.append(frame.reset_index(drop=True))
+
+    if not rows:
+        return pd.DataFrame()
+
+    return pd.concat(rows, ignore_index=True)
+
+
 def build_factor_breakdown(
     trades: pd.DataFrame,
     rankings: pd.DataFrame,
     backtest_results: pd.DataFrame,
+    stock_prices: dict[str, pd.DataFrame],
     benchmark_prices: pd.DataFrame | None,
+    illiquid_avg_traded_value_threshold: float,
+    speculative_daily_volatility_threshold: float,
 ) -> pd.DataFrame:
     """Join selected trades with ranking factors and portfolio returns."""
     if trades.empty or rankings.empty:
@@ -77,6 +97,16 @@ def build_factor_breakdown(
     selected["relative_strength_vs_bist100"] = selected["momentum_1m"] - selected["benchmark_momentum_1m"]
     selected["next_month_return"] = selected["forward_return"]
 
+    liquidity = _liquidity_frame(stock_prices)
+    if not liquidity.empty:
+        selected = selected.merge(liquidity, on=["date", "symbol"], how="left")
+    else:
+        selected["avg_daily_volume_21"] = pd.NA
+        selected["avg_daily_traded_value_21"] = pd.NA
+
+    selected["is_illiquid"] = selected["avg_daily_traded_value_21"] < illiquid_avg_traded_value_threshold
+    selected["is_speculative"] = selected["volatility"] > speculative_daily_volatility_threshold
+
     columns = [
         "date",
         "model",
@@ -85,6 +115,10 @@ def build_factor_breakdown(
         "rank",
         "score",
         *FACTOR_COLUMNS,
+        "avg_daily_volume_21",
+        "avg_daily_traded_value_21",
+        "is_illiquid",
+        "is_speculative",
         "next_month_return",
         "portfolio_gross_return",
         "transaction_cost",
@@ -121,11 +155,11 @@ def build_monthly_selections(factor_breakdown: pd.DataFrame) -> pd.DataFrame:
 def build_selection_report(
     factor_breakdown: pd.DataFrame,
     factor_models: dict[str, dict[str, float]],
-) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, str]:
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame, str]:
     """Build ticker frequency, ticker return, factor importance, and best/worst reports."""
     if factor_breakdown.empty:
         empty = pd.DataFrame()
-        return empty, empty, empty, empty, "# Monthly Selection Report\n\nNo selections were generated.\n"
+        return empty, empty, empty, empty, empty, "# Monthly Selection Report\n\nNo selections were generated.\n"
 
     selected_counts = (
         factor_breakdown.groupby("symbol")
@@ -148,6 +182,30 @@ def build_selection_report(
             }
         )
         .sort_values("avg_next_month_return", ascending=False)
+    )
+
+    ticker_selection_stats = (
+        factor_breakdown.groupby("symbol")
+        .agg(
+            selection_count=("symbol", "size"),
+            avg_next_month_return=("next_month_return", "mean"),
+            median_next_month_return=("next_month_return", "median"),
+            best_next_month_return=("next_month_return", "max"),
+            worst_next_month_return=("next_month_return", "min"),
+            avg_score=("score", "mean"),
+            avg_momentum_1m=("momentum_1m", "mean"),
+            avg_momentum_3m=("momentum_3m", "mean"),
+            avg_momentum_6m=("momentum_6m", "mean"),
+            avg_volume_change=("volume_change", "mean"),
+            avg_volatility=("volatility", "mean"),
+            avg_ma_trend_signal=("ma_trend_signal", "mean"),
+            avg_relative_strength_vs_bist100=("relative_strength_vs_bist100", "mean"),
+            avg_daily_traded_value_21=("avg_daily_traded_value_21", "mean"),
+            illiquid_selection_rate=("is_illiquid", "mean"),
+            speculative_selection_rate=("is_speculative", "mean"),
+        )
+        .reset_index()
+        .sort_values(["selection_count", "avg_next_month_return"], ascending=[False, False])
     )
 
     importance_rows = []
@@ -196,34 +254,70 @@ def build_selection_report(
     markdown += factor_importance.to_markdown(index=False, floatfmt=".4f")
     markdown += "\n\n## Best And Worst Selected Stocks\n\n"
     markdown += best_worst.to_markdown(index=False, floatfmt=".4f")
+    markdown += "\n\n## Illiquid Or Speculative Selection Check\n\n"
+    illiquid_rate = factor_breakdown["is_illiquid"].mean()
+    speculative_rate = factor_breakdown["is_speculative"].mean()
+    combined_rate = (factor_breakdown["is_illiquid"] | factor_breakdown["is_speculative"]).mean()
+    markdown += (
+        f"- Illiquid selection rate: {illiquid_rate:.2%}\n"
+        f"- Speculative selection rate: {speculative_rate:.2%}\n"
+        f"- Illiquid or speculative selection rate: {combined_rate:.2%}\n\n"
+    )
+    markdown += "Highest risk tickers by combined illiquid/speculative rate:\n\n"
+    risk_table = ticker_selection_stats.assign(
+        combined_risk_rate=lambda df: df["illiquid_selection_rate"] + df["speculative_selection_rate"]
+    ).sort_values("combined_risk_rate", ascending=False)
+    markdown += risk_table[
+        [
+            "symbol",
+            "selection_count",
+            "illiquid_selection_rate",
+            "speculative_selection_rate",
+            "avg_daily_traded_value_21",
+            "avg_volatility",
+            "avg_next_month_return",
+        ]
+    ].head(15).to_markdown(index=False, floatfmt=".4f")
     markdown += "\n"
 
-    return selected_counts, avg_return_by_ticker, factor_importance, best_worst, markdown
+    return selected_counts, avg_return_by_ticker, ticker_selection_stats, factor_importance, best_worst, markdown
 
 
 def save_selection_exports(
     trades: pd.DataFrame,
     rankings: pd.DataFrame,
     backtest_results: pd.DataFrame,
+    stock_prices: dict[str, pd.DataFrame],
     benchmark_prices: pd.DataFrame | None,
     factor_models: dict[str, dict[str, float]],
+    illiquid_avg_traded_value_threshold: float,
+    speculative_daily_volatility_threshold: float,
     results_dir: str,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Save monthly selections, factor breakdown, and supporting selection reports."""
     Path(results_dir).mkdir(exist_ok=True)
 
-    factor_breakdown = build_factor_breakdown(trades, rankings, backtest_results, benchmark_prices)
+    factor_breakdown = build_factor_breakdown(
+        trades=trades,
+        rankings=rankings,
+        backtest_results=backtest_results,
+        stock_prices=stock_prices,
+        benchmark_prices=benchmark_prices,
+        illiquid_avg_traded_value_threshold=illiquid_avg_traded_value_threshold,
+        speculative_daily_volatility_threshold=speculative_daily_volatility_threshold,
+    )
     monthly_selections = build_monthly_selections(factor_breakdown)
 
     factor_breakdown.to_csv(Path(results_dir) / "factor_breakdown.csv", index=False)
     monthly_selections.to_csv(Path(results_dir) / "monthly_selections.csv", index=False)
 
-    selected_counts, avg_returns, factor_importance, best_worst, markdown = build_selection_report(
+    selected_counts, avg_returns, ticker_selection_stats, factor_importance, best_worst, markdown = build_selection_report(
         factor_breakdown=factor_breakdown,
         factor_models=factor_models,
     )
     selected_counts.to_csv(Path(results_dir) / "selected_ticker_counts.csv", index=False)
     avg_returns.to_csv(Path(results_dir) / "selected_ticker_average_returns.csv", index=False)
+    ticker_selection_stats.to_csv(Path(results_dir) / "ticker_selection_stats.csv", index=False)
     factor_importance.to_csv(Path(results_dir) / "factor_importance_by_model.csv", index=False)
     best_worst.to_csv(Path(results_dir) / "best_worst_selected_stocks.csv", index=False)
     (Path(results_dir) / "selection_report.md").write_text(markdown, encoding="utf-8")
