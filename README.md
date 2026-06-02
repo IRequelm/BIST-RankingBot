@@ -86,6 +86,11 @@ Outputs are written to `results/`:
 - `rolling_out_of_sample_tests.csv`
 - `random_start_month_tests.csv`
 - `transaction_cost_sensitivity.csv`
+- `regime_filter_report.md`
+- `regime_filter_policy_summary.csv`
+- `regime_filter_detail.csv`
+- `regime_filter_results.csv`
+- `bist100_regime_signal.csv`
 - `selection_report.md`
 - `selected_ticker_counts.csv`
 - `selected_ticker_average_returns.csv`

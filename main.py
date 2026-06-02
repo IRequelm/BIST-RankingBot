@@ -13,6 +13,11 @@ from src.reporting import (
     save_charts,
     save_summary_report,
 )
+from src.regime_filter import (
+    run_regime_policy_backtests,
+    save_regime_filter_report,
+    summarize_regime_results,
+)
 from src.robustness import (
     random_start_month_tests,
     rolling_out_of_sample_tests,
@@ -104,6 +109,30 @@ def main() -> None:
         results_dir=config.RESULTS_DIR,
     )
 
+    if benchmark_prices is not None and not benchmark_prices.empty:
+        print("Running BIST100 regime filter experiment...")
+        regime_results, regime_signal = run_regime_policy_backtests(
+            stock_prices=stock_prices,
+            rankings_by_model=rankings_by_model,
+            benchmark_prices=benchmark_prices,
+            portfolio_sizes=config.PORTFOLIO_SIZES,
+            transaction_cost=config.TRANSACTION_COST,
+            periods=periods,
+        )
+        regime_detail, regime_policy_summary = summarize_regime_results(
+            results=regime_results,
+            benchmark_prices=benchmark_prices,
+        )
+        recommended_regime_policy = save_regime_filter_report(
+            results=regime_results,
+            detail_summary=regime_detail,
+            policy_summary=regime_policy_summary,
+            regime_signal=regime_signal,
+            results_dir=config.RESULTS_DIR,
+        )
+    else:
+        recommended_regime_policy = "benchmark data unavailable"
+
     print("Writing reports and charts...")
     summary = save_summary_report(
         backtest_results=backtest_results,
@@ -188,6 +217,7 @@ def main() -> None:
     if not missing_tickers.empty:
         print("\nMissing tickers:")
         print(missing_tickers)
+    print(f"\nRecommended regime policy: {recommended_regime_policy}")
     print(f"\nResults written to: {Path(config.RESULTS_DIR).resolve()}")
 
 
