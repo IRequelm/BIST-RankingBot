@@ -42,6 +42,7 @@ BIST-RankingBot/
 |-- main.py
 |-- config.py
 |-- data/
+|-- paper_trading/
 |-- src/
 |   |-- data_loader.py
 |   |-- indicators.py
@@ -73,6 +74,9 @@ Outputs are written to `results/`:
 - `monthly_rankings.csv`
 - `current_month_portfolio.csv`
 - `current_month_portfolio.md`
+- `paper_portfolio_history.csv`
+- `paper_trade_log.csv`
+- `paper_performance_report.md`
 - `monthly_selections.csv`
 - `factor_breakdown.csv`
 - `ticker_selection_stats.csv`
@@ -132,9 +136,22 @@ It runs every day at 02:00 UTC and can also be started manually from the GitHub 
 - runs `python main.py`
 - saves generated files under `results/`
 - uploads `results/` as a workflow artifact
-- commits and pushes changed `results/` and cached `data/` files back to the repository
+- commits and pushes changed `results/`, `paper_trading/`, and cached `data/` files back to the repository
 
-This workflow is research-only. It does not place trades, does not call broker APIs, and only runs ranking, backtesting, reporting, and portfolio recommendation generation.
+This workflow is research-only. It does not place trades, does not call broker APIs, and only runs ranking, backtesting, paper trading, reporting, and portfolio recommendation generation.
+
+## Paper Trading
+
+The paper trading engine tracks real-world performance of generated monthly recommendations over time. It reads `results/current_month_portfolio.csv`, opens paper positions for new buy signals, closes paper positions for sell signals, keeps hold positions, and marks active positions to market with latest available prices.
+
+Generated paper trading files:
+
+- `results/paper_portfolio_history.csv`
+- `results/paper_trade_log.csv`
+- `results/paper_performance_report.md`
+- `paper_trading/recommendation_snapshots.csv`
+
+This is paper trading only. No broker API integration exists in this project.
 
 ## Notes
 

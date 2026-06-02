@@ -31,6 +31,8 @@ END_DATE = date.today().isoformat()
 
 DATA_DIR = "data"
 RESULTS_DIR = "results"
+PAPER_TRADING_DIR = "paper_trading"
+PAPER_INITIAL_CAPITAL = 100_000.0
 
 PORTFOLIO_SIZES = [3, 5, 10, 15]
 TRANSACTION_COST = 0.002  # 0.20% estimated round-trip monthly cost

@@ -6,6 +6,7 @@ import config
 from src.backtester import run_backtests
 from src.current_portfolio import generate_current_month_portfolio
 from src.data_loader import fetch_price_data, find_missing_tickers
+from src.paper_trading import update_paper_trading
 from src.ranking import build_monthly_rankings
 from src.reporting import (
     assign_periods,
@@ -122,6 +123,15 @@ def main() -> None:
             base_portfolio_size=10,
             defensive_model="low_volatility",
             defensive_portfolio_size=5,
+        )
+
+        print("Updating paper trading tracker...")
+        update_paper_trading(
+            stock_prices=stock_prices,
+            benchmark_prices=benchmark_prices,
+            results_dir=config.RESULTS_DIR,
+            paper_dir=config.PAPER_TRADING_DIR,
+            initial_capital=config.PAPER_INITIAL_CAPITAL,
         )
 
         print("Running BIST100 regime filter experiment...")

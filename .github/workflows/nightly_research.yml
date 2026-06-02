@@ -37,14 +37,16 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bist-rankingbot-results
-          path: results/
+          path: |
+            results/
+            paper_trading/
           if-no-files-found: error
 
       - name: Commit updated results
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add results/ data/
+          git add results/ paper_trading/ data/
           if git diff --cached --quiet; then
             echo "No research output changes to commit."
           else
