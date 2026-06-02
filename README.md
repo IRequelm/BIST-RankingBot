@@ -121,6 +121,21 @@ Edit `config.py` to change:
 
 Yahoo Finance uses `.IS` symbols for Borsa Istanbul stocks, for example `THYAO.IS`.
 
+## Automated Research Workflow
+
+The repository includes a GitHub Actions workflow at `.github/workflows/nightly_research.yml`.
+
+It runs every day at 02:00 UTC and can also be started manually from the GitHub Actions tab. The workflow:
+
+- checks out the repository
+- installs Python dependencies from `requirements.txt`
+- runs `python main.py`
+- saves generated files under `results/`
+- uploads `results/` as a workflow artifact
+- commits and pushes changed `results/` and cached `data/` files back to the repository
+
+This workflow is research-only. It does not place trades, does not call broker APIs, and only runs ranking, backtesting, reporting, and portfolio recommendation generation.
+
 ## Notes
 
 This is a working MVP, not investment advice. It is designed to be simple and easy to extend.
