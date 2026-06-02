@@ -1,0 +1,116 @@
+# BIST-RankingBot
+
+Monthly stock ranking and backtesting MVP for BIST stocks.
+
+## What It Does
+
+- Fetches historical BIST stock prices from Yahoo Finance.
+- Logs missing tickers to `results/missing_tickers.csv` and excludes them without substitution.
+- Calculates monthly ranking scores using:
+  - 1 month momentum
+  - 3 month momentum
+  - 6 month momentum
+  - volume increase
+  - price above 50/200 day moving averages
+  - volatility penalty
+- Ranks all stocks at each month-end.
+- Backtests equal-weight portfolios for top 3, top 5, top 10, and top 15 stocks.
+- Compares predefined factor models:
+  - momentum-heavy
+  - volume-heavy
+  - low-volatility
+  - trend-following
+  - mixed model
+- Uses train, validation, and out-of-sample periods.
+- Compares each strategy with BIST100 for each period.
+- Uses this benchmark-relative selection score:
+  `excess_return - abs(max_drawdown) * 2 + win_rate * 0.5`.
+- Runs robustness checks:
+  - rolling out-of-sample windows
+  - random start month test
+  - portfolio size sensitivity
+  - transaction cost sensitivity
+- Holds each portfolio for one month.
+- Exports CSV files, charts, and Markdown reports.
+
+## Project Structure
+
+```text
+BIST-RankingBot/
+|-- main.py
+|-- config.py
+|-- data/
+|-- src/
+|   |-- data_loader.py
+|   |-- indicators.py
+|   |-- ranking.py
+|   |-- backtester.py
+|   |-- robustness.py
+|   `-- reporting.py
+|-- results/
+|-- requirements.txt
+`-- README.md
+```
+
+## Setup
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+## Run
+
+```bash
+python main.py
+```
+
+Outputs are written to `results/`:
+
+- `monthly_rankings.csv`
+- `monthly_selections.csv`
+- `factor_breakdown.csv`
+- `backtest_results.csv`
+- `trades.csv`
+- `missing_tickers.csv`
+- `summary_report.csv`
+- `summary_report.md`
+- `final_report.csv`
+- `final_report.md`
+- `model_selection.csv`
+- `portfolio_size_sensitivity.csv`
+- `rolling_out_of_sample_tests.csv`
+- `random_start_month_tests.csv`
+- `transaction_cost_sensitivity.csv`
+- `selection_report.md`
+- `selected_ticker_counts.csv`
+- `selected_ticker_average_returns.csv`
+- `factor_importance_by_model.csv`
+- `best_worst_selected_stocks.csv`
+- `best_model.csv`
+- `best_model_results.csv`
+- `all_models_equity_curve.png`
+- `all_models_monthly_returns.png`
+- `best_model_equity_curve.png`
+- `best_model_monthly_returns.png`
+
+Downloaded price data is cached in `data/`.
+
+## Configuration
+
+Edit `config.py` to change:
+
+- BIST stock list
+- benchmark symbol
+- date range
+- factor model weights
+- train/validation/out-of-sample dates
+- portfolio sizes
+- transaction costs
+
+Yahoo Finance uses `.IS` symbols for Borsa Istanbul stocks, for example `THYAO.IS`.
+
+## Notes
+
+This is a working MVP, not investment advice. It is designed to be simple and easy to extend.
