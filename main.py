@@ -6,6 +6,7 @@ import config
 from src.backtester import run_backtests
 from src.current_portfolio import generate_current_month_portfolio
 from src.data_loader import fetch_price_data, find_missing_tickers
+from src.investor_report import generate_investor_report
 from src.paper_trading import update_paper_trading
 from src.ranking import build_monthly_rankings
 from src.reporting import (
@@ -132,6 +133,12 @@ def main() -> None:
             results_dir=config.RESULTS_DIR,
             paper_dir=config.PAPER_TRADING_DIR,
             initial_capital=config.PAPER_INITIAL_CAPITAL,
+        )
+
+        print("Generating investor report...")
+        generate_investor_report(
+            stock_prices=stock_prices,
+            results_dir=config.RESULTS_DIR,
         )
 
         print("Running BIST100 regime filter experiment...")

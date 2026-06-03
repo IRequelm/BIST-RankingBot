@@ -15,6 +15,8 @@ FACTOR_MAP = {
     "volatility_penalty": ("volatility", False),
 }
 
+EXPECTED_RETURN_NEAR_ZERO_THRESHOLD = 0.005
+
 
 def _latest_feature_snapshot(stock_prices: dict[str, pd.DataFrame]) -> tuple[pd.DataFrame, pd.Timestamp]:
     rows = []
@@ -137,6 +139,17 @@ def _expected_return_band(
     }
 
 
+def _expected_return_action(expected_return_mid: float | None, in_recommended: bool) -> str:
+    if expected_return_mid is None or pd.isna(expected_return_mid):
+        return "HOLD" if in_recommended else "EXCLUDE"
+
+    if expected_return_mid > EXPECTED_RETURN_NEAR_ZERO_THRESHOLD:
+        return "BUY" if in_recommended else "EXCLUDE"
+    if expected_return_mid < -EXPECTED_RETURN_NEAR_ZERO_THRESHOLD:
+        return "SELL"
+    return "HOLD" if in_recommended else "EXCLUDE"
+
+
 def _confidence_score(recommended: pd.DataFrame, regime: dict[str, object]) -> float:
     if recommended.empty:
         return 0.0
@@ -182,16 +195,8 @@ def generate_current_month_portfolio(
     for _, row in top20.iterrows():
         symbol = row["symbol"]
         in_recommended = symbol in recommended_symbols
-        if in_recommended and symbol not in previous_symbols:
-            action = "BUY"
-        elif in_recommended and symbol in previous_symbols:
-            action = "HOLD"
-        elif not in_recommended and symbol in previous_symbols:
-            action = "SELL"
-        else:
-            action = "EXCLUDE"
-
         expected = _expected_return_band(symbol, active_model, row["score"], factor_breakdown)
+        action = _expected_return_action(expected["expected_return_mid"], in_recommended)
         output = row.to_dict()
         output.update(expected)
         output.update(
@@ -220,7 +225,7 @@ def generate_current_month_portfolio(
 
     buy_list = report_df[report_df["action"] == "BUY"]["symbol"].tolist()
     hold_list = report_df[report_df["action"] == "HOLD"]["symbol"].tolist()
-    sell_list = sorted(previous_symbols - recommended_symbols)
+    sell_list = report_df[report_df["action"] == "SELL"]["symbol"].tolist()
     excluded = report_df[~report_df["recommended"]].head(10)
 
     factor_columns = [
