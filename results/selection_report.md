@@ -4,45 +4,45 @@
 
 | symbol   |   selection_count |
 |:---------|------------------:|
-| PETKM.IS |              1137 |
-| ARCLK.IS |              1045 |
-| AKBNK.IS |              1008 |
-| YKBNK.IS |               993 |
-| THYAO.IS |               985 |
-| PGSUS.IS |               978 |
-| ASELS.IS |               966 |
-| GARAN.IS |               966 |
-| EREGL.IS |               937 |
-| SISE.IS  |               923 |
-| TOASO.IS |               921 |
-| FROTO.IS |               885 |
-| TCELL.IS |               881 |
-| SAHOL.IS |               838 |
-| TUPRS.IS |               821 |
-| KCHOL.IS |               802 |
-| BIMAS.IS |               754 |
+| BIMAS.IS |              1118 |
+| TUPRS.IS |              1038 |
+| FROTO.IS |              1015 |
+| KCHOL.IS |              1003 |
+| TOASO.IS |               972 |
+| SAHOL.IS |               966 |
+| SISE.IS  |               950 |
+| EREGL.IS |               944 |
+| TCELL.IS |               934 |
+| ASELS.IS |               923 |
+| GARAN.IS |               908 |
+| PGSUS.IS |               890 |
+| THYAO.IS |               888 |
+| YKBNK.IS |               874 |
+| ARCLK.IS |               862 |
+| AKBNK.IS |               832 |
+| PETKM.IS |               723 |
 
 ## Average Return After Selection
 
 | symbol   |   selection_count |   avg_next_month_return |   median_next_month_return |   worst_next_month_return |   best_next_month_return |
 |:---------|------------------:|------------------------:|---------------------------:|--------------------------:|-------------------------:|
-| TUPRS.IS |               821 |                  0.0503 |                     0.0251 |                   -0.2505 |                   0.3646 |
-| PGSUS.IS |               978 |                  0.0453 |                     0.0059 |                   -0.3821 |                   0.5468 |
-| ASELS.IS |               966 |                  0.0446 |                     0.0245 |                   -0.1502 |                   0.5133 |
-| BIMAS.IS |               754 |                  0.0428 |                     0.0295 |                   -0.1167 |                   0.2674 |
-| TCELL.IS |               881 |                  0.0419 |                     0.0166 |                   -0.1738 |                   0.4242 |
-| PETKM.IS |              1137 |                  0.0412 |                     0.0398 |                   -0.1819 |                   0.6058 |
-| GARAN.IS |               966 |                  0.0411 |                     0.0322 |                   -0.2500 |                   0.5840 |
-| FROTO.IS |               885 |                  0.0410 |                     0.0153 |                   -0.3229 |                   0.3477 |
-| AKBNK.IS |              1008 |                  0.0402 |                     0.0405 |                   -0.2444 |                   0.3832 |
-| EREGL.IS |               937 |                  0.0391 |                     0.0299 |                   -0.2064 |                   0.4364 |
-| TOASO.IS |               921 |                  0.0373 |                     0.0357 |                   -0.2722 |                   0.4634 |
-| KCHOL.IS |               802 |                  0.0361 |                     0.0124 |                   -0.2352 |                   0.3160 |
-| ARCLK.IS |              1045 |                  0.0335 |                     0.0162 |                   -0.2506 |                   0.3499 |
-| THYAO.IS |               985 |                  0.0331 |                     0.0159 |                   -0.2680 |                   0.4504 |
-| YKBNK.IS |               993 |                  0.0319 |                     0.0391 |                   -0.2374 |                   0.4821 |
-| SISE.IS  |               923 |                  0.0280 |                     0.0237 |                   -0.2003 |                   0.4492 |
-| SAHOL.IS |               838 |                  0.0267 |                     0.0262 |                   -0.1794 |                   0.3010 |
+| ASELS.IS |               923 |                  0.0613 |                     0.0536 |                   -0.1502 |                   0.5133 |
+| PGSUS.IS |               890 |                  0.0564 |                     0.0340 |                   -0.2658 |                   0.5468 |
+| THYAO.IS |               888 |                  0.0505 |                     0.0038 |                   -0.2680 |                   0.4504 |
+| YKBNK.IS |               874 |                  0.0473 |                     0.0458 |                   -0.2374 |                   0.4821 |
+| TOASO.IS |               972 |                  0.0428 |                     0.0479 |                   -0.2722 |                   0.4634 |
+| FROTO.IS |              1015 |                  0.0386 |                     0.0193 |                   -0.3229 |                   0.3477 |
+| SISE.IS  |               950 |                  0.0386 |                     0.0314 |                   -0.2003 |                   0.4492 |
+| BIMAS.IS |              1118 |                  0.0373 |                     0.0233 |                   -0.1367 |                   0.2674 |
+| GARAN.IS |               908 |                  0.0372 |                     0.0331 |                   -0.2500 |                   0.5840 |
+| KCHOL.IS |              1003 |                  0.0367 |                     0.0194 |                   -0.2352 |                   0.3160 |
+| SAHOL.IS |               966 |                  0.0366 |                     0.0377 |                   -0.1794 |                   0.3010 |
+| TUPRS.IS |              1038 |                  0.0328 |                     0.0029 |                   -0.2505 |                   0.3646 |
+| EREGL.IS |               944 |                  0.0299 |                     0.0209 |                   -0.2064 |                   0.3423 |
+| AKBNK.IS |               832 |                  0.0297 |                     0.0301 |                   -0.2444 |                   0.3832 |
+| ARCLK.IS |               862 |                  0.0235 |                     0.0275 |                   -0.2506 |                   0.3499 |
+| TCELL.IS |               934 |                  0.0197 |                     0.0100 |                   -0.1738 |                   0.4242 |
+| PETKM.IS |               723 |                  0.0118 |                     0.0000 |                   -0.1819 |                   0.6058 |
 
 ## Factor Importance By Model
 
@@ -81,51 +81,51 @@
 
 ## Best And Worst Selected Stocks
 
-| result_group          | date                | model          |   portfolio_size | symbol   |   score |   next_month_return |   portfolio_return |
-|:----------------------|:--------------------|:---------------|-----------------:|:---------|--------:|--------------------:|-------------------:|
-| best_selected_stocks  | 2022-07-31 00:00:00 | low_volatility |                3 | PETKM.IS |  0.6265 |              0.6058 |             0.2931 |
-| best_selected_stocks  | 2022-07-31 00:00:00 | low_volatility |                5 | PETKM.IS |  0.6265 |              0.6058 |             0.2790 |
-| best_selected_stocks  | 2022-07-31 00:00:00 | low_volatility |               10 | PETKM.IS |  0.6265 |              0.6058 |             0.3025 |
-| best_selected_stocks  | 2022-07-31 00:00:00 | low_volatility |               15 | PETKM.IS |  0.6265 |              0.6058 |             0.2850 |
-| best_selected_stocks  | 2022-07-31 00:00:00 | mixed_model    |                3 | PETKM.IS |  0.7706 |              0.6058 |             0.3501 |
-| best_selected_stocks  | 2022-07-31 00:00:00 | mixed_model    |                5 | PETKM.IS |  0.7706 |              0.6058 |             0.2341 |
-| best_selected_stocks  | 2022-07-31 00:00:00 | mixed_model    |               10 | PETKM.IS |  0.7706 |              0.6058 |             0.3022 |
-| best_selected_stocks  | 2022-07-31 00:00:00 | mixed_model    |               15 | PETKM.IS |  0.7706 |              0.6058 |             0.2738 |
-| best_selected_stocks  | 2022-07-31 00:00:00 | momentum_heavy |                3 | PETKM.IS |  0.7882 |              0.6058 |             0.3501 |
-| best_selected_stocks  | 2022-07-31 00:00:00 | momentum_heavy |                5 | PETKM.IS |  0.7882 |              0.6058 |             0.2737 |
-| worst_selected_stocks | 2020-02-29 00:00:00 | low_volatility |                3 | PGSUS.IS |  0.9147 |             -0.3821 |            -0.2629 |
-| worst_selected_stocks | 2020-02-29 00:00:00 | low_volatility |                5 | PGSUS.IS |  0.9147 |             -0.3821 |            -0.2243 |
-| worst_selected_stocks | 2020-02-29 00:00:00 | low_volatility |               10 | PGSUS.IS |  0.9147 |             -0.3821 |            -0.2024 |
-| worst_selected_stocks | 2020-02-29 00:00:00 | low_volatility |               15 | PGSUS.IS |  0.9147 |             -0.3821 |            -0.1962 |
-| worst_selected_stocks | 2020-02-29 00:00:00 | mixed_model    |                3 | PGSUS.IS |  0.8912 |             -0.3821 |            -0.2629 |
-| worst_selected_stocks | 2020-02-29 00:00:00 | mixed_model    |                5 | PGSUS.IS |  0.8912 |             -0.3821 |            -0.2373 |
-| worst_selected_stocks | 2020-02-29 00:00:00 | mixed_model    |               10 | PGSUS.IS |  0.8912 |             -0.3821 |            -0.2137 |
-| worst_selected_stocks | 2020-02-29 00:00:00 | mixed_model    |               15 | PGSUS.IS |  0.8912 |             -0.3821 |            -0.1814 |
-| worst_selected_stocks | 2020-02-29 00:00:00 | momentum_heavy |                3 | PGSUS.IS |  0.9088 |             -0.3821 |            -0.2687 |
-| worst_selected_stocks | 2020-02-29 00:00:00 | momentum_heavy |                5 | PGSUS.IS |  0.9088 |             -0.3821 |            -0.2294 |
+| result_group          | date                | model           |   portfolio_size | symbol   |   score |   next_month_return |   portfolio_return |
+|:----------------------|:--------------------|:----------------|-----------------:|:---------|--------:|--------------------:|-------------------:|
+| best_selected_stocks  | 2022-07-31 00:00:00 | low_volatility  |               15 | PETKM.IS |  0.4324 |              0.6058 |             0.2977 |
+| best_selected_stocks  | 2022-07-31 00:00:00 | momentum_heavy  |               15 | PETKM.IS |  0.2706 |              0.6058 |             0.2863 |
+| best_selected_stocks  | 2022-07-31 00:00:00 | trend_following |               15 | PETKM.IS |  0.2794 |              0.6058 |             0.2863 |
+| best_selected_stocks  | 2022-07-31 00:00:00 | low_volatility  |               15 | GARAN.IS |  0.4559 |              0.5840 |             0.2977 |
+| best_selected_stocks  | 2022-07-31 00:00:00 | mixed_model     |               15 | GARAN.IS |  0.4618 |              0.5840 |             0.2643 |
+| best_selected_stocks  | 2022-07-31 00:00:00 | momentum_heavy  |               10 | GARAN.IS |  0.5000 |              0.5840 |             0.3137 |
+| best_selected_stocks  | 2022-07-31 00:00:00 | momentum_heavy  |               15 | GARAN.IS |  0.5000 |              0.5840 |             0.2863 |
+| best_selected_stocks  | 2022-07-31 00:00:00 | trend_following |               15 | GARAN.IS |  0.4500 |              0.5840 |             0.2863 |
+| best_selected_stocks  | 2022-07-31 00:00:00 | volume_heavy    |               15 | GARAN.IS |  0.3471 |              0.5840 |             0.2643 |
+| best_selected_stocks  | 2020-03-31 00:00:00 | volume_heavy    |               15 | PGSUS.IS |  0.4176 |              0.5468 |             0.1816 |
+| worst_selected_stocks | 2020-02-29 00:00:00 | low_volatility  |                5 | FROTO.IS |  0.7221 |             -0.3229 |            -0.1437 |
+| worst_selected_stocks | 2020-02-29 00:00:00 | low_volatility  |               10 | FROTO.IS |  0.7221 |             -0.3229 |            -0.1679 |
+| worst_selected_stocks | 2020-02-29 00:00:00 | low_volatility  |               15 | FROTO.IS |  0.7221 |             -0.3229 |            -0.1683 |
+| worst_selected_stocks | 2020-02-29 00:00:00 | mixed_model     |                3 | FROTO.IS |  0.8324 |             -0.3229 |            -0.2493 |
+| worst_selected_stocks | 2020-02-29 00:00:00 | mixed_model     |                5 | FROTO.IS |  0.8324 |             -0.3229 |            -0.1546 |
+| worst_selected_stocks | 2020-02-29 00:00:00 | mixed_model     |               10 | FROTO.IS |  0.8324 |             -0.3229 |            -0.1664 |
+| worst_selected_stocks | 2020-02-29 00:00:00 | mixed_model     |               15 | FROTO.IS |  0.8324 |             -0.3229 |            -0.1727 |
+| worst_selected_stocks | 2020-02-29 00:00:00 | momentum_heavy  |                3 | FROTO.IS |  0.8662 |             -0.3229 |            -0.2493 |
+| worst_selected_stocks | 2020-02-29 00:00:00 | momentum_heavy  |                5 | FROTO.IS |  0.8662 |             -0.3229 |            -0.1546 |
+| worst_selected_stocks | 2020-02-29 00:00:00 | momentum_heavy  |               10 | FROTO.IS |  0.8662 |             -0.3229 |            -0.1664 |
 
 ## Illiquid Or Speculative Selection Check
 
 - Illiquid selection rate: 0.00%
-- Speculative selection rate: 3.71%
-- Illiquid or speculative selection rate: 3.71%
+- Speculative selection rate: 3.58%
+- Illiquid or speculative selection rate: 3.58%
 
 Highest risk tickers by combined illiquid/speculative rate:
 
 | symbol   |   selection_count |   illiquid_selection_rate |   speculative_selection_rate |   avg_daily_traded_value_21 |   avg_volatility |   avg_next_month_return |
 |:---------|------------------:|--------------------------:|-----------------------------:|----------------------------:|-----------------:|------------------------:|
-| PGSUS.IS |               978 |                    0.0000 |                       0.1063 |             1314750070.2325 |           0.0285 |                  0.0453 |
-| GARAN.IS |               966 |                    0.0000 |                       0.0911 |             1744030941.1549 |           0.0270 |                  0.0411 |
-| AKBNK.IS |              1008 |                    0.0000 |                       0.0714 |             2219366742.4487 |           0.0267 |                  0.0402 |
-| THYAO.IS |               985 |                    0.0000 |                       0.0518 |             4435744410.8765 |           0.0245 |                  0.0331 |
-| TCELL.IS |               881 |                    0.0000 |                       0.0511 |             1003776261.1846 |           0.0238 |                  0.0419 |
-| ASELS.IS |               966 |                    0.0000 |                       0.0476 |             1598273295.3207 |           0.0257 |                  0.0446 |
-| YKBNK.IS |               993 |                    0.0000 |                       0.0473 |             2376666202.2601 |           0.0273 |                  0.0319 |
-| PETKM.IS |              1137 |                    0.0000 |                       0.0352 |             1180444512.8462 |           0.0258 |                  0.0412 |
-| TUPRS.IS |               821 |                    0.0000 |                       0.0305 |             1330378064.9778 |           0.0226 |                  0.0503 |
-| ARCLK.IS |              1045 |                    0.0000 |                       0.0287 |              349999922.5406 |           0.0238 |                  0.0335 |
-| TOASO.IS |               921 |                    0.0000 |                       0.0261 |              564308294.4806 |           0.0261 |                  0.0373 |
-| FROTO.IS |               885 |                    0.0000 |                       0.0169 |              611774481.6515 |           0.0246 |                  0.0410 |
-| EREGL.IS |               937 |                    0.0000 |                       0.0011 |             2638619615.2840 |           0.0238 |                  0.0391 |
-| SISE.IS  |               923 |                    0.0000 |                       0.0000 |             1390982123.1202 |           0.0230 |                  0.0280 |
-| SAHOL.IS |               838 |                    0.0000 |                       0.0000 |             1174844380.8541 |           0.0233 |                  0.0267 |
+| GARAN.IS |               908 |                    0.0000 |                       0.0815 |             1961733502.9938 |           0.0264 |                  0.0372 |
+| TOASO.IS |               972 |                    0.0000 |                       0.0792 |              557447882.9543 |           0.0259 |                  0.0428 |
+| THYAO.IS |               888 |                    0.0000 |                       0.0687 |             6003513833.4924 |           0.0256 |                  0.0505 |
+| AKBNK.IS |               832 |                    0.0000 |                       0.0685 |             2972736253.2517 |           0.0270 |                  0.0297 |
+| YKBNK.IS |               874 |                    0.0000 |                       0.0618 |             2638544984.3130 |           0.0272 |                  0.0473 |
+| FROTO.IS |              1015 |                    0.0000 |                       0.0611 |              592692953.6525 |           0.0257 |                  0.0386 |
+| PGSUS.IS |               890 |                    0.0000 |                       0.0573 |             1050124569.6134 |           0.0296 |                  0.0564 |
+| TUPRS.IS |              1038 |                    0.0000 |                       0.0511 |             1969893503.1554 |           0.0238 |                  0.0328 |
+| ARCLK.IS |               862 |                    0.0000 |                       0.0348 |              290120773.3595 |           0.0240 |                  0.0235 |
+| EREGL.IS |               944 |                    0.0000 |                       0.0201 |             2386561522.2538 |           0.0235 |                  0.0299 |
+| TCELL.IS |               934 |                    0.0000 |                       0.0161 |             1145676939.6294 |           0.0222 |                  0.0197 |
+| ASELS.IS |               923 |                    0.0000 |                       0.0130 |             3370270614.3783 |           0.0267 |                  0.0613 |
+| PETKM.IS |               723 |                    0.0000 |                       0.0028 |             1192720496.7372 |           0.0252 |                  0.0118 |
+| BIMAS.IS |              1118 |                    0.0000 |                       0.0000 |             1131990787.3204 |           0.0217 |                  0.0373 |
+| SAHOL.IS |               966 |                    0.0000 |                       0.0000 |             1107387290.3081 |           0.0233 |                  0.0366 |

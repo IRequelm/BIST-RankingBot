@@ -1,2 +1,2 @@
 category,model,period,portfolio_size,transaction_cost,selection_score,strategy_total_return,bist100_total_return,excess_return_over_benchmark,strategy_max_drawdown,bist100_max_drawdown,win_rate,validation_score,out_of_sample_score,out_of_sample_stability,portfolio_consistency,robust_score
-best_model_by_validation,low_volatility,validation,5,0.002,1.1700892177322557,4.353908588419648,3.2415637612067236,1.1123448272129242,-0.1482111380736676,-0.1617839465479347,0.7083333333333334,,,,,
+best_model_by_validation,trend_following,validation,3,0.002,2.210031049523156,5.372737450741675,3.2415637612067236,2.1311736895349513,-0.11682132000589762,-0.1617839465479347,0.625,,,,,

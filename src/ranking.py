@@ -9,7 +9,7 @@ def _cross_sectional_score(values: pd.Series, higher_is_better: bool = True) -> 
     if clean.empty:
         return pd.Series(dtype=float)
 
-    return clean.rank(pct=True, ascending=not higher_is_better)
+    return clean.rank(pct=True, ascending=higher_is_better)
 
 
 def build_monthly_rankings(
