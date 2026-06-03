@@ -140,6 +140,19 @@ It runs every day at 02:00 UTC and can also be started manually from the GitHub 
 
 This workflow is research-only. It does not place trades, does not call broker APIs, and only runs ranking, backtesting, paper trading, reporting, and portfolio recommendation generation.
 
+## Telegram Notifications
+
+The nightly workflow can send a concise Telegram summary after research and paper trading reports are updated.
+
+To enable it, add these GitHub Actions repository secrets:
+
+- `TELEGRAM_BOT_TOKEN`
+- `TELEGRAM_CHAT_ID`
+
+The message includes regime status, confidence score, buy/sell/hold lists, portfolio value, total return, BIST100 return, and unrealized PnL. It does not send full reports.
+
+Telegram notifications are optional. If either secret is missing, the workflow prints `Telegram secrets not configured.` and continues successfully.
+
 ## Paper Trading
 
 The paper trading engine tracks real-world performance of generated monthly recommendations over time. It reads `results/current_month_portfolio.csv`, opens paper positions for new buy signals, closes paper positions for sell signals, keeps hold positions, and marks active positions to market with latest available prices.
