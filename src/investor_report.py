@@ -18,6 +18,7 @@ ACTION_FILLS = {
     "TUT": "FFF2CC",
     "SAT": "F4CCCC",
     "PORTFOY_DISI": "E7E6E6",
+    "CASH": "D9EAF7",
 }
 
 REPORT_CAPITAL = 100_000.0
@@ -161,6 +162,7 @@ def _as_bool(value: object) -> bool:
 def _build_executive_summary(current: pd.DataFrame, stock_prices: dict[str, pd.DataFrame]) -> pd.DataFrame:
     recommended = current[current["action"] == "BUY"].copy()
     rows = []
+    active_portfolio_size = int(current["active_portfolio_size"].iloc[0]) if "active_portfolio_size" in current else 10
 
     for _, row in recommended.iterrows():
         symbol = row["symbol"]
@@ -185,27 +187,30 @@ def _build_executive_summary(current: pd.DataFrame, stock_prices: dict[str, pd.D
 
     if not rows:
         return pd.DataFrame(
-            columns=[
-                "Rank",
-                "Stock",
-                "Action",
-                "Weight %",
-                "Allocation TL",
-                "Expected Return %",
-                "Expected Return TL",
-                "Target Price",
-                "Stop Price",
-                "Risk/Reward",
-                "Conviction",
+            [
+                {
+                    "Rank": 1,
+                    "Stock": "CASH",
+                    "Action": "CASH",
+                    "Weight %": 1.0,
+                    "Allocation TL": REPORT_CAPITAL,
+                    "Expected Return %": 0.0,
+                    "Expected Return TL": 0.0,
+                    "Target Price": None,
+                    "Stop Price": None,
+                    "Risk/Reward": None,
+                    "Conviction": "CASH",
+                }
             ]
         )
 
     summary = pd.DataFrame(rows).sort_values("_attractiveness", ascending=False).head(10).reset_index(drop=True)
     positive = summary["_attractiveness"].clip(lower=0)
+    invested_weight = min(len(summary) / max(active_portfolio_size, 1), 1.0)
     if positive.sum() > 0:
-        weights = positive / positive.sum()
+        weights = (positive / positive.sum()) * invested_weight
     else:
-        weights = pd.Series(1 / len(summary), index=summary.index)
+        weights = pd.Series(invested_weight / len(summary), index=summary.index)
 
     summary["Rank"] = range(1, len(summary) + 1)
     summary["Weight %"] = weights
@@ -215,7 +220,7 @@ def _build_executive_summary(current: pd.DataFrame, stock_prices: dict[str, pd.D
         errors="coerce",
     ).fillna(0)
 
-    return summary[
+    output = summary[
         [
             "Rank",
             "Stock",
@@ -230,6 +235,29 @@ def _build_executive_summary(current: pd.DataFrame, stock_prices: dict[str, pd.D
             "Conviction",
         ]
     ]
+
+    cash_weight = 1.0 - float(output["Weight %"].sum())
+    if cash_weight > 0.000001:
+        cash_row = pd.DataFrame(
+            [
+                {
+                    "Rank": len(output) + 1,
+                    "Stock": "CASH",
+                    "Action": "CASH",
+                    "Weight %": cash_weight,
+                    "Allocation TL": cash_weight * REPORT_CAPITAL,
+                    "Expected Return %": 0.0,
+                    "Expected Return TL": 0.0,
+                    "Target Price": None,
+                    "Stop Price": None,
+                    "Risk/Reward": None,
+                    "Conviction": "CASH",
+                }
+            ]
+        )
+        output = pd.concat([output, cash_row], ignore_index=True)
+
+    return output
 
 
 def _build_portfolio_sheet(current: pd.DataFrame, stock_prices: dict[str, pd.DataFrame]) -> pd.DataFrame:
@@ -291,12 +319,14 @@ def _build_action_summary(current: pd.DataFrame) -> pd.DataFrame:
         return ", ".join(symbols) if symbols else "-"
 
     excluded = current.loc[current["action"] == "EXCLUDE", "symbol"].tolist()
+    min_buy = float(current["min_buy_expected_return"].iloc[0]) if "min_buy_expected_return" in current else 0.10
     return pd.DataFrame(
         [
             {"Kategori": "Alınacaklar", "Hisseler": symbols_for("BUY")},
             {"Kategori": "Tutulacaklar", "Hisseler": symbols_for("HOLD")},
             {"Kategori": "Satılacaklar", "Hisseler": symbols_for("SELL")},
             {"Kategori": "Portföy dışı kalanlar", "Hisseler": ", ".join(excluded) if excluded else "-"},
+            {"Kategori": "Nakit kuralı", "Hisseler": f"Beklenen getiri %{min_buy * 100:.0f} altında ise AL önerisi verilmez; kalan sermaye CASH olur."},
         ]
     )
 
@@ -500,7 +530,11 @@ def _style_workbook(path: Path, portfolio_rows: int, current: pd.DataFrame) -> N
             start_row = 2
 
         action_col = headers.get("Aksiyon")
+        if sheet.title == "YONETICI_OZETI":
+            action_col = headers.get("Action")
         rank_col = headers.get("Sıra")
+        if sheet.title == "YONETICI_OZETI":
+            rank_col = headers.get("Rank")
         if action_col:
             for row in range(start_row, sheet.max_row + 1):
                 action = sheet.cell(row=row, column=action_col).value

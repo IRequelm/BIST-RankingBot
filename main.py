@@ -4,11 +4,13 @@ import pandas as pd
 
 import config
 from src.backtester import run_backtests
+from src.cash_allocation import build_cash_allocation_reports
 from src.current_portfolio import generate_current_month_portfolio
 from src.data_loader import fetch_price_data, find_missing_tickers
 from src.investor_report import generate_investor_report
 from src.paper_trading import update_paper_trading
 from src.ranking import build_monthly_rankings
+from src.real_return_report import save_real_return_report
 from src.reporting import (
     assign_periods,
     build_final_report,
@@ -38,7 +40,7 @@ def main() -> None:
 
     print("Fetching price data...")
     prices = fetch_price_data(
-        symbols=symbols + [benchmark_symbol],
+        symbols=symbols + [benchmark_symbol, config.USDTRY_SYMBOL],
         start_date=config.START_DATE,
         end_date=config.END_DATE,
         data_dir=config.DATA_DIR,
@@ -46,6 +48,7 @@ def main() -> None:
 
     stock_prices = {symbol: df for symbol, df in prices.items() if symbol in symbols}
     benchmark_prices = prices.get(benchmark_symbol)
+    usdtry_prices = prices.get(config.USDTRY_SYMBOL)
     missing_tickers = find_missing_tickers(symbols, stock_prices)
     missing_tickers.to_csv(Path(config.RESULTS_DIR) / "missing_tickers.csv", index=False)
 
@@ -124,6 +127,7 @@ def main() -> None:
             base_portfolio_size=10,
             defensive_model="low_volatility",
             defensive_portfolio_size=5,
+            min_buy_expected_return=config.MIN_BUY_EXPECTED_RETURN,
         )
 
         print("Updating paper trading tracker...")
@@ -193,6 +197,21 @@ def main() -> None:
     else:
         pd.DataFrame().to_csv(best_model_path, index=False)
         pd.DataFrame().to_csv(best_results_path, index=False)
+
+    print("Generating real return report...")
+    build_cash_allocation_reports(
+        results_dir=config.RESULTS_DIR,
+        summary=summary,
+        benchmark_monthly=benchmark_monthly,
+        periods=periods,
+        transaction_cost=config.TRANSACTION_COST,
+        thresholds=config.CASH_ALLOCATION_THRESHOLDS,
+    )
+    save_real_return_report(
+        results_dir=config.RESULTS_DIR,
+        benchmark_prices=benchmark_prices,
+        usdtry_prices=usdtry_prices,
+    )
 
     save_charts(
         backtest_results=backtest_results,

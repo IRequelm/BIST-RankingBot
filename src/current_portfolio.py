@@ -15,9 +15,6 @@ FACTOR_MAP = {
     "volatility_penalty": ("volatility", False),
 }
 
-EXPECTED_RETURN_NEAR_ZERO_THRESHOLD = 0.005
-
-
 def _latest_feature_snapshot(stock_prices: dict[str, pd.DataFrame]) -> tuple[pd.DataFrame, pd.Timestamp]:
     rows = []
     latest_dates = []
@@ -139,13 +136,17 @@ def _expected_return_band(
     }
 
 
-def _expected_return_action(expected_return_mid: float | None, in_recommended: bool) -> str:
+def _expected_return_action(
+    expected_return_mid: float | None,
+    in_recommended: bool,
+    min_buy_expected_return: float,
+) -> str:
     if expected_return_mid is None or pd.isna(expected_return_mid):
         return "HOLD" if in_recommended else "EXCLUDE"
 
-    if expected_return_mid > EXPECTED_RETURN_NEAR_ZERO_THRESHOLD:
+    if expected_return_mid >= min_buy_expected_return:
         return "BUY" if in_recommended else "EXCLUDE"
-    if expected_return_mid < -EXPECTED_RETURN_NEAR_ZERO_THRESHOLD:
+    if expected_return_mid < 0:
         return "SELL"
     return "HOLD" if in_recommended else "EXCLUDE"
 
@@ -170,6 +171,7 @@ def generate_current_month_portfolio(
     base_portfolio_size: int = 10,
     defensive_model: str = "low_volatility",
     defensive_portfolio_size: int = 5,
+    min_buy_expected_return: float = 0.10,
 ) -> tuple[pd.DataFrame, str]:
     """Generate current portfolio recommendation from existing regime/ranking framework."""
     Path(results_dir).mkdir(exist_ok=True)
@@ -196,7 +198,7 @@ def generate_current_month_portfolio(
         symbol = row["symbol"]
         in_recommended = symbol in recommended_symbols
         expected = _expected_return_band(symbol, active_model, row["score"], factor_breakdown)
-        action = _expected_return_action(expected["expected_return_mid"], in_recommended)
+        action = _expected_return_action(expected["expected_return_mid"], in_recommended, min_buy_expected_return)
         output = row.to_dict()
         output.update(expected)
         output.update(
@@ -210,6 +212,7 @@ def generate_current_month_portfolio(
                 "bist100_below_ma200": regime["bist100_below_ma200"],
                 "active_model": active_model,
                 "active_portfolio_size": active_portfolio_size,
+                "min_buy_expected_return": min_buy_expected_return,
                 "recommended": in_recommended,
                 "action": action,
             }
@@ -252,6 +255,7 @@ def generate_current_month_portfolio(
         f"- BIST100 MA200: {regime['bist100_ma200']:.2f}",
         f"- BIST100 below MA200: {regime['bist100_below_ma200']}",
         f"- Confidence score: {confidence:.2f}/100",
+        f"- Minimum BUY expected return: {min_buy_expected_return:.2%}",
         "",
         "## Recommended Portfolio",
         "",
