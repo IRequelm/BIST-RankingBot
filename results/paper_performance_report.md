@@ -46,4 +46,4 @@ This is a research-only paper trading tracker. It does not place trades and does
 
 | date       |   portfolio_value |   cash |   active_position_value |   realized_pnl |   unrealized_pnl |   total_return |   benchmark_value |   benchmark_return |   active_positions |
 |:-----------|------------------:|-------:|------------------------:|---------------:|-----------------:|---------------:|------------------:|-------------------:|-------------------:|
-| 2026-06-01 |       100000.0000 | 0.0000 |             100000.0000 |              0 |           0.0000 |         0.0000 |       100000.0000 |             0.0000 |                 10 |
+| 2026-06-01 |       100000.0000 | 0.0000 |             100000.0000 |         0.0000 |           0.0000 |         0.0000 |       100000.0000 |             0.0000 |                 10 |
