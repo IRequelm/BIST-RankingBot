@@ -77,6 +77,10 @@ Outputs are written to `results/`:
 - `paper_portfolio_history.csv`
 - `paper_trade_log.csv`
 - `paper_performance_report.md`
+- `monthly_investor_report.xlsx` - latest human-readable investor Excel report
+- `monthly_investor_report.md` - latest human-readable investor Markdown report
+- `monthly_investor_report_YYYY-MM-DD.xlsx` - archived dated Excel investor report
+- `monthly_investor_report_YYYY-MM-DD.md` - archived dated Markdown investor report
 - `monthly_selections.csv`
 - `factor_breakdown.csv`
 - `ticker_selection_stats.csv`
@@ -110,6 +114,26 @@ Outputs are written to `results/`:
 - `best_model_monthly_returns.png`
 
 Downloaded price data is cached in `data/`.
+
+## Historical Replay Mode
+
+Historical replay mode answers: if the bot had been run on a past date, what would it have recommended and what actually happened afterward?
+
+Example commands:
+
+```bash
+python main.py --replay-date 2026-05-01
+python main.py --replay-date 2026-05-01 --holding-days 30
+```
+
+Replay mode:
+
+- uses only data available up to the replay date for recommendation generation
+- uses the first available trading day on or after the requested date
+- evaluates the realized performance after the replay date
+- writes `results/replay_YYYY-MM-DD_report.md`
+- writes `results/replay_YYYY-MM-DD_portfolio.xlsx`
+- appends/updates `results/replay_summary.csv`
 
 ## Configuration
 

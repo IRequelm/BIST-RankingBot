@@ -139,16 +139,29 @@ def _expected_return_band(
 def _expected_return_action(
     expected_return_mid: float | None,
     in_recommended: bool,
-    min_buy_expected_return: float,
+    opportunity_threshold: float,
 ) -> str:
     if expected_return_mid is None or pd.isna(expected_return_mid):
         return "HOLD" if in_recommended else "EXCLUDE"
 
-    if expected_return_mid >= min_buy_expected_return:
+    if expected_return_mid >= opportunity_threshold:
         return "BUY" if in_recommended else "EXCLUDE"
     if expected_return_mid < 0:
         return "SELL"
     return "HOLD" if in_recommended else "EXCLUDE"
+
+
+def _opportunity_threshold(
+    expected_returns: pd.Series,
+    minimum_expected_return: float,
+    percentile: float,
+) -> float:
+    valid = pd.to_numeric(expected_returns, errors="coerce").dropna()
+    if valid.empty:
+        return minimum_expected_return
+
+    clipped_percentile = min(max(float(percentile), 0.0), 1.0)
+    return max(float(minimum_expected_return), float(valid.quantile(clipped_percentile)))
 
 
 def _confidence_score(recommended: pd.DataFrame, regime: dict[str, object]) -> float:
@@ -172,6 +185,9 @@ def generate_current_month_portfolio(
     defensive_model: str = "low_volatility",
     defensive_portfolio_size: int = 5,
     min_buy_expected_return: float = 0.10,
+    opportunity_filter_percentile: float = 0.50,
+    factor_breakdown: pd.DataFrame | None = None,
+    write_outputs: bool = True,
 ) -> tuple[pd.DataFrame, str]:
     """Generate current portfolio recommendation from existing regime/ranking framework."""
     Path(results_dir).mkdir(exist_ok=True)
@@ -188,17 +204,16 @@ def generate_current_month_portfolio(
     recommended_symbols = set(top20.head(active_portfolio_size)["symbol"])
     previous_symbols = _previous_holdings(rankings_by_model, active_model, active_portfolio_size, snapshot_date)
 
-    factor_breakdown_path = Path(results_dir) / "factor_breakdown.csv"
-    factor_breakdown = None
-    if factor_breakdown_path.exists():
-        factor_breakdown = pd.read_csv(factor_breakdown_path, parse_dates=["date"])
+    if factor_breakdown is None:
+        factor_breakdown_path = Path(results_dir) / "factor_breakdown.csv"
+        if factor_breakdown_path.exists():
+            factor_breakdown = pd.read_csv(factor_breakdown_path, parse_dates=["date"])
 
     rows = []
     for _, row in top20.iterrows():
         symbol = row["symbol"]
         in_recommended = symbol in recommended_symbols
         expected = _expected_return_band(symbol, active_model, row["score"], factor_breakdown)
-        action = _expected_return_action(expected["expected_return_mid"], in_recommended, min_buy_expected_return)
         output = row.to_dict()
         output.update(expected)
         output.update(
@@ -213,18 +228,29 @@ def generate_current_month_portfolio(
                 "active_model": active_model,
                 "active_portfolio_size": active_portfolio_size,
                 "min_buy_expected_return": min_buy_expected_return,
+                "opportunity_filter_percentile": opportunity_filter_percentile,
                 "recommended": in_recommended,
-                "action": action,
             }
         )
         rows.append(output)
 
     report_df = pd.DataFrame(rows)
+    opportunity_threshold = _opportunity_threshold(
+        report_df.loc[report_df["recommended"], "expected_return_mid"],
+        min_buy_expected_return,
+        opportunity_filter_percentile,
+    )
+    report_df["opportunity_threshold"] = opportunity_threshold
+    report_df["action"] = [
+        _expected_return_action(row["expected_return_mid"], bool(row["recommended"]), opportunity_threshold)
+        for _, row in report_df.iterrows()
+    ]
     confidence = _confidence_score(report_df[report_df["recommended"]], regime)
     report_df["confidence_score"] = confidence
 
-    csv_path = Path(results_dir) / "current_month_portfolio.csv"
-    report_df.to_csv(csv_path, index=False)
+    if write_outputs:
+        csv_path = Path(results_dir) / "current_month_portfolio.csv"
+        report_df.to_csv(csv_path, index=False)
 
     buy_list = report_df[report_df["action"] == "BUY"]["symbol"].tolist()
     hold_list = report_df[report_df["action"] == "HOLD"]["symbol"].tolist()
@@ -255,7 +281,9 @@ def generate_current_month_portfolio(
         f"- BIST100 MA200: {regime['bist100_ma200']:.2f}",
         f"- BIST100 below MA200: {regime['bist100_below_ma200']}",
         f"- Confidence score: {confidence:.2f}/100",
-        f"- Minimum BUY expected return: {min_buy_expected_return:.2%}",
+        f"- Minimum BUY expected return floor: {min_buy_expected_return:.2%}",
+        f"- Opportunity filter percentile: {opportunity_filter_percentile:.0%}",
+        f"- Effective BUY threshold: {opportunity_threshold:.2%}",
         "",
         "## Recommended Portfolio",
         "",
@@ -323,6 +351,7 @@ def generate_current_month_portfolio(
     ]
 
     markdown = "\n".join(lines)
-    markdown_path = Path(results_dir) / "current_month_portfolio.md"
-    markdown_path.write_text(markdown, encoding="utf-8")
+    if write_outputs:
+        markdown_path = Path(results_dir) / "current_month_portfolio.md"
+        markdown_path.write_text(markdown, encoding="utf-8")
     return report_df, markdown

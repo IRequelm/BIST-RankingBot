@@ -4,14 +4,14 @@ This report evaluates performance in both TL and USD terms. USD performance is e
 
 ## Cash Allocation
 
-- Minimum BUY expected return: 5.00%
-- BUY candidates meeting threshold: 2
+- Minimum BUY expected return: 0.00%
+- BUY candidates meeting threshold: 5
 - Active portfolio slot count: 10
-- Implied CASH weight when using equal opportunity slots: 80.00%
+- Implied CASH weight when using equal opportunity slots: 50.00%
 
 ## Paper Portfolio TL / USD
 
-- Latest portfolio value TL: 520,000.00
+- Latest portfolio value TL: 870,000.00
 - Portfolio TL return: 0.00%
 - USDTRY return over paper period: 0.00%
 - Portfolio USD return: 0.00%

@@ -1,0 +1,2 @@
+replay_date,actual_trading_date,holding_days,portfolio_return,bist100_return,excess_return_vs_bist100,max_drawdown,best_selected_stock,worst_selected_stock,cash_weight,selected_stock_count
+2026-05-01,2026-05-04,30,-0.038281365868757466,-0.04631998298273743,0.008038617113979962,-0.06841592892644943,TOASO.IS,FROTO.IS,0.5,5

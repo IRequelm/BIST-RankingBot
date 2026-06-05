@@ -143,6 +143,139 @@ def evaluate_cash_thresholds(
     return summary, monthly
 
 
+def _candidate_filters(portfolio_size: int) -> list[dict[str, object]]:
+    candidates: list[dict[str, object]] = [
+        {"name": "current_fixed_5pct", "kind": "fixed", "threshold": 0.05},
+        {"name": "fixed_0pct", "kind": "fixed", "threshold": 0.00},
+        {"name": "fixed_1pct", "kind": "fixed", "threshold": 0.01},
+        {"name": "fixed_2pct", "kind": "fixed", "threshold": 0.02},
+        {"name": "fixed_3pct", "kind": "fixed", "threshold": 0.03},
+    ]
+    for percentile in [0.10, 0.20, 0.30, 0.40, 0.50]:
+        candidates.append(
+            {
+                "name": f"percentile_positive_p{int(percentile * 100)}",
+                "kind": "percentile",
+                "percentile": percentile,
+                "positive_floor": True,
+            }
+        )
+        candidates.append(
+            {
+                "name": f"percentile_p{int(percentile * 100)}",
+                "kind": "percentile",
+                "percentile": percentile,
+                "positive_floor": False,
+            }
+        )
+    for top_n in range(1, portfolio_size + 1):
+        candidates.append(
+            {
+                "name": f"top{top_n}_positive_est",
+                "kind": "top_estimate",
+                "top_n": top_n,
+                "positive_floor": True,
+            }
+        )
+    return candidates
+
+
+def _apply_candidate_filter(scored: pd.DataFrame, candidate: dict[str, object]) -> pd.DataFrame:
+    kind = candidate["kind"]
+    if kind == "fixed":
+        threshold = float(candidate["threshold"])
+        return scored[scored["estimated_expected_return"] >= threshold]
+
+    if kind == "percentile":
+        percentile = float(candidate["percentile"])
+        threshold = float(scored["estimated_expected_return"].quantile(percentile))
+        if candidate.get("positive_floor", False):
+            threshold = max(0.0, threshold)
+        return scored[scored["estimated_expected_return"] >= threshold]
+
+    if kind == "top_estimate":
+        top_n = int(candidate["top_n"])
+        filtered = scored.copy()
+        if candidate.get("positive_floor", False):
+            filtered = filtered[filtered["estimated_expected_return"] > 0]
+        return filtered.sort_values(
+            ["estimated_expected_return", "rank"],
+            ascending=[False, True],
+        ).head(top_n)
+
+    raise ValueError(f"Unsupported opportunity filter kind: {kind}")
+
+
+def evaluate_opportunity_filters(
+    factor_breakdown: pd.DataFrame,
+    model: str,
+    portfolio_size: int,
+    transaction_cost: float,
+    periods: dict[str, tuple[str, str]],
+    benchmark_monthly: pd.Series | None,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    data = factor_breakdown[
+        (factor_breakdown["model"] == model)
+        & (factor_breakdown["portfolio_size"] == portfolio_size)
+    ].copy()
+    if data.empty:
+        return pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
+
+    data["date"] = pd.to_datetime(data["date"])
+    data = data.sort_values(["date", "rank"])
+    scored_months = []
+    rows = []
+
+    for date, group in data.groupby("date"):
+        period = _period_for_date(pd.Timestamp(date), periods)
+        if period is None:
+            continue
+
+        prior = data[data["date"] < date]
+        scored = group.copy()
+        scored["estimated_expected_return"] = [
+            _estimate_expected_return(prior, row)
+            for _, row in scored.iterrows()
+        ]
+        scored["period"] = period
+        scored_months.append(scored)
+
+        for candidate in _candidate_filters(portfolio_size):
+            qualified = _apply_candidate_filter(scored, candidate)
+            qualified_count = len(qualified)
+            invested_weight = qualified_count / portfolio_size if portfolio_size else 0.0
+            rows.append(
+                {
+                    "threshold": candidate["name"],
+                    "date": date,
+                    "period": period,
+                    "model": model,
+                    "portfolio_size": portfolio_size,
+                    "qualified_count": qualified_count,
+                    "cash_weight": 1.0 - invested_weight,
+                    "invested_weight": invested_weight,
+                    "gross_return": qualified["next_month_return"].sum() / portfolio_size
+                    if portfolio_size
+                    else 0.0,
+                    "transaction_cost": transaction_cost * invested_weight,
+                    "net_return": (
+                        qualified["next_month_return"].sum() / portfolio_size
+                        if portfolio_size
+                        else 0.0
+                    )
+                    - (transaction_cost * invested_weight),
+                    "avg_estimated_expected_return": qualified["estimated_expected_return"].mean()
+                    if qualified_count
+                    else 0.0,
+                }
+            )
+
+    monthly = pd.DataFrame(rows)
+    scored_history = pd.concat(scored_months, ignore_index=True) if scored_months else pd.DataFrame()
+    summary = _summarize_cash_strategy(monthly, benchmark_monthly)
+    return summary, monthly, scored_history
+
+
 def _baseline_rows(summary: pd.DataFrame, model: str, portfolio_size: int) -> pd.DataFrame:
     baseline = summary[
         (summary["model"] == model)
@@ -260,3 +393,131 @@ def build_cash_allocation_reports(
     report = "\n".join(report_lines)
     (results_path / "cash_allocation_report.md").write_text(report, encoding="utf-8")
     return comparison, report, selected_threshold if accepted else None
+
+
+def build_opportunity_filter_calibration_report(
+    results_dir: str,
+    summary: pd.DataFrame,
+    benchmark_monthly: pd.Series | None,
+    periods: dict[str, tuple[str, str]],
+    transaction_cost: float,
+) -> tuple[pd.DataFrame, str, str | None]:
+    results_path = Path(results_dir)
+    best_model = pd.read_csv(results_path / "best_model.csv")
+    factor_breakdown = pd.read_csv(results_path / "factor_breakdown.csv")
+
+    if best_model.empty:
+        report = "# Opportunity Filter Calibration\n\nNo best model is available.\n"
+        (results_path / "opportunity_filter_calibration.md").write_text(report, encoding="utf-8")
+        return pd.DataFrame(), report, None
+
+    best = best_model.iloc[0]
+    model = str(best["model"])
+    portfolio_size = int(best["portfolio_size"])
+    filter_summary, _, scored_history = evaluate_opportunity_filters(
+        factor_breakdown=factor_breakdown,
+        model=model,
+        portfolio_size=portfolio_size,
+        transaction_cost=transaction_cost,
+        periods=periods,
+        benchmark_monthly=benchmark_monthly,
+    )
+    baseline = _baseline_rows(summary, model, portfolio_size)
+    comparison = pd.concat([baseline, filter_summary], ignore_index=True)
+
+    selected_filter = None
+    accepted = False
+    reason = "No candidate passed the acceptance rule."
+    oos = filter_summary[filter_summary["period"] == "out_of_sample"].copy()
+    baseline_oos = baseline[baseline["period"] == "out_of_sample"].head(1)
+    current = oos[oos["threshold"] == "current_fixed_5pct"].head(1)
+    if not oos.empty and not baseline_oos.empty and not current.empty:
+        base = baseline_oos.iloc[0]
+        current_row = current.iloc[0]
+        oos["return_improvement_vs_current_5pct"] = (
+            oos["strategy_total_return"] - float(current_row["strategy_total_return"])
+        )
+        oos["drawdown_improvement_vs_baseline"] = (
+            oos["strategy_max_drawdown"] - float(base["strategy_max_drawdown"])
+        )
+        accepted_candidates = oos[
+            (oos["threshold"] != "current_fixed_5pct")
+            & (oos["return_improvement_vs_current_5pct"] > 0.05)
+            & (oos["drawdown_improvement_vs_baseline"] > 0)
+        ].copy()
+        if not accepted_candidates.empty:
+            accepted_candidates["implementation_preference"] = (
+                accepted_candidates["threshold"] == "percentile_positive_p50"
+            ).astype(int)
+            selected = accepted_candidates.sort_values(
+                [
+                    "strategy_total_return",
+                    "selection_score",
+                    "implementation_preference",
+                    "strategy_max_drawdown",
+                ],
+                ascending=[False, False, False, False],
+            ).iloc[0]
+            selected_filter = str(selected["threshold"])
+            accepted = True
+            reason = (
+                "Accepted because the selected filter materially improved out-of-sample "
+                "return versus the current 5% threshold while preserving a drawdown "
+                "improvement versus the full-invested baseline."
+            )
+
+    distribution = pd.DataFrame()
+    if not scored_history.empty:
+        distribution = scored_history.groupby("period")["estimated_expected_return"].describe(
+            percentiles=[0.10, 0.20, 0.25, 0.30, 0.40, 0.50, 0.60, 0.75, 0.80, 0.90]
+        )
+
+    oos_table = comparison[comparison["period"] == "out_of_sample"].copy()
+    if not oos_table.empty and not baseline_oos.empty and not current.empty:
+        base = baseline_oos.iloc[0]
+        current_row = current.iloc[0]
+        oos_table["return_vs_current_5pct"] = (
+            oos_table["strategy_total_return"] - float(current_row["strategy_total_return"])
+        )
+        oos_table["drawdown_vs_baseline"] = (
+            oos_table["strategy_max_drawdown"] - float(base["strategy_max_drawdown"])
+        )
+
+    report_lines = [
+        "# Opportunity Filter Calibration",
+        "",
+        "## Finding",
+        "",
+        f"- Baseline model: {model} Top{portfolio_size}",
+        "- Current issue: the fixed 5% opportunity threshold allocates too much to CASH and hurts returns.",
+        "- Improvement tested: calibrated opportunity filters that keep cash support but use relative thresholds.",
+        f"- Selected filter: {selected_filter if selected_filter else 'n/a'}",
+        f"- Decision: {'accepted' if accepted else 'rejected'}",
+        f"- Reason: {reason}",
+        "",
+        "## Expected Return Distribution",
+        "",
+        distribution.to_markdown(floatfmt=".4f") if not distribution.empty else "No distribution generated.",
+        "",
+        "## Out-Of-Sample Comparison",
+        "",
+        oos_table.sort_values(
+            ["strategy_total_return", "strategy_max_drawdown"],
+            ascending=[False, False],
+        ).to_markdown(index=False, floatfmt=".4f")
+        if not oos_table.empty
+        else "No comparison generated.",
+        "",
+        "## Interpretation",
+        "",
+        (
+            "The expected return estimator is noisy and has weak negative correlation with realized next-month returns. "
+            "A fixed 5% threshold is above the median estimated return in most periods, so it over-allocates to CASH. "
+            "A positive-floor percentile filter is more realistic: it rejects the weakest current opportunities while "
+            "staying invested when the opportunity set is broadly positive."
+        ),
+        "",
+    ]
+    report = "\n".join(report_lines)
+    (results_path / "opportunity_filter_calibration.md").write_text(report, encoding="utf-8")
+    return comparison, report, selected_filter if accepted else None

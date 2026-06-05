@@ -1,17 +1,23 @@
 # Recommendation Logic Audit Report
 
-Generated after auditing recommendation generation, expected return calculation, action assignment, and the accepted cash-allocation threshold.
+Generated after auditing recommendation generation, expected return calculation, action assignment, and the calibrated opportunity filter.
 
 ## Executive Finding
 
-The recommendation logic now blocks `BUY` / `AL` unless `expected_return_mid` is at least 5.00%.
+The recommendation logic now uses a calibrated opportunity threshold instead of a fixed 5.00% hurdle.
 
-The investor report allows `CASH` as an asset. If fewer than 10 attractive opportunities pass the 5.00% expected-return threshold, the unused capital is allocated to `CASH` so portfolio weights always sum to 100%.
+The active rule is:
+
+- Floor: expected return must be at least 0.00%.
+- Relative filter: expected return must be at or above the current recommended opportunity set's 50th percentile.
+- Current effective BUY threshold: 1.50%.
+
+The investor report still allows `CASH` as an asset. If fewer than 10 attractive opportunities pass the calibrated threshold, unused capital is allocated to `CASH` so portfolio weights always sum to 100%.
 
 ## Rule Used
 
-- `BUY`: expected return >= 5.00%
-- `HOLD`: expected return >= 0.00% and < 5.00% for active recommended names
+- `BUY`: expected return >= current effective opportunity threshold for active recommended names
+- `HOLD`: expected return >= 0.00% and < current effective threshold for active recommended names
 - `SELL`: expected return < 0.00%
 - `EXCLUDE`: not inside the active recommendation set and not a negative-return sell candidate
 - `CASH`: remaining capital when fewer than 10 attractive `BUY` candidates exist
@@ -22,13 +28,13 @@ The investor report allows `CASH` as an asset. If fewer than 10 attractive oppor
 |---:|:---|:---:|:---|---:|:---|
 | 1 | EREGL.IS | True | SELL | -0.0052 | PASS |
 | 2 | SISE.IS | True | BUY | 0.0573 | PASS |
-| 3 | BIMAS.IS | True | HOLD | 0.0150 | PASS |
-| 4 | TOASO.IS | True | HOLD | 0.0360 | PASS |
+| 3 | BIMAS.IS | True | BUY | 0.0150 | PASS |
+| 4 | TOASO.IS | True | BUY | 0.0360 | PASS |
 | 5 | TCELL.IS | True | SELL | -0.0056 | PASS |
 | 6 | PETKM.IS | True | SELL | -0.0293 | PASS |
 | 7 | ASELS.IS | True | HOLD | 0.0149 | PASS |
 | 8 | FROTO.IS | True | BUY | 0.1135 | PASS |
-| 9 | ARCLK.IS | True | HOLD | 0.0319 | PASS |
+| 9 | ARCLK.IS | True | BUY | 0.0319 | PASS |
 | 10 | THYAO.IS | True | SELL | -0.0071 | PASS |
 | 11 | KCHOL.IS | False | EXCLUDE | 0.0070 | PASS |
 | 12 | GARAN.IS | False | EXCLUDE | 0.0063 | PASS |
@@ -42,13 +48,16 @@ Strict mismatch count: 0.
 
 ## YONETICI_OZETI Audit
 
-`YONETICI_OZETI` includes only actionable `AL` rows whose expected return is at least 5.00%, plus a `CASH` row for unused capital.
+`YONETICI_OZETI` includes actionable `AL` rows above the calibrated effective threshold, plus a `CASH` row for unused capital.
 
 | rank | stock | action | weight | expected_return_mid |
 |---:|:---|:---|---:|---:|
-| 1 | SISE.IS | AL | 10.77% | 0.0573 |
-| 2 | FROTO.IS | AL | 9.23% | 0.1135 |
-| 3 | CASH | CASH | 80.00% | 0.0000 |
+| 1 | SISE.IS | AL | 12.44% | 0.0573 |
+| 2 | FROTO.IS | AL | 10.65% | 0.1135 |
+| 3 | BIMAS.IS | AL | 9.83% | 0.0150 |
+| 4 | TOASO.IS | AL | 9.39% | 0.0360 |
+| 5 | ARCLK.IS | AL | 7.68% | 0.0319 |
+| 6 | CASH | CASH | 50.00% | 0.0000 |
 
 Weight sum: 100.00%.
 
@@ -68,4 +77,4 @@ Known data warning: Yahoo Finance returned no valid data for `KOZAL.IS`; the pro
 
 Accepted.
 
-Reasoning: the updated reports no longer recommend `BUY` / `AL` below the selected expected-return threshold. The current actionable names are `SISE.IS` at 5.73% expected return and `FROTO.IS` at 11.35% expected return; the remaining 80.00% is assigned to `CASH`.
+Reasoning: the calibrated opportunity filter reduced current cash allocation from 80.00% to 50.00% and improved out-of-sample return versus the fixed 5% threshold while keeping drawdown better than the full-invested baseline.

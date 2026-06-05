@@ -1,16 +1,18 @@
+import argparse
 from pathlib import Path
 
 import pandas as pd
 
 import config
 from src.backtester import run_backtests
-from src.cash_allocation import build_cash_allocation_reports
+from src.cash_allocation import build_cash_allocation_reports, build_opportunity_filter_calibration_report
 from src.current_portfolio import generate_current_month_portfolio
 from src.data_loader import fetch_price_data, find_missing_tickers
 from src.investor_report import generate_investor_report
 from src.paper_trading import update_paper_trading
 from src.ranking import build_monthly_rankings
 from src.real_return_report import save_real_return_report
+from src.replay import run_historical_replay
 from src.reporting import (
     assign_periods,
     build_final_report,
@@ -31,7 +33,15 @@ from src.robustness import (
 from src.selection_exports import save_selection_exports
 
 
+def _parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Run BIST-RankingBot research pipeline.")
+    parser.add_argument("--replay-date", help="Run historical replay for the requested date, e.g. 2026-05-01.")
+    parser.add_argument("--holding-days", type=int, default=30, help="Holding period for historical replay.")
+    return parser.parse_args()
+
+
 def main() -> None:
+    args = _parse_args()
     Path(config.DATA_DIR).mkdir(exist_ok=True)
     Path(config.RESULTS_DIR).mkdir(exist_ok=True)
 
@@ -51,6 +61,31 @@ def main() -> None:
     usdtry_prices = prices.get(config.USDTRY_SYMBOL)
     missing_tickers = find_missing_tickers(symbols, stock_prices)
     missing_tickers.to_csv(Path(config.RESULTS_DIR) / "missing_tickers.csv", index=False)
+
+    if args.replay_date:
+        if benchmark_prices is None or benchmark_prices.empty:
+            raise ValueError("Benchmark data is required for historical replay mode.")
+        print(f"Running historical replay for {args.replay_date}...")
+        replay = run_historical_replay(
+            stock_prices=stock_prices,
+            benchmark_prices=benchmark_prices,
+            requested_date=args.replay_date,
+            holding_days=args.holding_days,
+            results_dir=config.RESULTS_DIR,
+            factor_models=config.FACTOR_MODELS,
+            portfolio_sizes=config.PORTFOLIO_SIZES,
+            transaction_cost=config.TRANSACTION_COST,
+            min_buy_expected_return=config.MIN_BUY_EXPECTED_RETURN,
+            opportunity_filter_percentile=config.OPPORTUNITY_FILTER_PERCENTILE,
+            illiquid_avg_traded_value_threshold=config.ILLIQUID_AVG_TRADED_VALUE_THRESHOLD,
+            speculative_daily_volatility_threshold=config.SPECULATIVE_DAILY_VOLATILITY_THRESHOLD,
+        )
+        print(f"Replay report written to: {Path(replay['report_path']).resolve()}")
+        print(f"Replay workbook written to: {Path(replay['xlsx_path']).resolve()}")
+        print(f"Portfolio return: {float(replay['portfolio_return']):.2%}")
+        print(f"BIST100 return: {float(replay['bist100_return']):.2%}")
+        print(f"Excess return: {float(replay['excess_return_vs_bist100']):.2%}")
+        return
 
     all_rankings = []
     all_backtests = []
@@ -128,6 +163,7 @@ def main() -> None:
             defensive_model="low_volatility",
             defensive_portfolio_size=5,
             min_buy_expected_return=config.MIN_BUY_EXPECTED_RETURN,
+            opportunity_filter_percentile=config.OPPORTUNITY_FILTER_PERCENTILE,
         )
 
         print("Updating paper trading tracker...")
@@ -206,6 +242,13 @@ def main() -> None:
         periods=periods,
         transaction_cost=config.TRANSACTION_COST,
         thresholds=config.CASH_ALLOCATION_THRESHOLDS,
+    )
+    build_opportunity_filter_calibration_report(
+        results_dir=config.RESULTS_DIR,
+        summary=summary,
+        benchmark_monthly=benchmark_monthly,
+        periods=periods,
+        transaction_cost=config.TRANSACTION_COST,
     )
     save_real_return_report(
         results_dir=config.RESULTS_DIR,
