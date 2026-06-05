@@ -5,6 +5,7 @@ import pandas as pd
 
 import config
 from src.backtester import run_backtests
+from src.batch_replay import run_batch_replay, run_batch_replay_diagnostics
 from src.cash_allocation import build_cash_allocation_reports, build_opportunity_filter_calibration_report
 from src.current_portfolio import generate_current_month_portfolio
 from src.data_loader import fetch_price_data, find_missing_tickers
@@ -38,6 +39,7 @@ def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run BIST-RankingBot research pipeline.")
     parser.add_argument("--replay-date", help="Run historical replay for the requested date, e.g. 2026-05-01.")
     parser.add_argument("--holding-days", type=int, default=30, help="Holding period for historical replay.")
+    parser.add_argument("--batch-replay", action="store_true", help="Run rolling monthly historical replay research.")
     return parser.parse_args()
 
 
@@ -101,6 +103,57 @@ def main() -> None:
         print(f"Portfolio return: {float(replay['portfolio_return']):.2%}")
         print(f"BIST100 return: {float(replay['bist100_return']):.2%}")
         print(f"Excess return: {float(replay['excess_return_vs_bist100']):.2%}")
+        return
+
+    if args.batch_replay:
+        if benchmark_prices is None or benchmark_prices.empty:
+            raise ValueError("Benchmark data is required for batch replay mode.")
+        print("Running batch historical replay research...")
+        batch = run_batch_replay(
+            stock_prices=stock_prices,
+            benchmark_prices=benchmark_prices,
+            results_dir=config.RESULTS_DIR,
+            factor_models=config.FACTOR_MODELS,
+            portfolio_sizes=config.PORTFOLIO_SIZES,
+            transaction_cost=config.TRANSACTION_COST,
+            min_buy_expected_return=config.MIN_BUY_EXPECTED_RETURN,
+            opportunity_filter_percentile=config.OPPORTUNITY_FILTER_PERCENTILE,
+            illiquid_avg_traded_value_threshold=config.ILLIQUID_AVG_TRADED_VALUE_THRESHOLD,
+            speculative_daily_volatility_threshold=config.SPECULATIVE_DAILY_VOLATILITY_THRESHOLD,
+            start_date=config.OUT_OF_SAMPLE_START,
+            holding_days=30,
+        )
+        diagnostics = run_batch_replay_diagnostics(
+            stock_prices=stock_prices,
+            benchmark_prices=benchmark_prices,
+            results_dir=config.RESULTS_DIR,
+            factor_models=config.FACTOR_MODELS,
+            portfolio_sizes=config.PORTFOLIO_SIZES,
+            transaction_cost=config.TRANSACTION_COST,
+            min_buy_expected_return=config.MIN_BUY_EXPECTED_RETURN,
+            opportunity_filter_percentile=config.OPPORTUNITY_FILTER_PERCENTILE,
+            illiquid_avg_traded_value_threshold=config.ILLIQUID_AVG_TRADED_VALUE_THRESHOLD,
+            speculative_daily_volatility_threshold=config.SPECULATIVE_DAILY_VOLATILITY_THRESHOLD,
+            start_date=config.OUT_OF_SAMPLE_START,
+            holding_days=30,
+        )
+        results = batch["results"]
+        if results.empty:
+            print("No successful batch replay periods were generated.")
+            return
+
+        best = results.loc[results["excess_return"].idxmax()]
+        worst = results.loc[results["excess_return"].idxmin()]
+        print(f"Batch replay results written to: {Path(batch['results_path']).resolve()}")
+        print(f"Batch replay summary written to: {Path(batch['summary_path']).resolve()}")
+        print(f"Batch replay diagnostics written to: {Path(diagnostics['diagnostics_md_path']).resolve()}")
+        print(f"Replay months tested: {len(results)}")
+        print(f"Average excess return: {float(results['excess_return'].mean()):.2%}")
+        print(f"Win rate vs BIST100: {float((results['excess_return'] > 0).mean()):.2%}")
+        print(f"Best month: {best['replay_month']} ({float(best['excess_return']):.2%} excess)")
+        print(f"Worst month: {worst['replay_month']} ({float(worst['excess_return']):.2%} excess)")
+        print(f"Final strategy CAGR: {float(batch['strategy_cagr']):.2%}")
+        print(f"Final BIST100 CAGR: {float(batch['bist100_cagr']):.2%}")
         return
 
     all_rankings = []

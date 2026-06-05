@@ -171,7 +171,7 @@ def _daily_portfolio_curve(
         curves.append((window / entry) * float(row["Portfoy Agirligi"]))
     if not curves:
         return pd.Series([1.0], index=[trading_date])
-    combined = pd.concat(curves, axis=1).sum(axis=1) + cash_weight
+    combined = pd.concat(curves, axis=1).sort_index().ffill().bfill().sum(axis=1) + cash_weight
     return combined.sort_index()
 
 

@@ -154,6 +154,28 @@ Replay mode:
 - writes `results/replay_YYYY-MM-DD_portfolio.xlsx`
 - appends/updates `results/replay_summary.csv`
 
+## Batch Historical Replay Research
+
+Batch replay mode runs rolling monthly replays from the out-of-sample start date through the latest available month. It answers whether following the bot every month would have beaten BIST100 consistently across different market environments.
+
+Run:
+
+```bash
+python main.py --batch-replay
+```
+
+Batch replay mode:
+
+- uses the first available trading day of each month
+- rebuilds the historical ranking, regime, opportunity filter, and cash allocation state using only data available up to that replay date
+- evaluates a 1 month holding period
+- writes `results/batch_replay_results.csv`
+- writes `results/batch_replay_summary.md`
+- writes `results/batch_replay_diagnostics.csv`
+- writes `results/batch_replay_diagnostics.md`
+- writes `results/batch_replay_equity_curve.png`
+- writes `results/batch_replay_heatmap.png`
+
 ## Configuration
 
 Edit `config.py` to change:
