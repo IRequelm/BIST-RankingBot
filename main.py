@@ -12,6 +12,7 @@ from src.investor_report import generate_investor_report
 from src.paper_trading import update_paper_trading
 from src.ranking import build_monthly_rankings
 from src.real_return_report import save_real_return_report
+from src.report_publisher import publish_investor_report, publish_latest_existing_replay, publish_replay_report
 from src.replay import run_historical_replay
 from src.reporting import (
     assign_periods,
@@ -38,6 +39,15 @@ def _parse_args() -> argparse.Namespace:
     parser.add_argument("--replay-date", help="Run historical replay for the requested date, e.g. 2026-05-01.")
     parser.add_argument("--holding-days", type=int, default=30, help="Holding period for historical replay.")
     return parser.parse_args()
+
+
+def _current_report_date(results_dir: str) -> str:
+    current_path = Path(results_dir) / "current_month_portfolio.csv"
+    current = pd.read_csv(current_path)
+    for column in ["snapshot_date", "benchmark_date"]:
+        if column in current and pd.notna(current[column].iloc[0]):
+            return pd.Timestamp(current[column].iloc[0]).strftime("%Y-%m-%d")
+    return pd.Timestamp.today().strftime("%Y-%m-%d")
 
 
 def main() -> None:
@@ -80,8 +90,14 @@ def main() -> None:
             illiquid_avg_traded_value_threshold=config.ILLIQUID_AVG_TRADED_VALUE_THRESHOLD,
             speculative_daily_volatility_threshold=config.SPECULATIVE_DAILY_VOLATILITY_THRESHOLD,
         )
+        replay_publish = publish_replay_report(
+            xlsx_path=replay["xlsx_path"],
+            markdown_path=replay["report_path"],
+            replay_date=replay["replay_date"],
+        )
         print(f"Replay report written to: {Path(replay['report_path']).resolve()}")
         print(f"Replay workbook written to: {Path(replay['xlsx_path']).resolve()}")
+        print(f"Latest replay report published to: {replay_publish['latest_xlsx'].resolve()}")
         print(f"Portfolio return: {float(replay['portfolio_return']):.2%}")
         print(f"BIST100 return: {float(replay['bist100_return']):.2%}")
         print(f"Excess return: {float(replay['excess_return_vs_bist100']):.2%}")
@@ -176,10 +192,19 @@ def main() -> None:
         )
 
         print("Generating investor report...")
-        generate_investor_report(
+        investor_xlsx, investor_md = generate_investor_report(
             stock_prices=stock_prices,
             results_dir=config.RESULTS_DIR,
         )
+        investor_publish = publish_investor_report(
+            xlsx_path=investor_xlsx,
+            markdown_path=investor_md,
+            report_date=_current_report_date(config.RESULTS_DIR),
+        )
+        replay_publish = publish_latest_existing_replay(config.RESULTS_DIR)
+        print(f"Latest investor report published to: {investor_publish['latest_xlsx'].resolve()}")
+        if replay_publish:
+            print(f"Latest replay report published to: {replay_publish['latest_xlsx'].resolve()}")
 
         print("Running BIST100 regime filter experiment...")
         regime_results, regime_signal = run_regime_policy_backtests(
@@ -312,6 +337,7 @@ def main() -> None:
         print(missing_tickers)
     print(f"\nRecommended regime policy: {recommended_regime_policy}")
     print(f"\nResults written to: {Path(config.RESULTS_DIR).resolve()}")
+    print(f"Investor reports written to: {Path('reports').resolve()}")
 
 
 if __name__ == "__main__":

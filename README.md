@@ -50,6 +50,8 @@ BIST-RankingBot/
 |   |-- backtester.py
 |   |-- robustness.py
 |   `-- reporting.py
+|-- reports/
+|   `-- archive/
 |-- results/
 |-- requirements.txt
 `-- README.md
@@ -69,7 +71,7 @@ pip install -r requirements.txt
 python main.py
 ```
 
-Outputs are written to `results/`:
+Research outputs are written to `results/`:
 
 - `monthly_rankings.csv`
 - `current_month_portfolio.csv`
@@ -114,6 +116,23 @@ Outputs are written to `results/`:
 - `best_model_monthly_returns.png`
 
 Downloaded price data is cached in `data/`.
+
+## Report Organization
+
+`results/` is the research output folder. It keeps CSVs, model diagnostics, backtest artifacts, charts, audit reports, and the original generated report files.
+
+`reports/` is the human-facing investor report folder. It contains only the latest investor/replay reports and dated archives:
+
+- `reports/latest_investor_report.xlsx` - latest investor Excel report
+- `reports/latest_investor_report.md` - latest investor Markdown report
+- `reports/latest_replay_report.xlsx` - latest historical replay Excel report, when a replay exists
+- `reports/latest_replay_report.md` - latest historical replay Markdown report, when a replay exists
+- `reports/archive/investor_report_YYYY-MM-DD.xlsx` - dated investor Excel archive
+- `reports/archive/investor_report_YYYY-MM-DD.md` - dated investor Markdown archive
+- `reports/archive/replay_YYYY-MM-DD.xlsx` - dated replay Excel archive
+- `reports/archive/replay_YYYY-MM-DD.md` - dated replay Markdown archive
+
+The `latest_*` files are overwritten on each new run. Files under `reports/archive/` are created once and are not overwritten.
 
 ## Historical Replay Mode
 
