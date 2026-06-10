@@ -10,6 +10,7 @@ from src.cash_allocation import build_cash_allocation_reports, build_opportunity
 from src.current_portfolio import generate_current_month_portfolio
 from src.data_loader import fetch_price_data, find_missing_tickers
 from src.investor_report import generate_investor_report
+from src.one_month_follow_up import generate_one_month_follow_up
 from src.paper_trading import update_paper_trading
 from src.ranking import build_monthly_rankings
 from src.real_return_report import save_real_return_report
@@ -258,6 +259,15 @@ def main() -> None:
         print(f"Latest investor report published to: {investor_publish['latest_xlsx'].resolve()}")
         if replay_publish:
             print(f"Latest replay report published to: {replay_publish['latest_xlsx'].resolve()}")
+
+        print("Generating one-month follow-up report...")
+        follow_up_xlsx, follow_up_md = generate_one_month_follow_up(
+            stock_prices=stock_prices,
+            benchmark_prices=benchmark_prices,
+            factor_models=config.FACTOR_MODELS,
+        )
+        print(f"One-month follow-up report written to: {follow_up_xlsx.resolve()}")
+        print(f"One-month follow-up markdown written to: {follow_up_md.resolve()}")
 
         print("Running BIST100 regime filter experiment...")
         regime_results, regime_signal = run_regime_policy_backtests(
