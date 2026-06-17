@@ -4,10 +4,10 @@ This is a research-only paper trading tracker. It does not place trades and does
 
 ## Portfolio Metrics
 
-- Portfolio value: 1780000.00
-- Cash: 1610000.00
+- Portfolio value: 1850000.00
+- Cash: 1680000.00
 - Benchmark value: 100000.00
-- Total return: 1680.00%
+- Total return: 1750.00%
 - Benchmark return: 0.00%
 - Annualized return: 0.00%
 - Max drawdown: 0.00%
@@ -51,4 +51,4 @@ This is a research-only paper trading tracker. It does not place trades and does
 
 | date       |   portfolio_value |         cash |   active_position_value |   realized_pnl |   unrealized_pnl |   total_return |   benchmark_value |   benchmark_return |   active_positions |
 |:-----------|------------------:|-------------:|------------------------:|---------------:|-----------------:|---------------:|------------------:|-------------------:|-------------------:|
-| 2026-06-01 |      1780000.0000 | 1610000.0000 |             170000.0000 |         0.0000 |          -0.0000 |        16.8000 |       100000.0000 |             0.0000 |                  9 |
+| 2026-06-01 |      1850000.0000 | 1680000.0000 |             170000.0000 |         0.0000 |          -0.0000 |        17.5000 |       100000.0000 |             0.0000 |                  9 |
