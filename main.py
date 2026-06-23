@@ -9,6 +9,7 @@ from src.batch_replay import run_batch_replay, run_batch_replay_diagnostics
 from src.cash_allocation import build_cash_allocation_reports, build_opportunity_filter_calibration_report
 from src.current_portfolio import generate_current_month_portfolio
 from src.data_loader import fetch_price_data, find_missing_tickers
+from src.follow_up_research import run_follow_up_improvement_research
 from src.investor_report import generate_investor_report
 from src.one_month_follow_up import generate_one_month_follow_up
 from src.paper_trading import update_paper_trading
@@ -268,6 +269,19 @@ def main() -> None:
         )
         print(f"One-month follow-up report written to: {follow_up_xlsx.resolve()}")
         print(f"One-month follow-up markdown written to: {follow_up_md.resolve()}")
+
+        print("Running follow-up improvement research...")
+        follow_up_research = run_follow_up_improvement_research(
+            stock_prices=stock_prices,
+            benchmark_prices=benchmark_prices,
+            factor_models=config.FACTOR_MODELS,
+            results_dir=config.RESULTS_DIR,
+            reports_dir="reports",
+            transaction_cost=config.TRANSACTION_COST,
+            validation_start=config.OUT_OF_SAMPLE_START,
+        )
+        print(f"Follow-up diagnosis written to: {follow_up_research['diagnosis'].resolve()}")
+        print(f"Follow-up improvement research written to: {follow_up_research['research_markdown'].resolve()}")
 
         print("Running BIST100 regime filter experiment...")
         regime_results, regime_signal = run_regime_policy_backtests(
