@@ -1,0 +1,35 @@
+{
+  "active_model": "volume_heavy",
+  "benchmark": {
+    "start_date": "2026-06-01",
+    "start_price": 13704.0,
+    "symbol": "XU100.IS"
+  },
+  "created_at": "2026-06-01",
+  "positions": [
+    {
+      "start_date": "2026-06-01",
+      "start_price": 40.0,
+      "symbol": "EREGL.IS",
+      "weight": 0.3333333333333333
+    },
+    {
+      "start_date": "2026-06-01",
+      "start_price": 45.5,
+      "symbol": "SISE.IS",
+      "weight": 0.3333333333333333
+    },
+    {
+      "start_date": "2026-06-01",
+      "start_price": 371.25,
+      "symbol": "BIMAS.IS",
+      "weight": 0.3333333333333333
+    }
+  ],
+  "regime_status_at_start": "ABOVE_MA200_RISK_ON",
+  "start_date": "2026-06-01",
+  "start_value": 100000.0,
+  "strategy": "Top3 Ranking Only",
+  "tracking_mode": "fixed_portfolio",
+  "version": 1
+}

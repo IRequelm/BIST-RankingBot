@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 from shutil import copyfile
 
@@ -12,6 +13,7 @@ from src.current_portfolio import _current_regime, _latest_feature_snapshot, _ra
 
 
 START_VALUE = 100_000.0
+TRACKING_STATE_FILENAME = "tracking_state.json"
 
 
 def _price_at_or_before(prices: pd.DataFrame, date: pd.Timestamp) -> tuple[pd.Timestamp, float]:
@@ -25,6 +27,24 @@ def _price_at_or_before(prices: pd.DataFrame, date: pd.Timestamp) -> tuple[pd.Ti
 def _latest_price(prices: pd.DataFrame) -> tuple[pd.Timestamp, float]:
     close = prices["Close"].dropna().sort_index()
     return pd.Timestamp(close.index[-1]), float(close.iloc[-1])
+
+
+def _state_path(reports_path: Path) -> Path:
+    return reports_path / TRACKING_STATE_FILENAME
+
+
+def _load_tracking_state(path: Path) -> dict[str, object] | None:
+    if not path.exists():
+        return None
+    with path.open("r", encoding="utf-8") as handle:
+        state = json.load(handle)
+    if not state.get("positions"):
+        raise ValueError(f"Tracking state has no positions: {path}")
+    return state
+
+
+def _save_tracking_state(path: Path, state: dict[str, object]) -> None:
+    path.write_text(json.dumps(state, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
 def _candidate_selection(
@@ -44,17 +64,67 @@ def _candidate_selection(
     return ranked, regime, pd.Timestamp(snapshot_date)
 
 
-def _build_positions(
+def _create_tracking_state(
     selected: pd.DataFrame,
     stock_prices: dict[str, pd.DataFrame],
+    benchmark_prices: pd.DataFrame,
     start_date: pd.Timestamp,
-) -> pd.DataFrame:
-    rows = []
+    regime: dict[str, object],
+) -> dict[str, object]:
+    positions = []
     for _, row in selected.iterrows():
         symbol = row["symbol"]
-        _, start_price = _price_at_or_before(stock_prices[symbol], start_date)
+        price_date, start_price = _price_at_or_before(stock_prices[symbol], start_date)
+        positions.append(
+            {
+                "symbol": symbol,
+                "weight": float(row["weight"]),
+                "start_date": price_date.strftime("%Y-%m-%d"),
+                "start_price": start_price,
+            }
+        )
+
+    benchmark_start_date, benchmark_start_price = _price_at_or_before(benchmark_prices, start_date)
+    active_model = str(selected["active_model"].iloc[0]) if "active_model" in selected else "unknown"
+    return {
+        "version": 1,
+        "strategy": "Top3 Ranking Only",
+        "tracking_mode": "fixed_portfolio",
+        "created_at": pd.Timestamp.today().normalize().strftime("%Y-%m-%d"),
+        "start_date": pd.Timestamp(start_date).strftime("%Y-%m-%d"),
+        "start_value": START_VALUE,
+        "active_model": active_model,
+        "regime_status_at_start": regime["regime_status"],
+        "benchmark": {
+            "symbol": "XU100.IS",
+            "start_date": benchmark_start_date.strftime("%Y-%m-%d"),
+            "start_price": benchmark_start_price,
+        },
+        "positions": positions,
+    }
+
+
+def _state_to_selected(state: dict[str, object]) -> pd.DataFrame:
+    positions = pd.DataFrame(state["positions"])
+    if positions.empty:
+        raise ValueError("Tracking state positions are empty.")
+    positions["active_model"] = state.get("active_model", "unknown")
+    return positions
+
+
+def _build_positions(
+    state: dict[str, object],
+    stock_prices: dict[str, pd.DataFrame],
+) -> pd.DataFrame:
+    rows = []
+    for position in state["positions"]:
+        symbol = position["symbol"]
+        if symbol not in stock_prices:
+            raise ValueError(f"Tracked symbol is missing from loaded prices: {symbol}")
+
+        start_price = float(position["start_price"])
         current_date, current_price = _latest_price(stock_prices[symbol])
-        weight = float(row["weight"])
+        weight = float(position["weight"])
         start_amount = START_VALUE * weight
         current_amount = start_amount * (current_price / start_price) if start_price else start_amount
         rows.append(
@@ -77,25 +147,36 @@ def _build_daily_tracking(
     selected: pd.DataFrame,
     stock_prices: dict[str, pd.DataFrame],
     benchmark_prices: pd.DataFrame,
-    start_date: pd.Timestamp,
+    state: dict[str, object],
 ) -> pd.DataFrame:
+    start_date = pd.Timestamp(state["start_date"])
     curves = []
     for _, row in selected.iterrows():
         symbol = row["symbol"]
+        if symbol not in stock_prices:
+            raise ValueError(f"Tracked symbol is missing from loaded prices: {symbol}")
+
         close = stock_prices[symbol]["Close"].dropna().sort_index()
-        _, start_price = _price_at_or_before(stock_prices[symbol], start_date)
-        window = close[close.index >= start_date]
+        start_price = float(row["start_price"])
+        window = close[close.index >= start_date].copy()
         if window.empty:
-            window = close.tail(1)
-        curves.append((window / start_price) * float(row["weight"]))
+            window = close.tail(1).copy()
+        curve = (window / start_price) * float(row["weight"])
+        curve.loc[start_date] = float(row["weight"])
+        curves.append(curve.sort_index())
 
     portfolio_curve = pd.concat(curves, axis=1).sort_index().ffill().bfill().sum(axis=1)
     benchmark_close = benchmark_prices["Close"].dropna().sort_index()
-    _, benchmark_start = _price_at_or_before(benchmark_prices, start_date)
-    benchmark_window = benchmark_close[benchmark_close.index >= start_date]
+    benchmark_state = state.get("benchmark", {})
+    benchmark_start = float(benchmark_state.get("start_price", 0.0))
+    if not benchmark_start:
+        _, benchmark_start = _price_at_or_before(benchmark_prices, start_date)
+    benchmark_window = benchmark_close[benchmark_close.index >= start_date].copy()
     if benchmark_window.empty:
-        benchmark_window = benchmark_close.tail(1)
+        benchmark_window = benchmark_close.tail(1).copy()
     benchmark_curve = benchmark_window / benchmark_start
+    benchmark_curve.loc[start_date] = 1.0
+    benchmark_curve = benchmark_curve.sort_index()
 
     tracking = pd.concat(
         [
@@ -143,7 +224,15 @@ def _style_workbook(path: Path) -> None:
             sheet.column_dimensions[get_column_letter(column_cells[0].column)].width = min(max(max_length + 2, 12), 38)
 
     percent_headers = {"Ağırlık %", "Getiri %", "Günlük Getiri %", "Toplam Getiri %", "BIST100 Getiri %", "Fark %"}
-    money_headers = {"Başlangıç Fiyatı", "Güncel Fiyat", "Başlangıç Tutarı", "Güncel Tutar", "Kar/Zarar TL", "Portföy Değeri", "BIST100 Değeri"}
+    money_headers = {
+        "Başlangıç Fiyatı",
+        "Güncel Fiyat",
+        "Başlangıç Tutarı",
+        "Güncel Tutar",
+        "Kar/Zarar TL",
+        "Portföy Değeri",
+        "BIST100 Değeri",
+    }
     for sheet in workbook.worksheets:
         headers = {cell.value: cell.column for cell in sheet[1]}
         for header in percent_headers & headers.keys():
@@ -166,13 +255,27 @@ def generate_one_month_follow_up(
     reports_path = Path(reports_dir)
     reports_path.mkdir(parents=True, exist_ok=True)
 
-    selected, regime, report_date = _candidate_selection(stock_prices, benchmark_prices, factor_models)
-    positions = _build_positions(selected, stock_prices, report_date)
-    daily = _build_daily_tracking(selected, stock_prices, benchmark_prices, report_date)
+    current_regime = _current_regime(benchmark_prices)
+    state_file = _state_path(reports_path)
+    state = _load_tracking_state(state_file)
+    if state is None:
+        selected, start_regime, start_date = _candidate_selection(stock_prices, benchmark_prices, factor_models)
+        state = _create_tracking_state(selected, stock_prices, benchmark_prices, start_date, start_regime)
+        _save_tracking_state(state_file, state)
+
+    selected = _state_to_selected(state)
+    positions = _build_positions(state, stock_prices)
+    daily = _build_daily_tracking(selected, stock_prices, benchmark_prices, state)
 
     portfolio_current_value = float(positions["Güncel Tutar"].sum())
     portfolio_return = (portfolio_current_value / START_VALUE) - 1
-    benchmark_start_date, benchmark_start = _price_at_or_before(benchmark_prices, report_date)
+    start_date = pd.Timestamp(state["start_date"])
+    report_date = pd.Timestamp(max(positions["_current_date"]))
+    benchmark_state = state.get("benchmark", {})
+    benchmark_start_date = pd.Timestamp(benchmark_state.get("start_date", start_date))
+    benchmark_start = float(benchmark_state.get("start_price", 0.0))
+    if not benchmark_start:
+        benchmark_start_date, benchmark_start = _price_at_or_before(benchmark_prices, start_date)
     benchmark_current_date, benchmark_current = _latest_price(benchmark_prices)
     benchmark_return = (benchmark_current / benchmark_start) - 1 if benchmark_start else 0.0
     excess_return = portfolio_return - benchmark_return
@@ -181,13 +284,16 @@ def generate_one_month_follow_up(
     summary = pd.DataFrame(
         [
             {"Alan": "Rapor Tarihi", "Değer": report_date.strftime("%Y-%m-%d")},
-            {"Alan": "Strateji", "Değer": "Top3 Ranking Only"},
-            {"Alan": "Rejim Durumu", "Değer": regime["regime_status"]},
-            {"Alan": "BIST100 Kapanış", "Değer": float(regime["bist100_close"])},
+            {"Alan": "Takip Modu", "Değer": "Sabit portföy"},
+            {"Alan": "Strateji", "Değer": state.get("strategy", "Top3 Ranking Only")},
+            {"Alan": "Başlangıç Modeli", "Değer": state.get("active_model", "unknown")},
+            {"Alan": "Başlangıç Rejim Durumu", "Değer": state.get("regime_status_at_start", "unknown")},
+            {"Alan": "Güncel Rejim Durumu", "Değer": current_regime["regime_status"]},
+            {"Alan": "BIST100 Kapanış", "Değer": float(current_regime["bist100_close"])},
             {"Alan": "Portföy Başlangıç Değeri", "Değer": START_VALUE},
             {"Alan": "Seçilen 3 Hisse", "Değer": ", ".join(positions["Hisse"])},
             {"Alan": "Eşit Ağırlık", "Değer": "33.33% / 33.33% / 33.33%"},
-            {"Alan": "Başlangıç Tarihi", "Değer": report_date.strftime("%Y-%m-%d")},
+            {"Alan": "Başlangıç Tarihi", "Değer": start_date.strftime("%Y-%m-%d")},
             {"Alan": "Güncel Fiyat Tarihi", "Değer": max(positions["_current_date"]).strftime("%Y-%m-%d")},
             {"Alan": "BIST100 Başlangıç Tarihi", "Değer": benchmark_start_date.strftime("%Y-%m-%d")},
             {"Alan": "BIST100 Güncel Tarihi", "Değer": benchmark_current_date.strftime("%Y-%m-%d")},
@@ -204,8 +310,9 @@ def generate_one_month_follow_up(
                 "Bu dosya araştırma dosyası değildir.",
                 "Bir aylık takip dosyasıdır.",
                 "Alım/satım önerisi değildir.",
-                "Amaç stratejinin BIST100’e göre performansını takip etmektir.",
-                "Bir ay boyunca aynı 3 hisse takip edilir.",
+                "Amaç stratejinin BIST100'e göre performansını takip etmektir.",
+                "Portföy reports/tracking_state.json içinden okunur.",
+                "Sonraki çalıştırmalarda yeni hisse seçilmez.",
             ]
         }
     )
@@ -227,8 +334,12 @@ def generate_one_month_follow_up(
         "# Bir Aylık Takip Raporu",
         "",
         f"- Rapor Tarihi: {report_date.strftime('%Y-%m-%d')}",
-        "- Strateji: Top3 Ranking Only",
-        f"- Rejim Durumu: {regime['regime_status']}",
+        "- Takip Modu: Sabit portföy",
+        f"- Başlangıç Tarihi: {start_date.strftime('%Y-%m-%d')}",
+        f"- Strateji: {state.get('strategy', 'Top3 Ranking Only')}",
+        f"- Başlangıç Modeli: {state.get('active_model', 'unknown')}",
+        f"- Başlangıç Rejim Durumu: {state.get('regime_status_at_start', 'unknown')}",
+        f"- Güncel Rejim Durumu: {current_regime['regime_status']}",
         f"- Başlangıç Değeri: {START_VALUE:,.2f} TL",
         f"- Seçilen Hisseler: {', '.join(positions['Hisse'])}",
         f"- Portföy Toplam Getiri: {portfolio_return:.2%}",
@@ -245,8 +356,9 @@ def generate_one_month_follow_up(
         "- Bu dosya araştırma dosyası değildir.",
         "- Bir aylık takip dosyasıdır.",
         "- Alım/satım önerisi değildir.",
-        "- Amaç stratejinin BIST100’e göre performansını takip etmektir.",
-        "- Bir ay boyunca aynı 3 hisse takip edilir.",
+        "- Amaç stratejinin BIST100'e göre performansını takip etmektir.",
+        "- Portföy reports/tracking_state.json içinden okunur.",
+        "- Sonraki çalıştırmalarda yeni hisse seçilmez.",
         "",
     ]
     md_path.write_text("\n".join(lines), encoding="utf-8")
