@@ -1,10 +1,10 @@
 # Bir Aylık Takip Raporu
 
-- Rapor Tarihi: 2026-06-01
+- Rapor Tarihi: 2026-06-22
 - Strateji: Top3 Ranking Only
 - Rejim Durumu: ABOVE_MA200_RISK_ON
 - Başlangıç Değeri: 100,000.00 TL
-- Seçilen Hisseler: EREGL.IS, SISE.IS, BIMAS.IS
+- Seçilen Hisseler: AKBNK.IS, YKBNK.IS, BIMAS.IS
 - Portföy Toplam Getiri: -0.00%
 - BIST100 Getiri: 0.00%
 - BIST100'e Göre Fark: -0.00%
@@ -14,9 +14,9 @@
 
 | Hisse    |   Ağırlık % |   Başlangıç Fiyatı |   Güncel Fiyat |   Getiri % |   Başlangıç Tutarı |   Güncel Tutar |   Kar/Zarar TL |
 |:---------|------------:|-------------------:|---------------:|-----------:|-------------------:|---------------:|---------------:|
-| EREGL.IS |      0.3333 |            40.0000 |        40.0000 |     0.0000 |         33333.3333 |     33333.3333 |         0.0000 |
-| SISE.IS  |      0.3333 |            45.5000 |        45.5000 |     0.0000 |         33333.3333 |     33333.3333 |         0.0000 |
-| BIMAS.IS |      0.3333 |           371.2500 |       371.2500 |     0.0000 |         33333.3333 |     33333.3333 |         0.0000 |
+| AKBNK.IS |      0.3333 |            82.0000 |        82.0000 |     0.0000 |         33333.3333 |     33333.3333 |         0.0000 |
+| YKBNK.IS |      0.3333 |            43.8400 |        43.8400 |     0.0000 |         33333.3333 |     33333.3333 |         0.0000 |
+| BIMAS.IS |      0.3333 |           379.0000 |       379.0000 |     0.0000 |         33333.3333 |     33333.3333 |         0.0000 |
 
 ## Notlar
 

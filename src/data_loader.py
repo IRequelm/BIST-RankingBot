@@ -2,11 +2,25 @@ from pathlib import Path
 
 import pandas as pd
 import yfinance as yf
+from pandas.tseries.offsets import BDay
 
 
 def _cache_path(data_dir: str, symbol: str) -> Path:
     safe_symbol = symbol.replace(".", "_")
     return Path(data_dir) / f"{safe_symbol}.csv"
+
+
+def _expected_latest_date(end_date: str) -> pd.Timestamp:
+    # yfinance treats end as exclusive, so yesterday's business day is the
+    # newest date a daily download should normally contain.
+    return (pd.Timestamp(end_date).normalize() - BDay(1)).normalize()
+
+
+def _cache_is_fresh(df: pd.DataFrame, end_date: str) -> bool:
+    if df.empty:
+        return False
+    latest_cached = pd.Timestamp(df.index.max()).normalize()
+    return latest_cached >= _expected_latest_date(end_date)
 
 
 def fetch_price_data(
@@ -22,9 +36,17 @@ def fetch_price_data(
 
     for symbol in symbols:
         cache_file = _cache_path(data_dir, symbol)
-        if cache_file.exists() and not refresh:
-            df = pd.read_csv(cache_file, parse_dates=["Date"], index_col="Date")
+        cached_df = None
+        if cache_file.exists():
+            cached_df = pd.read_csv(cache_file, parse_dates=["Date"], index_col="Date")
+
+        if cached_df is not None and not refresh and _cache_is_fresh(cached_df, end_date):
+            df = cached_df
         else:
+            if cached_df is not None:
+                latest_cached = pd.Timestamp(cached_df.index.max()).strftime("%Y-%m-%d")
+                expected_latest = _expected_latest_date(end_date).strftime("%Y-%m-%d")
+                print(f"Refreshing stale cache for {symbol}: latest={latest_cached}, expected>={expected_latest}")
             df = yf.download(
                 symbol,
                 start=start_date,
