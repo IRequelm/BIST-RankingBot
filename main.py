@@ -6,6 +6,7 @@ import pandas as pd
 import config
 from src.backtester import run_backtests
 from src.batch_replay import run_batch_replay, run_batch_replay_diagnostics
+from src.benchmark_core_research import run_benchmark_core_research
 from src.cash_allocation import build_cash_allocation_reports, build_opportunity_filter_calibration_report
 from src.current_portfolio import generate_current_month_portfolio
 from src.data_loader import fetch_price_data, find_missing_tickers
@@ -282,6 +283,19 @@ def main() -> None:
         )
         print(f"Follow-up diagnosis written to: {follow_up_research['diagnosis'].resolve()}")
         print(f"Follow-up improvement research written to: {follow_up_research['research_markdown'].resolve()}")
+
+        print("Running benchmark-core portfolio research...")
+        benchmark_core_research = run_benchmark_core_research(
+            stock_prices=stock_prices,
+            benchmark_prices=benchmark_prices,
+            factor_models=config.FACTOR_MODELS,
+            results_dir=config.RESULTS_DIR,
+            reports_dir="reports",
+            transaction_cost=config.TRANSACTION_COST,
+            validation_start=config.OUT_OF_SAMPLE_START,
+        )
+        print(f"Benchmark-core research written to: {benchmark_core_research['research_markdown'].resolve()}")
+        print(f"Benchmark-core recent follow-up written to: {benchmark_core_research['recent_markdown'].resolve()}")
 
         print("Running BIST100 regime filter experiment...")
         regime_results, regime_signal = run_regime_policy_backtests(
