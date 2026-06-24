@@ -7,6 +7,7 @@ import config
 from src.backtester import run_backtests
 from src.batch_replay import run_batch_replay, run_batch_replay_diagnostics
 from src.benchmark_core_research import run_benchmark_core_research
+from src.bist100_survival import run_bist100_survival_backtest
 from src.cash_allocation import build_cash_allocation_reports, build_opportunity_filter_calibration_report
 from src.current_portfolio import generate_current_month_portfolio
 from src.data_loader import fetch_price_data, find_missing_tickers
@@ -61,17 +62,20 @@ def main() -> None:
     Path(config.RESULTS_DIR).mkdir(exist_ok=True)
 
     symbols = config.BIST_SYMBOLS
+    bist100_universe_symbols = getattr(config, "BIST100_UNIVERSE_SYMBOLS", symbols)
     benchmark_symbol = config.BENCHMARK_SYMBOL
 
     print("Fetching price data...")
+    fetch_symbols = sorted(set(symbols + bist100_universe_symbols + [benchmark_symbol, config.USDTRY_SYMBOL]))
     prices = fetch_price_data(
-        symbols=symbols + [benchmark_symbol, config.USDTRY_SYMBOL],
+        symbols=fetch_symbols,
         start_date=config.START_DATE,
         end_date=config.END_DATE,
         data_dir=config.DATA_DIR,
     )
 
     stock_prices = {symbol: df for symbol, df in prices.items() if symbol in symbols}
+    bist100_stock_prices = {symbol: df for symbol, df in prices.items() if symbol in bist100_universe_symbols}
     benchmark_prices = prices.get(benchmark_symbol)
     usdtry_prices = prices.get(config.USDTRY_SYMBOL)
     missing_tickers = find_missing_tickers(symbols, stock_prices)
@@ -296,6 +300,18 @@ def main() -> None:
         )
         print(f"Benchmark-core research written to: {benchmark_core_research['research_markdown'].resolve()}")
         print(f"Benchmark-core recent follow-up written to: {benchmark_core_research['recent_markdown'].resolve()}")
+
+        print("Running BIST100 relative-strength survival research...")
+        survival_research = run_bist100_survival_backtest(
+            stock_prices=bist100_stock_prices,
+            benchmark_prices=benchmark_prices,
+            configured_symbols=bist100_universe_symbols,
+            results_dir=config.RESULTS_DIR,
+            transaction_cost=config.TRANSACTION_COST,
+            years=3,
+            min_avg_traded_value=config.ILLIQUID_AVG_TRADED_VALUE_THRESHOLD,
+        )
+        print(f"BIST100 survival report written to: {survival_research['report'].resolve()}")
 
         print("Running BIST100 regime filter experiment...")
         regime_results, regime_signal = run_regime_policy_backtests(
