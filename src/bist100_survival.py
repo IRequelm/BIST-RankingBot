@@ -45,6 +45,8 @@ OLD_SCORE_WEIGHTS = {
     "low_volatility": 0.05,
 }
 
+SELECTED_SURVIVAL_POLICY_ID = "RS_TOP5_NO_CASH"
+
 
 def _clean_close(prices: pd.DataFrame) -> pd.Series:
     return prices["Close"].dropna().sort_index()
@@ -411,22 +413,29 @@ def _write_report(
         (survival["excess_cagr"] > 0)
         & (survival["max_drawdown"] >= benchmark_row["max_drawdown"])
     ].copy()
-    best = survival_eligible.sort_values(["excess_cagr", "sharpe_proxy"], ascending=False).head(1)
-    if best.empty:
-        recommendation = "No live survival candidate passed both excess-return and drawdown tests."
+    strict_best = survival_eligible.sort_values(["excess_cagr", "sharpe_proxy"], ascending=False).head(1)
+    selected = summary[summary["policy_id"] == SELECTED_SURVIVAL_POLICY_ID].head(1)
+    if selected.empty:
+        recommendation = "Selected winner is unavailable in this run."
     else:
-        row = best.iloc[0]
+        row = selected.iloc[0]
         recommendation = (
-            f"Survival candidate: {row['policy_name']} "
+            f"Selected winner: {row['policy_name']} "
             f"(excess CAGR {row['excess_cagr']:.2%}, max drawdown {row['max_drawdown']:.2%})."
         )
-    raw_best_note = ""
+    strict_note = "No strict drawdown-safe candidate passed both excess-return and drawdown tests."
+    if not strict_best.empty:
+        row = strict_best.iloc[0]
+        strict_note = (
+            f"Strict drawdown-safe candidate remains {row['policy_name']} "
+            f"(excess CAGR {row['excess_cagr']:.2%}, max drawdown {row['max_drawdown']:.2%})."
+        )
+    raw_best_note = "No raw-return winner was available."
     if not raw_best.empty:
         row = raw_best.iloc[0]
         raw_best_note = (
-            f"Best raw-return policy was {row['policy_name']} "
-            f"(excess CAGR {row['excess_cagr']:.2%}, max drawdown {row['max_drawdown']:.2%}), "
-            "but it is not automatically accepted for survival mode if drawdown is worse than BIST100."
+            f"Raw-return winner: {row['policy_name']} "
+            f"(excess CAGR {row['excess_cagr']:.2%}, max drawdown {row['max_drawdown']:.2%})."
         )
 
     latest_for_report = latest_selection.copy()
@@ -463,11 +472,13 @@ def _write_report(
         "",
         recommendation,
         "",
+        strict_note,
+        "",
         raw_best_note,
         "",
         (
-            "For survival mode, prefer policies that beat BIST100 after transaction costs and do not rely on "
-            "one lucky month. The stricter live-readiness test also requires max drawdown no worse than BIST100."
+            "This selected winner is the aggressive research champion: it removes the MA200 cash filter and accepts "
+            "slightly worse drawdown than BIST100 in exchange for the strongest historical excess CAGR in this run."
         ),
         "",
         "## Latest Survival Selections",

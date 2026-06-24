@@ -19,11 +19,13 @@
 
 ## Decision
 
-Survival candidate: BIST100 relative-strength survival Top10 (excess CAGR 29.78%, max drawdown -14.69%).
+Selected winner: Survival Top5 without MA200 cash filter (excess CAGR 52.99%, max drawdown -18.81%).
 
-Best raw-return policy was Survival Top5 without MA200 cash filter (excess CAGR 52.99%, max drawdown -18.81%), but it is not automatically accepted for survival mode if drawdown is worse than BIST100.
+Strict drawdown-safe candidate remains BIST100 relative-strength survival Top10 (excess CAGR 29.78%, max drawdown -14.69%).
 
-For survival mode, prefer policies that beat BIST100 after transaction costs and do not rely on one lucky month. The stricter live-readiness test also requires max drawdown no worse than BIST100.
+Raw-return winner: Survival Top5 without MA200 cash filter (excess CAGR 52.99%, max drawdown -18.81%).
+
+This selected winner is the aggressive research champion: it removes the MA200 cash filter and accepts slightly worse drawdown than BIST100 in exchange for the strongest historical excess CAGR in this run.
 
 ## Latest Survival Selections
 
