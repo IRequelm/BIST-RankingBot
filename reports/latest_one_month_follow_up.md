@@ -10,8 +10,8 @@
 - Başlangıç Değeri: 100,000.00 TL
 - Seçilen Hisseler: EREGL.IS, SISE.IS, BIMAS.IS
 - Portföy Toplam Getiri: 1.93%
-- BIST100 Getiri: 4.06%
-- BIST100'e Göre Fark: -2.13%
+- BIST100 Getiri: 4.16%
+- BIST100'e Göre Fark: -2.23%
 - Durum: Karda / BIST Altı
 
 ## Pozisyonlar
