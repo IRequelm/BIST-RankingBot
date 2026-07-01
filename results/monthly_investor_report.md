@@ -1,15 +1,15 @@
-# BIST RankingBot Aylık Yatırımcı Raporu - 2026-06-29
+# BIST RankingBot Aylık Yatırımcı Raporu - 2026-06-30
 
-- Rapor Tarihi: 2026-06-29
-- Son Güncelleme: 2026-06-30 06:00
+- Rapor Tarihi: 2026-06-30
+- Son Güncelleme: 2026-07-01 06:15
 
 ## Yönetici Özeti
 
 ## BU AY YAPILACAKLAR
 
-- AL: TOASO.IS, ASELS.IS, YKBNK.IS, EREGL.IS, SAHOL.IS
-- AZALT: AKBNK.IS, BIMAS.IS, GARAN.IS, THYAO.IS
-- ÇIK: TCELL.IS, KCHOL.IS, PETKM.IS
+- AL: TOASO.IS, GARAN.IS, BIMAS.IS, ASELS.IS, SAHOL.IS
+- AZALT: AKBNK.IS, THYAO.IS, YKBNK.IS, EREGL.IS
+- ÇIK: TCELL.IS, KCHOL.IS
 - NAKIT: %50
 
 Neden Nakit Tutuluyor?
@@ -22,61 +22,60 @@ Cash allocation %: %50
 
 |   Rank | Stock    | Action   |   Weight % |   Allocation TL |   Expected Return % |   Expected Return TL |   Target Price |   Stop Price |   Risk/Reward | Conviction   |
 |-------:|:---------|:---------|-----------:|----------------:|--------------------:|---------------------:|---------------:|-------------:|--------------:|:-------------|
-|      1 | TOASO.IS | AL       |     0.1187 |      11873.1256 |              0.0885 |            1050.8534 |       341.2469 |     295.9390 |        1.5800 | HIGH         |
-|      2 | ASELS.IS | AL       |     0.0997 |       9969.7172 |              0.0769 |             766.3949 |       384.9818 |     334.9702 |        1.2198 | HIGH         |
-|      3 | YKBNK.IS | AL       |     0.0995 |       9946.6126 |              0.0517 |             514.6597 |        42.1538 |      37.6131 |        0.8407 | MEDIUM       |
-|      4 | EREGL.IS | AL       |     0.0926 |       9263.8650 |              0.0522 |             483.5277 |        43.3504 |      38.8382 |        0.9105 | MEDIUM       |
-|      5 | SAHOL.IS | AL       |     0.0895 |       8946.6796 |              0.0615 |             550.5642 |       103.5000 |      92.4894 |        1.1975 | MEDIUM       |
+|      1 | TOASO.IS | AL       |     0.1193 |      11927.2174 |              0.1076 |            1283.3025 |       341.1391 |     290.8567 |        1.9331 | VERY HIGH    |
+|      2 | GARAN.IS | AL       |     0.1014 |      10139.3154 |              0.0796 |             806.6436 |       148.9787 |     130.8531 |        1.5362 | HIGH         |
+|      3 | BIMAS.IS | AL       |     0.0987 |       9865.7411 |              0.0486 |             479.4092 |       382.9987 |     346.9875 |        0.9719 | MEDIUM       |
+|      4 | ASELS.IS | AL       |     0.0936 |       9359.9096 |              0.0769 |             719.5170 |       371.5209 |     323.2093 |        1.2171 | HIGH         |
+|      5 | SAHOL.IS | AL       |     0.0871 |       8707.8167 |              0.0706 |             614.9265 |       104.3852 |      92.4903 |        1.3744 | MEDIUM       |
 |      6 | CASH     | CASH     |     0.5000 |      50000.0000 |              0.0000 |               0.0000 |                |              |               | CASH         |
 
 ## Portföy Önerisi
 
 |   Sıra | Hisse    | Aksiyon   |   Giriş Fiyatı |   Hedef Alt % |   Hedef Orta % |   Hedef Üst % |   Hedef Alt Fiyat |   Hedef Orta Fiyat |   Hedef Üst Fiyat |   Stop / Risk Fiyatı | Öneri Kalitesi   |   Güven Puanı | Ana Sebep                                                    | Risk Notu                                       |
 |-------:|:---------|:----------|---------------:|--------------:|---------------:|--------------:|------------------:|-------------------:|------------------:|---------------------:|:-----------------|--------------:|:-------------------------------------------------------------|:------------------------------------------------|
-|      1 | AKBNK.IS | TUT       |        77.2000 |       -0.0254 |         0.0000 |        0.0856 |           75.2401 |            77.2000 |           83.8093 |              72.3630 | LOW              |       75.4900 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | volatilite yüksek                               |
-|      2 | TOASO.IS | AL        |       313.5000 |       -0.0425 |         0.0885 |        0.1296 |          300.1632 |           341.2469 |          354.1371 |             295.9390 | HIGH             |       75.4900 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | Risk sinyali sınırlı                            |
-|      3 | BIMAS.IS | TUT       |       371.0000 |       -0.0037 |         0.0220 |        0.0857 |          369.6234 |           379.1598 |          402.7767 |             352.4500 | MEDIUM           |       75.4900 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | kisa vadeli momentum negatif                    |
-|      4 | YKBNK.IS | AL        |        40.0800 |       -0.0278 |         0.0517 |        0.2320 |           38.9667 |            42.1538 |           49.3767 |              37.6131 | MEDIUM           |       75.4900 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | volatilite yüksek                               |
-|      5 | GARAN.IS | TUT       |       137.3000 |       -0.0073 |         0.0427 |        0.1447 |          136.3039 |           143.1588 |          157.1610 |             130.1810 | MEDIUM           |       75.4900 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | Risk sinyali sınırlı                            |
-|      6 | THYAO.IS | TUT       |       329.0000 |       -0.0516 |         0.0038 |        0.1176 |          312.0300 |           330.2350 |          367.6958 |             312.0300 | LOW              |       75.4900 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | alt bant riski belirgin                         |
-|      7 | ASELS.IS | AL        |       357.5000 |       -0.0162 |         0.0769 |        0.1760 |          351.7091 |           384.9818 |          420.4272 |             334.9702 | HIGH             |       75.4900 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | kisa vadeli momentum negatif; volatilite yüksek |
-|      8 | EREGL.IS | AL        |        41.2000 |       -0.0573 |         0.0522 |        0.1108 |           38.8382 |            43.3504 |           45.7635 |              38.8382 | MEDIUM           |       75.4900 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | alt bant riski belirgin                         |
-|      9 | TCELL.IS | SAT       |       109.6000 |       -0.0634 |        -0.0259 |        0.0289 |          102.6483 |           106.7599 |          112.7716 |             102.6483 | LOW              |       75.4900 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | alt bant riski belirgin                         |
-|     10 | SAHOL.IS | AL        |        97.5000 |        0.0013 |         0.0615 |        0.1339 |           97.6299 |           103.5000 |          110.5578 |              92.4894 | MEDIUM           |       75.4900 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | Risk sinyali sınırlı                            |
-|     11 | KCHOL.IS | SAT       |       195.7000 |       -0.0567 |        -0.0048 |        0.0932 |          184.5964 |           194.7562 |          213.9308 |             184.5964 | LOW              |       75.4900 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | alt bant riski belirgin                         |
-|     17 | PETKM.IS | SAT       |        19.2000 |       -0.0355 |        -0.0012 |        0.0638 |           18.5181 |            19.1770 |           20.4241 |              18.0652 | LOW              |       75.4900 | 6A momentum pozitif; trend desteği var                       | kisa vadeli momentum negatif                    |
+|      1 | TOASO.IS | AL        |       308.0000 |       -0.0124 |         0.1076 |        0.1262 |          304.1709 |           341.1391 |          346.8663 |             290.8567 | VERY HIGH        |       73.5100 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | Risk sinyali sınırlı                            |
+|      2 | AKBNK.IS | TUT       |        77.0000 |       -0.0254 |         0.0000 |        0.0856 |           75.0451 |            77.0000 |           83.5922 |              72.1941 | LOW              |       73.5100 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | volatilite yüksek                               |
+|      3 | BIMAS.IS | AL        |       365.2500 |       -0.0037 |         0.0486 |        0.1324 |          363.8947 |           382.9987 |          413.5919 |             346.9875 | MEDIUM           |       73.5100 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | kisa vadeli momentum negatif                    |
+|      4 | GARAN.IS | AL        |       138.0000 |       -0.0073 |         0.0796 |        0.1938 |          136.9988 |           148.9787 |          164.7503 |             130.8531 | HIGH             |       73.5100 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | Risk sinyali sınırlı                            |
+|      5 | THYAO.IS | TUT       |       326.0000 |       -0.0557 |         0.0038 |        0.0731 |          307.8358 |           327.2237 |          349.8366 |             307.8358 | LOW              |       73.5100 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | alt bant riski belirgin                         |
+|      6 | ASELS.IS | AL        |       345.0000 |       -0.0198 |         0.0769 |        0.2318 |          338.1738 |           371.5209 |          424.9540 |             323.2093 | HIGH             |       73.5100 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | kisa vadeli momentum negatif; volatilite yüksek |
+|      7 | YKBNK.IS | TUT       |        40.1400 |       -0.0534 |         0.0177 |        0.1046 |           37.9970 |            40.8508 |           44.3387 |              37.6758 | LOW              |       73.5100 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | volatilite yüksek; alt bant riski belirgin      |
+|      8 | SAHOL.IS | AL        |        97.5000 |        0.0078 |         0.0706 |        0.1359 |           98.2627 |           104.3852 |          110.7457 |              92.4903 | MEDIUM           |       73.5100 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | Risk sinyali sınırlı                            |
+|      9 | TCELL.IS | SAT       |       107.4000 |       -0.0448 |        -0.0056 |        0.0564 |          102.5882 |           106.7936 |          113.4598 |             102.0300 | LOW              |       73.5100 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | Risk sinyali sınırlı                            |
+|     10 | EREGL.IS | TUT       |        40.4800 |       -0.0901 |         0.0261 |        0.0972 |           36.8312 |            41.5368 |           44.4154 |              36.8312 | LOW              |       73.5100 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | alt bant riski belirgin                         |
+|     11 | KCHOL.IS | SAT       |       193.5000 |       -0.0567 |        -0.0048 |        0.1051 |          182.5213 |           192.5669 |          213.8428 |             182.5213 | LOW              |       73.5100 | 6A momentum pozitif; trend desteği var; hacim artışı var     | alt bant riski belirgin                         |
 
 ## İlk 20 Sıralama
 
 |   Sıra | Hisse    | Öneri Kalitesi   | Aksiyon      |   1A Momentum |   3A Momentum |   6A Momentum |   Hacim Değişimi | Trend Durumu      |   Volatilite |   Beklenen Getiri Orta % |
 |-------:|:---------|:-----------------|:-------------|--------------:|--------------:|--------------:|-----------------:|:------------------|-------------:|-------------------------:|
-|      1 | AKBNK.IS | LOW              | TUT          |        0.2062 |        0.1540 |        0.1505 |           0.1127 | Güçlü trend       |       0.0313 |                   0.0000 |
-|      2 | TOASO.IS | MEDIUM           | AL           |        0.0591 |        0.1206 |        0.3311 |           0.0750 | Güçlü trend       |       0.0280 |                   0.0885 |
-|      3 | BIMAS.IS | LOW              | TUT          |       -0.0002 |        0.0920 |        0.3838 |           0.1306 | Kısmen trend üstü |       0.0200 |                   0.0220 |
-|      4 | YKBNK.IS | MEDIUM           | AL           |        0.2087 |        0.2080 |        0.1393 |           0.0237 | Güçlü trend       |       0.0308 |                   0.0517 |
-|      5 | GARAN.IS | MEDIUM           | TUT          |        0.1172 |        0.1292 |        0.0247 |           0.0379 | Güçlü trend       |       0.0259 |                   0.0427 |
-|      6 | THYAO.IS | LOW              | TUT          |        0.1087 |        0.1190 |        0.2276 |           0.0160 | Güçlü trend       |       0.0226 |                   0.0038 |
-|      7 | ASELS.IS | MEDIUM           | AL           |       -0.0598 |        0.0809 |        0.5812 |           0.1246 | Kısmen trend üstü |       0.0315 |                   0.0769 |
-|      8 | EREGL.IS | LOW              | AL           |        0.0659 |        0.4968 |        0.7517 |          -0.1519 | Güçlü trend       |       0.0277 |                   0.0522 |
-|      9 | TCELL.IS | LOW              | SAT          |        0.0851 |        0.0301 |        0.1507 |           0.0585 | Kısmen trend üstü |       0.0234 |                  -0.0259 |
-|     10 | SAHOL.IS | LOW              | AL           |        0.0598 |        0.1119 |        0.1794 |          -0.0486 | Güçlü trend       |       0.0257 |                   0.0615 |
-|     11 | KCHOL.IS | LOW              | SAT          |        0.0349 |        0.0161 |        0.2048 |           0.0170 | Kısmen trend üstü |       0.0215 |                  -0.0048 |
-|     12 | FROTO.IS | MEDIUM           | PORTFOY_DISI |        0.0154 |       -0.1768 |       -0.0628 |           0.1545 | Trend altı        |       0.0222 |                   0.1213 |
-|     13 | SISE.IS  | LOW              | PORTFOY_DISI |       -0.0060 |        0.0144 |        0.1831 |          -0.1189 | Kısmen trend üstü |       0.0268 |                   0.0237 |
-|     14 | PGSUS.IS | LOW              | PORTFOY_DISI |        0.0412 |        0.0006 |       -0.1340 |          -0.0913 | Trend altı        |       0.0220 |                   0.0097 |
-|     15 | TUPRS.IS | LOW              | PORTFOY_DISI |       -0.0715 |       -0.0881 |        0.2333 |          -0.1680 | Kısmen trend üstü |       0.0224 |                   0.0759 |
-|     16 | ARCLK.IS | LOW              | PORTFOY_DISI |       -0.0203 |       -0.0805 |       -0.0531 |          -0.1034 | Trend altı        |       0.0185 |                   0.1005 |
-|     17 | PETKM.IS | LOW              | SAT          |       -0.1312 |        0.0000 |        0.1658 |          -0.1786 | Kısmen trend üstü |       0.0296 |                  -0.0012 |
+|      1 | TOASO.IS | HIGH             | AL           |        0.0405 |        0.1344 |        0.3291 |           0.0905 | Güçlü trend       |       0.0278 |                   0.1076 |
+|      2 | AKBNK.IS | LOW              | TUT          |        0.2088 |        0.1738 |        0.1426 |           0.0730 | Güçlü trend       |       0.0312 |                   0.0000 |
+|      3 | BIMAS.IS | MEDIUM           | AL           |       -0.0110 |        0.0658 |        0.3687 |           0.1380 | Kısmen trend üstü |       0.0201 |                   0.0486 |
+|      4 | GARAN.IS | MEDIUM           | AL           |        0.1210 |        0.1440 |        0.0154 |           0.0281 | Güçlü trend       |       0.0259 |                   0.0796 |
+|      5 | THYAO.IS | LOW              | TUT          |        0.1184 |        0.1290 |        0.2325 |           0.0127 | Güçlü trend       |       0.0225 |                   0.0038 |
+|      6 | ASELS.IS | MEDIUM           | AL           |       -0.1016 |        0.0764 |        0.5611 |           0.1374 | Kısmen trend üstü |       0.0316 |                   0.0769 |
+|      7 | YKBNK.IS | LOW              | TUT          |        0.2011 |        0.2268 |        0.1231 |           0.0040 | Güçlü trend       |       0.0307 |                   0.0177 |
+|      8 | SAHOL.IS | MEDIUM           | AL           |        0.0955 |        0.1144 |        0.1801 |          -0.0879 | Güçlü trend       |       0.0257 |                   0.0706 |
+|      9 | TCELL.IS | LOW              | SAT          |        0.0468 |        0.0268 |        0.1432 |           0.0219 | Kısmen trend üstü |       0.0234 |                  -0.0056 |
+|     10 | EREGL.IS | LOW              | TUT          |        0.0258 |        0.4877 |        0.7356 |          -0.1734 | Güçlü trend       |       0.0278 |                   0.0261 |
+|     11 | KCHOL.IS | LOW              | SAT          |        0.0403 |       -0.0026 |        0.1991 |           0.0159 | Kısmen trend üstü |       0.0215 |                  -0.0048 |
+|     12 | FROTO.IS | LOW              | PORTFOY_DISI |       -0.0076 |       -0.1545 |       -0.0395 |           0.0524 | Trend altı        |       0.0218 |                   0.0808 |
+|     13 | SISE.IS  | LOW              | PORTFOY_DISI |       -0.0264 |        0.0412 |        0.1723 |          -0.1184 | Kısmen trend üstü |       0.0264 |                   0.0122 |
+|     14 | PGSUS.IS | LOW              | PORTFOY_DISI |        0.0398 |        0.0029 |       -0.1039 |          -0.0944 | Trend altı        |       0.0219 |                   0.0756 |
+|     15 | TUPRS.IS | LOW              | PORTFOY_DISI |       -0.0710 |       -0.0789 |        0.2934 |          -0.1672 | Kısmen trend üstü |       0.0226 |                   0.0592 |
+|     16 | ARCLK.IS | LOW              | PORTFOY_DISI |       -0.0447 |       -0.0801 |       -0.0326 |          -0.0893 | Trend altı        |       0.0185 |                   0.0759 |
+|     17 | PETKM.IS | LOW              | PORTFOY_DISI |       -0.1713 |       -0.0678 |        0.1782 |          -0.1557 | Trend altı        |       0.0283 |                   0.0650 |
 
 ## Al/Sat Özet
 
 | Kategori                | Hisseler                                                                                       |
 |:------------------------|:-----------------------------------------------------------------------------------------------|
-| Alınacaklar             | TOASO.IS, YKBNK.IS, ASELS.IS, EREGL.IS, SAHOL.IS                                               |
-| Tutulacaklar            | AKBNK.IS, BIMAS.IS, GARAN.IS, THYAO.IS                                                         |
-| Satılacaklar            | TCELL.IS, KCHOL.IS, PETKM.IS                                                                   |
-| Portföy dışı kalanlar   | FROTO.IS, SISE.IS, PGSUS.IS, TUPRS.IS, ARCLK.IS                                                |
-| Nakit kuralı            | Beklenen getiri etkin %4.72 eşiğinin altında ise AL önerisi verilmez; kalan sermaye CASH olur. |
+| Alınacaklar             | TOASO.IS, BIMAS.IS, GARAN.IS, ASELS.IS, SAHOL.IS                                               |
+| Tutulacaklar            | AKBNK.IS, THYAO.IS, YKBNK.IS, EREGL.IS                                                         |
+| Satılacaklar            | TCELL.IS, KCHOL.IS                                                                             |
+| Portföy dışı kalanlar   | FROTO.IS, SISE.IS, PGSUS.IS, TUPRS.IS, ARCLK.IS, PETKM.IS                                      |
+| Nakit kuralı            | Beklenen getiri etkin %3.73 eşiğinin altında ise AL önerisi verilmez; kalan sermaye CASH olur. |
 | Nitelikli fırsat sayısı | 5                                                                                              |
 
 ## PORTFOY_DEGISIMI
@@ -86,10 +85,10 @@ Cash allocation %: %50
 | AKBNK.IS | UNCHANGED |
 | ARCLK.IS | UNCHANGED |
 | ASELS.IS | NEW BUY   |
-| BIMAS.IS | UNCHANGED |
-| EREGL.IS | NEW BUY   |
+| BIMAS.IS | NEW BUY   |
+| EREGL.IS | UNCHANGED |
 | FROTO.IS | UNCHANGED |
-| GARAN.IS | UNCHANGED |
+| GARAN.IS | NEW BUY   |
 | KCHOL.IS | UNCHANGED |
 | PETKM.IS | UNCHANGED |
 | PGSUS.IS | UNCHANGED |
@@ -99,31 +98,31 @@ Cash allocation %: %50
 | THYAO.IS | UNCHANGED |
 | TOASO.IS | NEW BUY   |
 | TUPRS.IS | UNCHANGED |
-| YKBNK.IS | NEW BUY   |
+| YKBNK.IS | UNCHANGED |
 
 ## Piyasa Rejimi
 
 | Gösterge               | Değer                                                      |
 |:-----------------------|:-----------------------------------------------------------|
-| BIST100 Güncel Kapanış | 14183.2001953125                                           |
-| BIST100 MA200          | 12562.156025390625                                         |
+| BIST100 Güncel Kapanış | 14121.7998046875                                           |
+| BIST100 MA200          | 12580.334526367187                                         |
 | Risk ON / Risk OFF     | Risk ON                                                    |
 | Aktif Model            | volume_heavy                                               |
-| Güven Puanı            | 75.49                                                      |
+| Güven Puanı            | 73.51                                                      |
 | Açıklama               | BIST100 MA200 üzerinde olduğu için risk alma rejimi aktif. |
 
 ## Paper Trade
 
 | Aktif Pozisyon   | Giriş Tarihi   |   Giriş Fiyatı |   Güncel Fiyat |   Getiri % |   Gerçekleşmemiş PnL |   Portföy Değeri |   Benchmark Getirisi |
 |:-----------------|:---------------|---------------:|---------------:|-----------:|---------------------:|-----------------:|---------------------:|
-| PGSUS.IS         | 2026-06-01     |       168.4000 |       177.1000 |     0.0517 |             516.6278 |     2228490.9866 |               0.0350 |
-| TUPRS.IS         | 2026-06-01     |       244.9000 |       219.3000 |    -0.1045 |           -1045.3243 |     2228490.9866 |               0.0350 |
-| GARAN.IS         | 2026-06-01     |       123.1000 |       137.3000 |     0.1154 |            1153.5341 |     2228490.9866 |               0.0350 |
-| FROTO.IS         | 2026-06-01     |        85.2000 |        85.4500 |     0.0029 |              29.3427 |     2228490.9866 |               0.0350 |
-| SISE.IS          | 2026-06-01     |        45.5000 |        44.9400 |    -0.0123 |            -369.2317 |     2228490.9866 |               0.0350 |
-| BIMAS.IS         | 2026-06-01     |       371.2500 |       371.0000 |    -0.0007 |             -20.2020 |     2228490.9866 |               0.0350 |
-| ASELS.IS         | 2026-06-01     |       384.0000 |       357.5000 |    -0.0690 |           -2070.3125 |     2228490.9866 |               0.0350 |
-| YKBNK.IS         | 2026-06-22     |        43.8400 |        40.0800 |    -0.0858 |          -60997.7193 |     2228490.9866 |               0.0350 |
-| SAHOL.IS         | 2026-06-22     |       101.5000 |        97.5000 |    -0.0394 |          -28027.8924 |     2228490.9866 |               0.0350 |
-| EREGL.IS         | 2026-06-22     |        40.3400 |        41.2000 |     0.0213 |           15162.1000 |     2228490.9866 |               0.0350 |
-| TOASO.IS         | 2026-06-24     |       341.0000 |       313.5000 |    -0.0806 |           -2711.5573 |     2228490.9866 |               0.0350 |
+| PGSUS.IS         | 2026-06-01     |       168.4000 |       175.1000 |     0.0398 |             397.8630 |     2214532.2502 |               0.0305 |
+| TUPRS.IS         | 2026-06-01     |       244.9000 |       227.5000 |    -0.0710 |            -710.4938 |     2214532.2502 |               0.0305 |
+| GARAN.IS         | 2026-06-01     |       123.1000 |       138.0000 |     0.1210 |            1210.3982 |     2214532.2502 |               0.0305 |
+| FROTO.IS         | 2026-06-01     |        85.2000 |        84.5500 |    -0.0076 |             -76.2904 |     2214532.2502 |               0.0305 |
+| SISE.IS          | 2026-06-01     |        45.5000 |        44.3000 |    -0.0264 |            -791.2093 |     2214532.2502 |               0.0305 |
+| BIMAS.IS         | 2026-06-01     |       371.2500 |       365.2500 |    -0.0162 |            -484.8485 |     2214532.2502 |               0.0305 |
+| ASELS.IS         | 2026-06-01     |       384.0000 |       345.0000 |    -0.1016 |           -3046.8750 |     2214532.2502 |               0.0305 |
+| YKBNK.IS         | 2026-06-22     |        43.8400 |        40.1400 |    -0.0844 |          -60024.3906 |     2214532.2502 |               0.0305 |
+| SAHOL.IS         | 2026-06-22     |       101.5000 |        97.5000 |    -0.0394 |          -28027.8924 |     2214532.2502 |               0.0305 |
+| EREGL.IS         | 2026-06-22     |        40.3400 |        40.4800 |     0.0035 |            2468.2363 |     2214532.2502 |               0.0305 |
+| TOASO.IS         | 2026-06-24     |       341.0000 |       308.0000 |    -0.0968 |           -3253.8688 |     2214532.2502 |               0.0305 |
