@@ -4,10 +4,10 @@
 - Base model: volume_heavy Top10
 - Active model: volume_heavy Top10
 - Snapshot date: 2026-07-14
-- BIST100 date: 2026-07-14
+- BIST100 date: 2026-07-16
 - Regime status: ABOVE_MA200_RISK_ON
-- BIST100 close: 14080.00
-- BIST100 MA200: 12745.84
+- BIST100 close: 14251.30
+- BIST100 MA200: 12760.26
 - BIST100 below MA200: False
 - Confidence score: 76.66/100
 - Minimum BUY expected return floor: 0.00%
