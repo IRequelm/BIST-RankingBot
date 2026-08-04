@@ -25,8 +25,8 @@ This report evaluates performance in both TL and USD terms. USD performance is e
 
 | metric             |      TL |     USD |   USDTRY |
 |:-------------------|--------:|--------:|---------:|
-| total_return       | 19.5676 |  0.9706 |   9.4374 |
-| avg_monthly_return |  0.0364 |  0.0123 |   0.0263 |
+| total_return       | 19.5676 |  0.9706 |   9.6300 |
+| avg_monthly_return |  0.0364 |  0.0123 |   0.0262 |
 | max_drawdown       | -0.3455 | -0.4140 |  -0.2322 |
 | win_rate           |  0.6289 |  0.5052 |          |
 
