@@ -1,6 +1,6 @@
 # BIST100 Relative Strength Survival Backtest
 
-- Period: 2023-08-26 to 2026-08-26
+- Period: 2023-08-27 to 2026-08-27
 - Configured BIST100 symbols: 100
 - Loaded symbols: 97
 - Missing/no valid data symbols: 3
@@ -10,20 +10,20 @@
 
 | policy_id       | policy_name                              |   months | total_return   | bist100_total_return   | cagr   | bist100_cagr   | excess_cagr   | max_drawdown   | bist100_max_drawdown   |   sharpe_proxy | monthly_win_rate_vs_bist100   | average_monthly_excess_return   | worst_month   | worst_month_excess   | best_month   | best_month_excess   | average_turnover   |   average_trades_per_month |   cash_months |   average_holdings | transaction_cost_impact   |
 |:----------------|:-----------------------------------------|---------:|:---------------|:-----------------------|:-------|:---------------|:--------------|:---------------|:-----------------------|---------------:|:------------------------------|:--------------------------------|:--------------|:---------------------|:-------------|:--------------------|:-------------------|---------------------------:|--------------:|-------------------:|:--------------------------|
-| BENCHMARK       | BIST100 benchmark                        |       37 | 83.98%         | 83.98%                 | 22.57% | 22.57%         | 0.00%         | -17.72%        | -17.72%                |       0.9752   | 0.00%                         | 0.00%                           | 2023-08       | 0.00%                | 2023-08      | 0.00%               | 0.00%              |                    0       |             0 |            0       | 0.00%                     |
-| OLD_TOP3        | Old absolute-score Top3                  |       37 | 88.39%         | 83.98%                 | 23.55% | 22.57%         | 0.97%         | -31.62%        | -17.72%                |       0.737614 | 45.95%                        | 0.39%                           | 2024-03       | -14.56%              | 2023-09      | 24.43%              | 128.83%            |                    3.86486 |             8 |            2.35135 | 9.53%                     |
-| RS_TOP10        | BIST100 relative-strength survival Top10 |       37 | 141.06%        | 83.98%                 | 34.15% | 22.57%         | 11.57%        | -20.97%        | -17.72%                |       1.07897  | 59.46%                        | 0.91%                           | 2026-07       | -12.00%              | 2026-05      | 20.05%              | 105.41%            |                   10.5405  |             8 |            7.83784 | 7.80%                     |
-| RS_TOP3         | BIST100 relative-strength survival Top3  |       37 | 141.80%        | 83.98%                 | 34.28% | 22.57%         | 11.71%        | -33.30%        | -17.72%                |       0.821081 | 54.05%                        | 1.41%                           | 2023-12       | -15.95%              | 2023-11      | 38.81%              | 132.43%            |                    3.97297 |             8 |            2.35135 | 9.80%                     |
-| RS_TOP5         | BIST100 relative-strength survival Top5  |       37 | 94.68%         | 83.98%                 | 24.91% | 22.57%         | 2.33%         | -27.45%        | -17.72%                |       0.751879 | 54.05%                        | 0.55%                           | 2026-07       | -17.70%              | 2023-11      | 23.75%              | 121.62%            |                    6.08108 |             8 |            3.91892 | 9.00%                     |
-| RS_TOP5_NO_CASH | Survival Top5 without MA200 cash filter  |       37 | 207.90%        | 83.98%                 | 45.57% | 22.57%         | 22.99%        | -27.45%        | -17.72%                |       1.12103  | 62.16%                        | 1.86%                           | 2026-07       | -17.70%              | 2023-11      | 23.75%              | 147.57%            |                    7.37838 |             0 |            5       | 10.92%                    |
+| BENCHMARK       | BIST100 benchmark                        |       37 | 83.53%         | 83.53%                 | 22.45% | 22.45%         | 0.00%         | -17.72%        | -17.72%                |       0.972603 | 0.00%                         | 0.00%                           | 2023-08       | 0.00%                | 2023-08      | 0.00%               | 0.00%              |                    0       |             0 |            0       | 0.00%                     |
+| OLD_TOP3        | Old absolute-score Top3                  |       37 | 89.40%         | 83.53%                 | 23.74% | 22.45%         | 1.29%         | -31.62%        | -17.72%                |       0.742218 | 45.95%                        | 0.41%                           | 2024-03       | -14.56%              | 2023-09      | 24.43%              | 128.83%            |                    3.86486 |             8 |            2.35135 | 9.53%                     |
+| RS_TOP10        | BIST100 relative-strength survival Top10 |       37 | 143.37%        | 83.53%                 | 34.54% | 22.45%         | 12.09%        | -20.97%        | -17.72%                |       1.08787  | 59.46%                        | 0.95%                           | 2026-07       | -12.00%              | 2026-05      | 20.05%              | 105.41%            |                   10.5405  |             8 |            7.83784 | 7.80%                     |
+| RS_TOP3         | BIST100 relative-strength survival Top3  |       37 | 144.27%        | 83.53%                 | 34.70% | 22.45%         | 12.25%        | -33.30%        | -17.72%                |       0.826362 | 54.05%                        | 1.45%                           | 2023-12       | -15.95%              | 2023-11      | 38.81%              | 132.43%            |                    3.97297 |             8 |            2.35135 | 9.80%                     |
+| RS_TOP5         | BIST100 relative-strength survival Top5  |       37 | 98.43%         | 83.53%                 | 25.68% | 22.45%         | 3.23%         | -27.45%        | -17.72%                |       0.763866 | 54.05%                        | 0.62%                           | 2026-07       | -17.70%              | 2023-11      | 23.75%              | 121.62%            |                    6.08108 |             8 |            3.91892 | 9.00%                     |
+| RS_TOP5_NO_CASH | Survival Top5 without MA200 cash filter  |       37 | 213.85%        | 83.53%                 | 46.45% | 22.45%         | 24.00%        | -27.45%        | -17.72%                |       1.13019  | 62.16%                        | 1.93%                           | 2026-07       | -17.70%              | 2023-11      | 23.75%              | 147.57%            |                    7.37838 |             0 |            5       | 10.92%                    |
 
 ## Decision
 
-Selected winner: Survival Top5 without MA200 cash filter (excess CAGR 22.99%, max drawdown -27.45%).
+Selected winner: Survival Top5 without MA200 cash filter (excess CAGR 24.00%, max drawdown -27.45%).
 
 No strict drawdown-safe candidate passed both excess-return and drawdown tests.
 
-Raw-return winner: Survival Top5 without MA200 cash filter (excess CAGR 22.99%, max drawdown -27.45%).
+Raw-return winner: Survival Top5 without MA200 cash filter (excess CAGR 24.00%, max drawdown -27.45%).
 
 This selected winner is the aggressive research champion: it removes the MA200 cash filter and accepts slightly worse drawdown than BIST100 in exchange for the strongest historical excess CAGR in this run.
 
@@ -33,7 +33,7 @@ This selected winner is the aggressive research champion: it removes the MA200 c
 |:----------------|:--------------------|:---------|-------:|--------:|-----------------------:|-----------------------:|-----------------------:|--------------:|-------------:|
 | OLD_TOP3        | 2026-08-03 00:00:00 | AKSEN.IS |      1 |  0.8799 |                 0.1916 |                 0.1255 |                 0.2656 |        1.0000 |       0.0343 |
 | OLD_TOP3        | 2026-08-03 00:00:00 | TUPRS.IS |      2 |  0.8474 |                 0.2837 |                 0.1387 |                 0.2663 |        1.0000 |       0.0243 |
-| OLD_TOP3        | 2026-08-03 00:00:00 | AKFYE.IS |      3 |  0.8119 |                 0.1046 |                 0.0849 |                 0.2929 |        0.5000 |       0.0407 |
+| OLD_TOP3        | 2026-08-03 00:00:00 | AKFYE.IS |      3 |  0.8113 |                 0.1046 |                 0.0849 |                 0.2929 |        0.5000 |       0.0407 |
 | RS_TOP10        | 2026-08-03 00:00:00 | TUPRS.IS |      1 |  0.6974 |                 0.2837 |                 0.1387 |                 0.2663 |        1.0000 |       0.0243 |
 | RS_TOP10        | 2026-08-03 00:00:00 | TKFEN.IS |      2 |  0.6974 |                 0.2437 |                 0.2432 |                 1.1677 |        1.0000 |       0.0362 |
 | RS_TOP10        | 2026-08-03 00:00:00 | EUPWR.IS |      3 |  0.6895 |                 0.1598 |                 0.6916 |                 1.2020 |        1.0000 |       0.0519 |
