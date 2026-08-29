@@ -1,7 +1,7 @@
 # BIST RankingBot Aylık Yatırımcı Raporu - 2026-08-27
 
 - Rapor Tarihi: 2026-08-27
-- Son Güncelleme: 2026-08-28 13:27
+- Son Güncelleme: 2026-08-29 08:21
 
 ## Yönetici Özeti
 
@@ -22,11 +22,11 @@ Cash allocation %: %50
 
 |   Rank | Stock    | Action   |   Weight % |   Allocation TL |   Expected Return % |   Expected Return TL |   Target Price |   Stop Price |   Risk/Reward | Conviction   |
 |-------:|:---------|:---------|-----------:|----------------:|--------------------:|---------------------:|---------------:|-------------:|--------------:|:-------------|
-|      1 | KCHOL.IS | AL       |     0.1302 |      13019.4640 |              0.1079 |            1404.9036 |       237.3139 |     203.4900 |        2.1582 | VERY HIGH    |
-|      2 | TUPRS.IS | AL       |     0.1159 |      11593.1292 |              0.0494 |             572.3617 |       399.5479 |     359.3967 |        0.8803 | HIGH         |
-|      3 | ASELS.IS | AL       |     0.0890 |       8903.8471 |              0.0769 |             684.4579 |       434.7871 |     377.4784 |        1.1814 | MEDIUM       |
+|      1 | KCHOL.IS | AL       |     0.1302 |      13019.4656 |              0.1079 |            1404.9045 |       237.3139 |     203.4900 |        2.1582 | VERY HIGH    |
+|      2 | TUPRS.IS | AL       |     0.1159 |      11593.1291 |              0.0494 |             572.3616 |       399.5479 |     359.3967 |        0.8803 | HIGH         |
+|      3 | ASELS.IS | AL       |     0.0890 |       8903.8469 |              0.0769 |             684.4578 |       434.7871 |     377.4784 |        1.1814 | MEDIUM       |
 |      4 | GARAN.IS | AL       |     0.0855 |       8546.2346 |              0.0331 |             283.0294 |       137.4046 |     126.3500 |        0.6623 | MEDIUM       |
-|      5 | EREGL.IS | AL       |     0.0794 |       7937.3250 |              0.0345 |             274.0391 |        39.9327 |      36.3429 |        0.5904 | MEDIUM       |
+|      5 | EREGL.IS | AL       |     0.0794 |       7937.3238 |              0.0345 |             274.0386 |        39.9327 |      36.3429 |        0.5904 | MEDIUM       |
 |      6 | CASH     | CASH     |     0.5000 |      50000.0000 |              0.0000 |               0.0000 |                |              |               | CASH         |
 
 ## Portföy Önerisi
@@ -40,7 +40,7 @@ Cash allocation %: %50
 |      5 | SAHOL.IS | TUT       |        93.7500 |       -0.0773 |         0.0256 |        0.0887 |           86.5031 |            96.1455 |          102.0697 |              86.5031 | LOW              |       73.6700 | 3A momentum destekli; trend desteği var; hacim artışı var       | alt bant riski belirgin                               |
 |      6 | ASELS.IS | AL        |       403.7500 |       -0.0080 |         0.0769 |        0.1767 |          400.5317 |           434.7871 |          475.0936 |             377.4784 | MEDIUM           |       73.6700 | 6A momentum pozitif; 3A momentum destekli; trend desteği var    | volatilite yüksek                                     |
 |      7 | EREGL.IS | AL        |        38.6000 |       -0.0585 |         0.0345 |        0.1108 |           36.3429 |            39.9327 |           42.8755 |              36.3429 | MEDIUM           |       73.6700 | 6A momentum pozitif; trend desteği var; hacim artışı var        | kisa vadeli momentum negatif; alt bant riski belirgin |
-|      8 | BIMAS.IS | TUT       |       413.7500 |       -0.0244 |         0.0061 |        0.0631 |          403.6741 |           416.2610 |          439.8777 |             393.0625 | LOW              |       73.6700 | 6A momentum pozitif; 3A momentum destekli; trend desteği var    | Risk sinyali sınırlı                                  |
+|      8 | BIMAS.IS | TUT       |       413.7500 |       -0.0244 |         0.0061 |        0.0631 |          403.6742 |           416.2610 |          439.8777 |             393.0625 | LOW              |       73.6700 | 6A momentum pozitif; 3A momentum destekli; trend desteği var    | Risk sinyali sınırlı                                  |
 |      9 | YKBNK.IS | SAT       |        36.8600 |       -0.1048 |        -0.0316 |        0.1137 |           32.9989 |            35.6955 |           41.0506 |              32.9989 | LOW              |       73.6700 | 3A momentum destekli; trend desteği var; hacim artışı var       | alt bant riski belirgin                               |
 |     10 | TCELL.IS | TUT       |       102.8000 |       -0.0477 |         0.0047 |        0.0597 |           97.8969 |           103.2798 |          108.9349 |              97.6600 | LOW              |       73.6700 | 3A momentum destekli; hacim artışı var; volatilite görece düşük | trend desteği zayıf                                   |
 |     13 | TOASO.IS | SAT       |       273.5000 |       -0.1063 |        -0.0245 |        0.0359 |          244.4293 |           266.7883 |          283.3073 |             244.4293 | LOW              |       73.6700 | hacim artışı var; volatilite görece düşük                       | trend desteği zayıf; alt bant riski belirgin          |
@@ -116,9 +116,9 @@ Cash allocation %: %50
 
 | Aktif Pozisyon   | Giriş Tarihi   |   Giriş Fiyatı |   Güncel Fiyat |   Getiri % |   Gerçekleşmemiş PnL |   Portföy Değeri |   Benchmark Getirisi |
 |:-----------------|:---------------|---------------:|---------------:|-----------:|---------------------:|-----------------:|---------------------:|
-| ASELS.IS         | 2026-07-03     |       399.5000 |       403.7500 |     0.0106 |            7494.4653 |    11292893.2374 |               0.0636 |
-| KCHOL.IS         | 2026-07-16     |       197.0000 |       214.2000 |     0.0873 |          253751.8815 |    11292893.2374 |               0.0636 |
-| TUPRS.IS         | 2026-08-05     |       303.7500 |       380.7500 |     0.2535 |          855094.6352 |    11292893.2374 |               0.0636 |
-| GARAN.IS         | 2026-08-06     |       127.8000 |       133.0000 |     0.0407 |            2352.3764 |    11292893.2374 |               0.0636 |
-| EREGL.IS         | 2026-08-07     |        38.6800 |        38.6000 |    -0.0021 |            -119.5771 |    11292893.2374 |               0.0636 |
-| TCELL.IS         | 2026-08-26     |       103.5000 |       102.8000 |    -0.0068 |          -20731.0095 |    11292893.2374 |               0.0636 |
+| ASELS.IS         | 2026-07-03     |       399.5000 |       403.7500 |     0.0106 |            7494.4653 |    11323067.8436 |               0.0636 |
+| KCHOL.IS         | 2026-07-16     |       197.0000 |       214.2000 |     0.0873 |          253751.8815 |    11323067.8436 |               0.0636 |
+| TUPRS.IS         | 2026-08-05     |       303.7500 |       380.7500 |     0.2535 |          855094.6352 |    11323067.8436 |               0.0636 |
+| GARAN.IS         | 2026-08-06     |       127.8000 |       133.0000 |     0.0407 |            2352.3764 |    11323067.8436 |               0.0636 |
+| EREGL.IS         | 2026-08-07     |        38.6800 |        38.6000 |    -0.0021 |            -119.5771 |    11323067.8436 |               0.0636 |
+| TCELL.IS         | 2026-08-26     |       103.5000 |       102.8000 |    -0.0068 |          -20731.0095 |    11323067.8436 |               0.0636 |
