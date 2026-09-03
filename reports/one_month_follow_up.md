@@ -1,6 +1,6 @@
 # Bir Aylık Takip Raporu
 
-- Rapor Tarihi: 2026-08-31
+- Rapor Tarihi: 2026-09-01
 - Takip Modu: Sabit portföy
 - Başlangıç Tarihi: 2026-06-01
 - Strateji: Top3 Ranking Only
@@ -9,18 +9,18 @@
 - Güncel Rejim Durumu: ABOVE_MA200_RISK_ON
 - Başlangıç Değeri: 100,000.00 TL
 - Seçilen Hisseler: EREGL.IS, SISE.IS, BIMAS.IS
-- Portföy Toplam Getiri: -2.25%
-- BIST100 Getiri: 3.83%
-- BIST100'e Göre Fark: -6.08%
+- Portföy Toplam Getiri: -2.88%
+- BIST100 Getiri: 2.53%
+- BIST100'e Göre Fark: -5.41%
 - Durum: Zararda / BIST Altı
 
 ## Pozisyonlar
 
 | Hisse    |   Ağırlık % |   Başlangıç Fiyatı |   Güncel Fiyat |   Getiri % |   Başlangıç Tutarı |   Güncel Tutar |   Kar/Zarar TL |
 |:---------|------------:|-------------------:|---------------:|-----------:|-------------------:|---------------:|---------------:|
-| EREGL.IS |      0.3333 |            40.0000 |        38.7800 |    -0.0305 |         33333.3333 |     32316.6656 |     -1016.6677 |
-| SISE.IS  |      0.3333 |            45.5000 |        39.6200 |    -0.1292 |         33333.3333 |     29025.6402 |     -4307.6931 |
-| BIMAS.IS |      0.3333 |           371.2500 |       405.5000 |     0.0923 |         33333.3333 |     36408.5297 |      3075.1964 |
+| EREGL.IS |      0.3333 |            40.0000 |        37.7800 |    -0.0555 |         33333.3333 |     31483.3323 |     -1850.0010 |
+| SISE.IS  |      0.3333 |            45.5000 |        39.5600 |    -0.1305 |         33333.3333 |     28981.6860 |     -4351.6473 |
+| BIMAS.IS |      0.3333 |           371.2500 |       408.2500 |     0.0997 |         33333.3333 |     36655.4433 |      3322.1100 |
 
 ## Notlar
 
