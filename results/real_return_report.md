@@ -11,10 +11,10 @@ This report evaluates performance in both TL and USD terms. USD performance is e
 
 ## Paper Portfolio TL / USD
 
-- Latest portfolio value TL: 11,314,225.18
-- Portfolio TL return: 398.42%
+- Latest portfolio value TL: 11,489,854.14
+- Portfolio TL return: 406.16%
 - USDTRY return over paper period: 5.52%
-- Portfolio USD return: 372.36%
+- Portfolio USD return: 379.70%
 - Benchmark TL return: 2.25%
 
 ## Best Model TL / USD
@@ -34,4 +34,4 @@ Interpretation: USD return converts TL strategy returns by the monthly USDTRY ch
 
 ## Market Reference
 
-- Latest BIST100 close: 14,151.60
+- Latest BIST100 close: 14,405.30
