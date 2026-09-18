@@ -5,17 +5,17 @@ This report evaluates performance in both TL and USD terms. USD performance is e
 ## Cash Allocation
 
 - Minimum BUY expected return: 0.00%
-- BUY candidates meeting threshold: 3
-- Active portfolio slot count: 5
-- Implied CASH weight when using equal opportunity slots: 40.00%
+- BUY candidates meeting threshold: 5
+- Active portfolio slot count: 10
+- Implied CASH weight when using equal opportunity slots: 50.00%
 
 ## Paper Portfolio TL / USD
 
-- Latest portfolio value TL: 11,985,832.92
-- Portfolio TL return: 428.01%
-- USDTRY return over paper period: 5.94%
-- Portfolio USD return: 398.40%
-- Benchmark TL return: 1.37%
+- Latest portfolio value TL: 11,381,849.65
+- Portfolio TL return: 401.40%
+- USDTRY return over paper period: 6.01%
+- Portfolio USD return: 372.99%
+- Benchmark TL return: -4.24%
 
 ## Best Model TL / USD
 
@@ -25,13 +25,13 @@ This report evaluates performance in both TL and USD terms. USD performance is e
 
 | metric             |      TL |     USD |   USDTRY |
 |:-------------------|--------:|--------:|---------:|
-| total_return       | 22.6302 |  1.1886 |   9.7969 |
-| avg_monthly_return |  0.0371 |  0.0132 |   0.0261 |
+| total_return       | 21.8344 |  1.1149 |   9.7969 |
+| avg_monthly_return |  0.0368 |  0.0128 |   0.0261 |
 | max_drawdown       | -0.3455 | -0.4140 |  -0.2322 |
-| win_rate           |  0.6364 |  0.5152 |          |
+| win_rate           |  0.6263 |  0.5051 |          |
 
 Interpretation: USD return converts TL strategy returns by the monthly USDTRY change. When USDTRY rises faster than the TL portfolio, USD-based performance falls.
 
 ## Market Reference
 
-- Latest BIST100 close: 13,122.60
+- Latest BIST100 close: 13,509.80
