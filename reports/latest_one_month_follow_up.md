@@ -6,12 +6,12 @@
 - Strateji: Top3 Ranking Only
 - Başlangıç Modeli: volume_heavy
 - Başlangıç Rejim Durumu: ABOVE_MA200_RISK_ON
-- Güncel Rejim Durumu: ABOVE_MA200_RISK_ON
+- Güncel Rejim Durumu: BELOW_MA200_DEFENSIVE
 - Başlangıç Değeri: 100,000.00 TL
 - Seçilen Hisseler: EREGL.IS, SISE.IS, BIMAS.IS
 - Portföy Toplam Getiri: -6.61%
-- BIST100 Getiri: -1.42%
-- BIST100'e Göre Fark: -5.19%
+- BIST100 Getiri: -3.06%
+- BIST100'e Göre Fark: -3.55%
 - Durum: Zararda / BIST Altı
 
 ## Pozisyonlar
