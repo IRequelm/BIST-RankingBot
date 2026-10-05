@@ -1,7 +1,7 @@
 # BIST RankingBot Aylık Yatırımcı Raporu - 2026-10-01
 
 - Rapor Tarihi: 2026-10-01
-- Son Güncelleme: 2026-10-04 07:30
+- Son Güncelleme: 2026-10-05 07:47
 
 ## Yönetici Özeti
 
