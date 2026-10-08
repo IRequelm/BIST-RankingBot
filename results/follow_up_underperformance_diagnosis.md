@@ -2,64 +2,64 @@
 
 - Start date: 2026-06-01
 - Starting portfolio: EREGL.IS, SISE.IS, BIMAS.IS
-- Current portfolio return: -3.59%
-- BIST100 return: -9.70%
-- Excess return: 6.11%
+- Current portfolio return: -4.52%
+- BIST100 return: -11.54%
+- Excess return: 7.02%
 
 ## Per-Stock Contribution
 
 | symbol   | sector           |   weight |   start_price |   current_price |   return |   portfolio_contribution |
 |:---------|:-----------------|---------:|--------------:|----------------:|---------:|-------------------------:|
-| EREGL.IS | Steel            |   0.3333 |       40.0000 |         37.6400 |  -0.0590 |                  -0.0197 |
-| SISE.IS  | Glass/Industrial |   0.3333 |       45.5000 |         38.1000 |  -0.1626 |                  -0.0542 |
-| BIMAS.IS | Retail           |   0.3333 |      371.2500 |        413.5000 |   0.1138 |                   0.0379 |
+| EREGL.IS | Steel            |   0.3333 |       40.0000 |         37.0800 |  -0.0730 |                  -0.0243 |
+| SISE.IS  | Glass/Industrial |   0.3333 |       45.5000 |         38.0000 |  -0.1648 |                  -0.0549 |
+| BIMAS.IS | Retail           |   0.3333 |      371.2500 |        409.2500 |   0.1024 |                   0.0341 |
 
 ## Universe Leaders During Follow-Up
 
 | symbol   | sector             |   period_return |
 |:---------|:-------------------|----------------:|
-| TUPRS.IS | Energy/Refinery    |          0.6262 |
-| KCHOL.IS | Holdings           |          0.1554 |
-| BIMAS.IS | Retail             |          0.1264 |
-| AKBNK.IS | Banks              |          0.0824 |
-| YKBNK.IS | Banks              |          0.0742 |
-| GARAN.IS | Banks              |          0.0593 |
-| THYAO.IS | Airlines           |          0.0026 |
+| TUPRS.IS | Energy/Refinery    |          0.5763 |
+| KCHOL.IS | Holdings           |          0.1484 |
+| BIMAS.IS | Retail             |          0.1148 |
+| AKBNK.IS | Banks              |          0.0911 |
+| YKBNK.IS | Banks              |          0.0910 |
+| GARAN.IS | Banks              |          0.0658 |
 | SAHOL.IS | Holdings           |         -0.0022 |
-| TCELL.IS | Telecom            |         -0.0205 |
-| ASELS.IS | Defense/Technology |         -0.0326 |
+| THYAO.IS | Airlines           |         -0.0034 |
+| TCELL.IS | Telecom            |         -0.0185 |
+| ASELS.IS | Defense/Technology |         -0.0208 |
 
 ## Sector/Proxy Group Leaders
 
 | sector             |   period_return |
 |:-------------------|----------------:|
-| Energy/Refinery    |          0.6262 |
-| Retail             |          0.1264 |
-| Holdings           |          0.0766 |
-| Banks              |          0.0720 |
-| Telecom            |         -0.0205 |
-| Defense/Technology |         -0.0326 |
-| Steel              |         -0.0462 |
-| Airlines           |         -0.0744 |
-| Autos              |         -0.1153 |
-| Petrochemicals     |         -0.1284 |
-| Glass/Industrial   |         -0.1626 |
-| Durables           |         -0.2101 |
+| Energy/Refinery    |          0.5763 |
+| Retail             |          0.1148 |
+| Banks              |          0.0826 |
+| Holdings           |          0.0731 |
+| Telecom            |         -0.0185 |
+| Defense/Technology |         -0.0208 |
+| Steel              |         -0.0604 |
+| Airlines           |         -0.0854 |
+| Autos              |         -0.1040 |
+| Petrochemicals     |         -0.1422 |
+| Glass/Industrial   |         -0.1648 |
+| Durables           |         -0.2231 |
 
 ## Leadership Rotation Finding
 
-The fixed Top3 basket made money, but the strongest benchmark-relative move came from names outside the fixed basket. In the available universe, the largest recent winners were concentrated in Energy/Refinery, Retail, Holdings. That is consistent with a leadership rotation the one-month fixed hold did not capture.
+The fixed Top3 basket made money, but the strongest benchmark-relative move came from names outside the fixed basket. In the available universe, the largest recent winners were concentrated in Energy/Refinery, Retail, Banks. That is consistent with a leadership rotation the one-month fixed hold did not capture.
 
 ## Missed Leaders
 
 | symbol   | sector             |   period_return |
 |:---------|:-------------------|----------------:|
-| TUPRS.IS | Energy/Refinery    |          0.6262 |
-| KCHOL.IS | Holdings           |          0.1554 |
-| AKBNK.IS | Banks              |          0.0824 |
-| YKBNK.IS | Banks              |          0.0742 |
-| GARAN.IS | Banks              |          0.0593 |
-| THYAO.IS | Airlines           |          0.0026 |
+| TUPRS.IS | Energy/Refinery    |          0.5763 |
+| KCHOL.IS | Holdings           |          0.1484 |
+| AKBNK.IS | Banks              |          0.0911 |
+| YKBNK.IS | Banks              |          0.0910 |
+| GARAN.IS | Banks              |          0.0658 |
 | SAHOL.IS | Holdings           |         -0.0022 |
-| TCELL.IS | Telecom            |         -0.0205 |
-| ASELS.IS | Defense/Technology |         -0.0326 |
+| THYAO.IS | Airlines           |         -0.0034 |
+| TCELL.IS | Telecom            |         -0.0185 |
+| ASELS.IS | Defense/Technology |         -0.0208 |
