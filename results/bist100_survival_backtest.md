@@ -15,11 +15,11 @@
 | RS_TOP10        | BIST100 relative-strength survival Top10 |       37 | 45.93%         | 44.76%                 | 13.45% | 13.15%         | 0.30%         | -26.80%        | -22.30%                |       0.560977 | 56.76%                        | 0.13%                           | 2025-06       | -11.89%              | 2026-05      | 13.30%              | 105.95%            |                   10.5946  |             9 |            7.56757 | 7.84%                     |
 | RS_TOP3         | BIST100 relative-strength survival Top3  |       37 | 33.89%         | 44.76%                 | 10.23% | 13.15%         | -2.91%        | -38.25%        | -22.30%                |       0.432079 | 51.35%                        | 0.66%                           | 2026-07       | -28.85%              | 2023-11      | 39.07%              | 124.32%            |                    3.72973 |             9 |            2.27027 | 9.20%                     |
 | RS_TOP5         | BIST100 relative-strength survival Top5  |       37 | -1.95%         | 44.76%                 | -0.65% | 13.15%         | -13.80%       | -42.64%        | -22.30%                |       0.19867  | 48.65%                        | -0.53%                          | 2026-09       | -17.81%              | 2023-11      | 23.83%              | 118.92%            |                    5.94595 |             9 |            3.78378 | 8.80%                     |
-| RS_TOP5_NO_CASH | Survival Top5 without MA200 cash filter  |       37 | 42.03%         | 44.76%                 | 12.43% | 13.15%         | -0.72%        | -47.46%        | -22.30%                |       0.481656 | 56.76%                        | 0.56%                           | 2026-09       | -17.81%              | 2023-11      | 23.83%              | 145.41%            |                    7.27027 |             0 |            5       | 10.76%                    |
+| RS_TOP5_NO_CASH | Survival Top5 without MA200 cash filter  |       37 | 42.33%         | 44.76%                 | 12.51% | 13.15%         | -0.64%        | -47.35%        | -22.30%                |       0.483229 | 56.76%                        | 0.56%                           | 2026-09       | -17.81%              | 2023-11      | 23.83%              | 145.41%            |                    7.27027 |             0 |            5       | 10.76%                    |
 
 ## Decision
 
-Selected winner: Survival Top5 without MA200 cash filter (excess CAGR -0.72%, max drawdown -47.46%).
+Selected winner: Survival Top5 without MA200 cash filter (excess CAGR -0.64%, max drawdown -47.35%).
 
 No strict drawdown-safe candidate passed both excess-return and drawdown tests.
 
