@@ -1,7 +1,7 @@
 # BIST RankingBot Aylık Yatırımcı Raporu - 2026-10-28
 
 - Rapor Tarihi: 2026-10-28
-- Son Güncelleme: 2026-10-30 07:49
+- Son Güncelleme: 2026-10-31 07:37
 
 ## Yönetici Özeti
 
@@ -22,9 +22,9 @@ Cash allocation %: %40
 
 |   Rank | Stock    | Action   |   Weight % |   Allocation TL |   Expected Return % |   Expected Return TL |   Target Price |   Stop Price |   Risk/Reward | Conviction   |
 |-------:|:---------|:---------|-----------:|----------------:|--------------------:|---------------------:|---------------:|-------------:|--------------:|:-------------|
-|      1 | TUPRS.IS | AL       |     0.2151 |      21507.6913 |              0.0584 |            1256.9417 |       375.7467 |     336.0711 |        1.0960 | MEDIUM       |
-|      2 | GARAN.IS | AL       |     0.1960 |      19601.0417 |              0.0331 |             649.1362 |       130.8960 |     120.0853 |        0.6343 | MEDIUM       |
-|      3 | SAHOL.IS | AL       |     0.1889 |      18891.2670 |              0.0224 |             423.3754 |        85.1157 |      76.8147 |        0.2899 | LOW          |
+|      1 | TUPRS.IS | AL       |     0.2151 |      21507.6999 |              0.0584 |            1256.9460 |       375.7468 |     336.0711 |        1.0960 | MEDIUM       |
+|      2 | GARAN.IS | AL       |     0.1960 |      19601.0371 |              0.0331 |             649.1361 |       130.8960 |     120.0853 |        0.6343 | MEDIUM       |
+|      3 | SAHOL.IS | AL       |     0.1889 |      18891.2630 |              0.0224 |             423.3753 |        85.1157 |      76.8147 |        0.2899 | LOW          |
 |      4 | CASH     | CASH     |     0.4000 |      40000.0000 |              0.0000 |               0.0000 |                |              |               | CASH         |
 
 ## Portföy Önerisi
@@ -34,7 +34,7 @@ Cash allocation %: %40
 |      1 | BIMAS.IS | TUT       |       364.7500 |       -0.0130 |         0.0220 |        0.0892 |          360.0102 |           372.7723 |          397.2744 |             346.5125 | MEDIUM           |       79.1800 | volatilite görece düşük                                      | kisa vadeli momentum negatif; trend desteği zayıf                          |
 |      2 | SAHOL.IS | AL        |        83.2500 |       -0.0773 |         0.0224 |        0.1086 |           76.8147 |            85.1157 |           92.2951 |              76.8147 | LOW              |       79.1800 | volatilite görece düşük                                      | kisa vadeli momentum negatif; trend desteği zayıf; alt bant riski belirgin |
 |      3 | KCHOL.IS | TUT       |       199.8000 |       -0.0130 |         0.0176 |        0.0942 |          197.2035 |           203.3107 |          218.6225 |             189.8100 | LOW              |       79.1800 | 3A momentum destekli; volatilite görece düşük                | kisa vadeli momentum negatif; trend desteği zayıf                          |
-|      4 | TUPRS.IS | AL        |       355.0000 |       -0.0325 |         0.0584 |        0.1756 |          343.4530 |           375.7467 |          417.3481 |             336.0711 | MEDIUM           |       79.1800 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | kisa vadeli momentum negatif                                               |
+|      4 | TUPRS.IS | AL        |       355.0000 |       -0.0325 |         0.0584 |        0.1756 |          343.4530 |           375.7468 |          417.3481 |             336.0711 | MEDIUM           |       79.1800 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | kisa vadeli momentum negatif                                               |
 |      5 | GARAN.IS | AL        |       126.7000 |       -0.0522 |         0.0331 |        0.0578 |          120.0853 |           130.8960 |          134.0204 |             120.0853 | MEDIUM           |       79.1800 | 3A momentum destekli; volatilite görece düşük                | kisa vadeli momentum negatif; trend desteği zayıf; alt bant riski belirgin |
 |      6 | THYAO.IS | SAT       |       252.5000 |       -0.0629 |        -0.0342 |        0.0705 |          236.6274 |           243.8646 |          270.2889 |             236.6274 | LOW              |       79.1800 | volatilite görece düşük                                      | kisa vadeli momentum negatif; trend desteği zayıf; alt bant riski belirgin |
 |     10 | PGSUS.IS | SAT       |       121.5000 |       -0.0429 |        -0.0171 |        0.0674 |          116.2929 |           119.4208 |          129.6948 |             115.4250 | LOW              |       79.1800 | volatilite görece düşük                                      | kisa vadeli momentum negatif; trend desteği zayıf                          |
@@ -101,8 +101,8 @@ Cash allocation %: %40
 
 | Gösterge               | Değer                                                        |
 |:-----------------------|:-------------------------------------------------------------|
-| BIST100 Güncel Kapanış | 11165.400390625                                              |
-| BIST100 MA200          | 13605.292021484374                                           |
+| BIST100 Güncel Kapanış | 10759.599609375                                              |
+| BIST100 MA200          | 13597.816020507813                                           |
 | Risk ON / Risk OFF     | Risk OFF                                                     |
 | Aktif Model            | low_volatility                                               |
 | Güven Puanı            | 79.18                                                        |
