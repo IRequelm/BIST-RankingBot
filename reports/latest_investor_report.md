@@ -1,15 +1,15 @@
-# BIST RankingBot Aylık Yatırımcı Raporu - 2026-11-02
+# BIST RankingBot Aylık Yatırımcı Raporu - 2026-11-04
 
-- Rapor Tarihi: 2026-11-02
-- Son Güncelleme: 2026-11-04 08:12
+- Rapor Tarihi: 2026-11-04
+- Son Güncelleme: 2026-11-05 08:38
 
 ## Yönetici Özeti
 
 ## BU AY YAPILACAKLAR
 
-- AL: GARAN.IS, SAHOL.IS, KCHOL.IS
-- AZALT: BIMAS.IS
-- ÇIK: TCELL.IS, YKBNK.IS, THYAO.IS, ARCLK.IS
+- AL: BIMAS.IS, TCELL.IS, SAHOL.IS
+- AZALT: KCHOL.IS, GARAN.IS
+- ÇIK: THYAO.IS, TUPRS.IS, ARCLK.IS
 - NAKIT: %40
 
 Neden Nakit Tutuluyor?
@@ -22,55 +22,55 @@ Cash allocation %: %40
 
 |   Rank | Stock    | Action   |   Weight % |   Allocation TL |   Expected Return % |   Expected Return TL |   Target Price |   Stop Price |   Risk/Reward | Conviction   |
 |-------:|:---------|:---------|-----------:|----------------:|--------------------:|---------------------:|---------------:|-------------:|--------------:|:-------------|
-|      1 | GARAN.IS | AL       |     0.2049 |      20491.9283 |              0.0327 |             671.0626 |       133.5343 |     121.3978 |        0.5358 | MEDIUM       |
-|      2 | SAHOL.IS | AL       |     0.2007 |      20069.0395 |              0.0224 |             449.7707 |        84.8601 |      76.5841 |        0.2899 | LOW          |
-|      3 | KCHOL.IS | AL       |     0.1944 |      19439.0322 |              0.0150 |             292.3915 |       198.6436 |     185.9150 |        0.3008 | LOW          |
+|      1 | BIMAS.IS | AL       |     0.2133 |      21330.3811 |              0.0190 |             405.8945 |       379.5883 |     353.8750 |        0.3806 | MEDIUM       |
+|      2 | TCELL.IS | AL       |     0.2024 |      20244.5615 |              0.0388 |             786.2430 |        97.5988 |      89.2525 |        0.7767 | MEDIUM       |
+|      3 | SAHOL.IS | AL       |     0.1843 |      18425.0574 |              0.0224 |             412.9254 |        88.1318 |      79.9253 |        0.3079 | LOW          |
 |      4 | CASH     | CASH     |     0.4000 |      40000.0000 |              0.0000 |               0.0000 |                |              |               | CASH         |
 
 ## Portföy Önerisi
 
-|   Sıra | Hisse    | Aksiyon   |   Giriş Fiyatı |   Hedef Alt % |   Hedef Orta % |   Hedef Üst % |   Hedef Alt Fiyat |   Hedef Orta Fiyat |   Hedef Üst Fiyat |   Stop / Risk Fiyatı | Öneri Kalitesi   |   Güven Puanı | Ana Sebep                                 | Risk Notu                                                                  |
-|-------:|:---------|:----------|---------------:|--------------:|---------------:|--------------:|------------------:|-------------------:|------------------:|---------------------:|:-----------------|--------------:|:------------------------------------------|:---------------------------------------------------------------------------|
-|      1 | TCELL.IS | SAT       |        91.9500 |       -0.0647 |        -0.0158 |        0.0189 |           86.0033 |            90.4985 |           93.6884 |              86.0033 | LOW              |       80.7100 | volatilite görece düşük                   | kisa vadeli momentum negatif; trend desteği zayıf; alt bant riski belirgin |
-|      2 | BIMAS.IS | TUT       |       356.0000 |       -0.0475 |         0.0037 |        0.0892 |          339.0757 |           357.3284 |          387.7605 |             338.2000 | LOW              |       80.7100 | hacim artışı var; volatilite görece düşük | kisa vadeli momentum negatif; trend desteği zayıf                          |
-|      3 | SAHOL.IS | AL        |        83.0000 |       -0.0773 |         0.0224 |        0.1293 |           76.5841 |            84.8601 |           93.7355 |              76.5841 | LOW              |       80.7100 | volatilite görece düşük                   | kisa vadeli momentum negatif; trend desteği zayıf; alt bant riski belirgin |
-|      4 | KCHOL.IS | AL        |       195.7000 |       -0.0111 |         0.0150 |        0.0854 |          193.5255 |           198.6436 |          212.4130 |             185.9150 | LOW              |       80.7100 | volatilite görece düşük                   | kisa vadeli momentum negatif; trend desteği zayıf                          |
-|      5 | GARAN.IS | AL        |       129.3000 |       -0.0611 |         0.0327 |        0.0796 |          121.3978 |           133.5343 |          139.5866 |             121.3978 | MEDIUM           |       80.7100 | volatilite görece düşük                   | trend desteği zayıf; alt bant riski belirgin                               |
-|      6 | YKBNK.IS | SAT       |        35.6400 |       -0.0266 |        -0.0090 |        0.1114 |           34.6910 |            35.3202 |           39.6109 |              33.7842 | LOW              |       80.7100 | 3A momentum destekli                      | trend desteği zayıf                                                        |
-|     10 | THYAO.IS | SAT       |       261.0000 |       -0.0632 |        -0.0264 |        0.0512 |          244.5158 |           254.0979 |          274.3711 |             244.5158 | LOW              |       80.7100 | volatilite görece düşük                   | kisa vadeli momentum negatif; trend desteği zayıf; alt bant riski belirgin |
-|     11 | ARCLK.IS | SAT       |        66.5500 |       -0.0650 |        -0.0206 |        0.1050 |           62.2255 |            65.1789 |           73.5377 |              62.2255 | LOW              |       80.7100 | volatilite görece düşük                   | kisa vadeli momentum negatif; trend desteği zayıf; alt bant riski belirgin |
+|   Sıra | Hisse    | Aksiyon   |   Giriş Fiyatı |   Hedef Alt % |   Hedef Orta % |   Hedef Üst % |   Hedef Alt Fiyat |   Hedef Orta Fiyat |   Hedef Üst Fiyat |   Stop / Risk Fiyatı | Öneri Kalitesi   |   Güven Puanı | Ana Sebep                                                    | Risk Notu                                                                  |
+|-------:|:---------|:----------|---------------:|--------------:|---------------:|--------------:|------------------:|-------------------:|------------------:|---------------------:|:-----------------|--------------:|:-------------------------------------------------------------|:---------------------------------------------------------------------------|
+|      1 | KCHOL.IS | TUT       |       203.0000 |       -0.0786 |         0.0165 |        0.0471 |          187.0357 |           206.3410 |          212.5554 |             187.0357 | MEDIUM           |       83.5500 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | kisa vadeli momentum negatif; alt bant riski belirgin                      |
+|      2 | GARAN.IS | TUT       |       137.5000 |       -0.0473 |         0.0100 |        0.0857 |          130.9955 |           138.8721 |          149.2771 |             130.6250 | MEDIUM           |       83.5500 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | Risk sinyali sınırlı                                                       |
+|      3 | BIMAS.IS | AL        |       372.5000 |       -0.0206 |         0.0190 |        0.0684 |          364.8421 |           379.5883 |          397.9962 |             353.8750 | MEDIUM           |       83.5500 | 6A momentum pozitif; trend desteği var; hacim artışı var     | kisa vadeli momentum negatif                                               |
+|      4 | TCELL.IS | AL        |        93.9500 |       -0.0299 |         0.0388 |        0.0645 |           91.1450 |            97.5988 |          100.0078 |              89.2525 | MEDIUM           |       83.5500 | volatilite görece düşük                                      | kisa vadeli momentum negatif; trend desteği zayıf                          |
+|      5 | SAHOL.IS | AL        |        86.2000 |       -0.0728 |         0.0224 |        0.1086 |           79.9253 |            88.1318 |           95.5656 |              79.9253 | LOW              |       83.5500 | volatilite görece düşük                                      | kisa vadeli momentum negatif; trend desteği zayıf; alt bant riski belirgin |
+|      7 | THYAO.IS | SAT       |       291.2500 |       -0.0621 |        -0.0140 |        0.1281 |          273.1563 |           287.1623 |          328.5632 |             273.1563 | LOW              |       83.5500 | trend desteği var; volatilite görece düşük                   | kisa vadeli momentum negatif; alt bant riski belirgin                      |
+|      8 | TUPRS.IS | SAT       |       343.2500 |       -0.0864 |        -0.0007 |        0.1115 |          313.5924 |           343.0002 |          381.5075 |             313.5924 | LOW              |       83.5500 | 6A momentum pozitif; 3A momentum destekli; trend desteği var | kisa vadeli momentum negatif; alt bant riski belirgin                      |
+|     11 | ARCLK.IS | SAT       |        69.4000 |       -0.0446 |        -0.0169 |        0.1019 |           66.3073 |            68.2244 |           76.4750 |              65.9300 | LOW              |       83.5500 | volatilite görece düşük                                      | kisa vadeli momentum negatif; trend desteği zayıf                          |
 
 ## İlk 20 Sıralama
 
 |   Sıra | Hisse    | Öneri Kalitesi   | Aksiyon      |   1A Momentum |   3A Momentum |   6A Momentum |   Hacim Değişimi | Trend Durumu      |   Volatilite |   Beklenen Getiri Orta % |
 |-------:|:---------|:-----------------|:-------------|--------------:|--------------:|--------------:|-----------------:|:------------------|-------------:|-------------------------:|
-|      1 | TCELL.IS | LOW              | SAT          |       -0.0589 |       -0.1454 |       -0.1798 |          -0.3994 | Trend altı        |       0.0187 |                  -0.0158 |
-|      2 | BIMAS.IS | LOW              | TUT          |       -0.1275 |       -0.0715 |       -0.0096 |           0.0095 | Trend altı        |       0.0212 |                   0.0037 |
-|      3 | SAHOL.IS | LOW              | AL           |       -0.0360 |       -0.0664 |       -0.1368 |          -0.0299 | Trend altı        |       0.0215 |                   0.0224 |
-|      4 | KCHOL.IS | LOW              | AL           |       -0.0677 |       -0.0161 |       -0.0326 |          -0.2798 | Trend altı        |       0.0221 |                   0.0150 |
-|      5 | GARAN.IS | LOW              | AL           |        0.0246 |       -0.0190 |       -0.0256 |          -0.2840 | Trend altı        |       0.0222 |                   0.0327 |
-|      6 | YKBNK.IS | LOW              | SAT          |        0.0235 |        0.0224 |       -0.0252 |          -0.2102 | Trend altı        |       0.0260 |                  -0.0090 |
-|      7 | TUPRS.IS | LOW              | PORTFOY_DISI |       -0.1292 |        0.1819 |        0.2452 |          -0.4013 | Kısmen trend üstü |       0.0271 |                   0.0147 |
-|      8 | FROTO.IS | LOW              | PORTFOY_DISI |       -0.1146 |       -0.1707 |       -0.3187 |          -0.1875 | Trend altı        |       0.0203 |                   0.0078 |
-|      9 | AKBNK.IS | LOW              | PORTFOY_DISI |       -0.0629 |       -0.0705 |       -0.1411 |          -0.1572 | Trend altı        |       0.0238 |                   0.0056 |
-|     10 | THYAO.IS | LOW              | SAT          |       -0.0890 |       -0.1938 |       -0.1701 |          -0.2811 | Trend altı        |       0.0213 |                  -0.0264 |
-|     11 | ARCLK.IS | LOW              | SAT          |       -0.1784 |       -0.3171 |       -0.4074 |          -0.1739 | Trend altı        |       0.0193 |                  -0.0206 |
-|     12 | PGSUS.IS | LOW              | PORTFOY_DISI |       -0.1302 |       -0.2310 |       -0.3177 |          -0.3405 | Trend altı        |       0.0205 |                   0.0294 |
-|     13 | ASELS.IS | LOW              | PORTFOY_DISI |       -0.0750 |       -0.0200 |       -0.1957 |           0.0416 | Trend altı        |       0.0324 |                   0.0592 |
-|     14 | EREGL.IS | LOW              | PORTFOY_DISI |       -0.1802 |       -0.2808 |       -0.0976 |          -0.3552 | Trend altı        |       0.0272 |                   0.0248 |
-|     15 | TOASO.IS | LOW              | PORTFOY_DISI |       -0.1657 |       -0.1879 |       -0.2543 |          -0.0729 | Trend altı        |       0.0278 |                   0.0350 |
-|     16 | SISE.IS  | LOW              | PORTFOY_DISI |       -0.1050 |       -0.2125 |       -0.2621 |          -0.4995 | Trend altı        |       0.0285 |                   0.1002 |
-|     17 | PETKM.IS | LOW              | PORTFOY_DISI |       -0.1423 |       -0.1577 |       -0.3348 |          -0.3584 | Trend altı        |       0.0360 |                   0.0818 |
+|      1 | KCHOL.IS | MEDIUM           | TUT          |       -0.0554 |        0.0362 |        0.0284 |          -0.2320 | Kısmen trend üstü |       0.0212 |                   0.0165 |
+|      2 | GARAN.IS | MEDIUM           | TUT          |        0.0544 |        0.0759 |        0.0610 |          -0.2364 | Güçlü trend       |       0.0236 |                   0.0100 |
+|      3 | BIMAS.IS | MEDIUM           | AL           |       -0.0992 |       -0.0196 |        0.0321 |           0.0311 | Kısmen trend üstü |       0.0217 |                   0.0190 |
+|      4 | TCELL.IS | LOW              | AL           |       -0.0652 |       -0.1078 |       -0.1536 |          -0.2614 | Trend altı        |       0.0187 |                   0.0388 |
+|      5 | SAHOL.IS | LOW              | AL           |       -0.0293 |       -0.0216 |       -0.0800 |          -0.0160 | Trend altı        |       0.0223 |                   0.0224 |
+|      6 | YKBNK.IS | MEDIUM           | PORTFOY_DISI |       -0.0006 |        0.0541 |        0.0011 |          -0.1092 | Kısmen trend üstü |       0.0265 |                   0.0565 |
+|      7 | THYAO.IS | LOW              | SAT          |       -0.0034 |       -0.0643 |       -0.0316 |          -0.1989 | Kısmen trend üstü |       0.0247 |                  -0.0140 |
+|      8 | TUPRS.IS | LOW              | SAT          |       -0.1227 |        0.0868 |        0.2893 |          -0.3546 | Kısmen trend üstü |       0.0256 |                  -0.0007 |
+|      9 | AKBNK.IS | LOW              | PORTFOY_DISI |       -0.0399 |       -0.0134 |       -0.0630 |          -0.1402 | Trend altı        |       0.0252 |                   0.0056 |
+|     10 | FROTO.IS | LOW              | PORTFOY_DISI |       -0.0791 |       -0.1266 |       -0.2849 |          -0.1913 | Trend altı        |       0.0208 |                   0.0203 |
+|     11 | ARCLK.IS | LOW              | SAT          |       -0.1552 |       -0.2918 |       -0.3691 |          -0.1504 | Trend altı        |       0.0200 |                  -0.0169 |
+|     12 | PGSUS.IS | LOW              | PORTFOY_DISI |       -0.0581 |       -0.1299 |       -0.2476 |          -0.2723 | Trend altı        |       0.0225 |                   0.0147 |
+|     13 | ASELS.IS | LOW              | PORTFOY_DISI |       -0.0478 |       -0.0255 |       -0.1807 |           0.0603 | Trend altı        |       0.0321 |                   0.0774 |
+|     14 | TOASO.IS | LOW              | PORTFOY_DISI |       -0.1464 |       -0.1206 |       -0.2098 |          -0.0332 | Trend altı        |       0.0278 |                   0.0701 |
+|     15 | EREGL.IS | LOW              | PORTFOY_DISI |       -0.1541 |       -0.2339 |       -0.0990 |          -0.3211 | Trend altı        |       0.0278 |                   0.0772 |
+|     16 | SISE.IS  | LOW              | PORTFOY_DISI |       -0.0656 |       -0.1500 |       -0.2160 |          -0.4955 | Trend altı        |       0.0292 |                   0.0597 |
+|     17 | PETKM.IS | LOW              | PORTFOY_DISI |       -0.1159 |       -0.0677 |       -0.2614 |          -0.3517 | Trend altı        |       0.0357 |                   0.0190 |
 
 ## Al/Sat Özet
 
 | Kategori                | Hisseler                                                                                       |
 |:------------------------|:-----------------------------------------------------------------------------------------------|
-| Alınacaklar             | SAHOL.IS, KCHOL.IS, GARAN.IS                                                                   |
-| Tutulacaklar            | BIMAS.IS                                                                                       |
-| Satılacaklar            | TCELL.IS, YKBNK.IS, THYAO.IS, ARCLK.IS                                                         |
-| Portföy dışı kalanlar   | TUPRS.IS, FROTO.IS, AKBNK.IS, PGSUS.IS, ASELS.IS, EREGL.IS, TOASO.IS, SISE.IS, PETKM.IS        |
-| Nakit kuralı            | Beklenen getiri etkin %1.50 eşiğinin altında ise AL önerisi verilmez; kalan sermaye CASH olur. |
+| Alınacaklar             | BIMAS.IS, TCELL.IS, SAHOL.IS                                                                   |
+| Tutulacaklar            | KCHOL.IS, GARAN.IS                                                                             |
+| Satılacaklar            | THYAO.IS, TUPRS.IS, ARCLK.IS                                                                   |
+| Portföy dışı kalanlar   | YKBNK.IS, AKBNK.IS, FROTO.IS, PGSUS.IS, ASELS.IS, TOASO.IS, EREGL.IS, SISE.IS, PETKM.IS        |
+| Nakit kuralı            | Beklenen getiri etkin %1.90 eşiğinin altında ise AL önerisi verilmez; kalan sermaye CASH olur. |
 | Nitelikli fırsat sayısı | 3                                                                                              |
 
 ## PORTFOY_DEGISIMI
@@ -80,39 +80,39 @@ Cash allocation %: %40
 | AKBNK.IS | UNCHANGED |
 | ARCLK.IS | UNCHANGED |
 | ASELS.IS | UNCHANGED |
-| BIMAS.IS | REDUCED   |
+| BIMAS.IS | UNCHANGED |
 | EREGL.IS | UNCHANGED |
 | FROTO.IS | UNCHANGED |
-| GARAN.IS | INCREASED |
-| KCHOL.IS | INCREASED |
+| GARAN.IS | UNCHANGED |
+| KCHOL.IS | UNCHANGED |
 | PETKM.IS | UNCHANGED |
 | PGSUS.IS | UNCHANGED |
 | SAHOL.IS | UNCHANGED |
 | SISE.IS  | UNCHANGED |
-| TCELL.IS | UNCHANGED |
+| TCELL.IS | INCREASED |
 | THYAO.IS | UNCHANGED |
 | TOASO.IS | UNCHANGED |
-| TUPRS.IS | REMOVED   |
+| TUPRS.IS | REDUCED   |
 | YKBNK.IS | UNCHANGED |
 
 ## Piyasa Rejimi
 
 | Gösterge               | Değer                                                        |
 |:-----------------------|:-------------------------------------------------------------|
-| BIST100 Güncel Kapanış | 11023.599609375                                              |
-| BIST100 MA200          | 13583.96501953125                                            |
+| BIST100 Güncel Kapanış | 11478.099609375                                              |
+| BIST100 MA200          | 13579.072016601562                                           |
 | Risk ON / Risk OFF     | Risk OFF                                                     |
 | Aktif Model            | low_volatility                                               |
-| Güven Puanı            | 80.71                                                        |
+| Güven Puanı            | 83.55                                                        |
 | Açıklama               | BIST100 MA200 altında olduğu için savunmacı rejim izleniyor. |
 
 ## Paper Trade
 
 | Aktif Pozisyon   | Giriş Tarihi   |   Giriş Fiyatı |   Güncel Fiyat |   Getiri % |   Gerçekleşmemiş PnL |   Portföy Değeri |   Benchmark Getirisi |
 |:-----------------|:---------------|---------------:|---------------:|-----------:|---------------------:|-----------------:|---------------------:|
-| KCHOL.IS         | 2026-07-16     |       197.0000 |       195.7000 |    -0.0066 |          -19178.9697 |    35340653.5331 |              -0.2001 |
-| SAHOL.IS         | 2026-09-08     |        96.5000 |        83.0000 |    -0.1399 |          -12284.9272 |    35340653.5331 |              -0.2001 |
-| FROTO.IS         | 2026-09-24     |        77.4000 |        66.8000 |    -0.1370 |         -613140.7432 |    35340653.5331 |              -0.2001 |
-| GARAN.IS         | 2026-10-20     |       134.6000 |       129.3000 |    -0.0394 |         -708630.5802 |    35340653.5331 |              -0.2001 |
-| BIMAS.IS         | 2026-10-23     |       373.0000 |       356.0000 |    -0.0456 |         -358260.8589 |    35340653.5331 |              -0.2001 |
-| TUPRS.IS         | 2026-10-30     |       343.5000 |       337.0000 |    -0.0189 |          -71822.2520 |    35340653.5331 |              -0.2001 |
+| KCHOL.IS         | 2026-07-16     |       197.0000 |       203.0000 |     0.0305 |           88518.1139 |    37071427.3707 |              -0.1624 |
+| SAHOL.IS         | 2026-09-08     |        96.5000 |        86.2000 |    -0.1067 |           -9372.9472 |    37071427.3707 |              -0.1624 |
+| FROTO.IS         | 2026-09-24     |        77.4000 |        68.6500 |    -0.1130 |         -506130.4034 |    37071427.3707 |              -0.1624 |
+| GARAN.IS         | 2026-10-20     |       134.6000 |       137.5000 |     0.0215 |          387740.2215 |    37071427.3707 |              -0.1624 |
+| BIMAS.IS         | 2026-10-23     |       373.0000 |       372.5000 |    -0.0013 |          -10537.0841 |    37071427.3707 |              -0.1624 |
+| TCELL.IS         | 2026-11-04     |        93.9500 |        93.9500 |     0.0000 |               0.0000 |    37071427.3707 |              -0.1624 |
