@@ -3,8 +3,8 @@
 - Start date: 2026-06-01
 - Starting portfolio: EREGL.IS, SISE.IS, BIMAS.IS
 - Current portfolio return: -13.94%
-- BIST100 return: -16.24%
-- Excess return: 2.30%
+- BIST100 return: -17.30%
+- Excess return: 3.36%
 
 ## Per-Stock Contribution
 
