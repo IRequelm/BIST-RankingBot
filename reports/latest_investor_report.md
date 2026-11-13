@@ -1,7 +1,7 @@
 # BIST RankingBot Aylık Yatırımcı Raporu - 2026-11-11
 
 - Rapor Tarihi: 2026-11-11
-- Son Güncelleme: 2026-11-12 08:55
+- Son Güncelleme: 2026-11-13 08:51
 
 ## Yönetici Özeti
 
@@ -22,16 +22,16 @@ Cash allocation %: %40
 
 |   Rank | Stock    | Action   |   Weight % |   Allocation TL |   Expected Return % |   Expected Return TL |   Target Price |   Stop Price |   Risk/Reward | Conviction   |
 |-------:|:---------|:---------|-----------:|----------------:|--------------------:|---------------------:|---------------:|-------------:|--------------:|:-------------|
-|      1 | PGSUS.IS | AL       |     0.2246 |      22464.0614 |              0.1091 |            2451.4778 |       171.6932 |     147.0600 |        2.1826 | VERY HIGH    |
-|      2 | GARAN.IS | AL       |     0.1930 |      19304.1674 |              0.0085 |             164.5718 |       156.1197 |     147.0600 |        0.1705 | MEDIUM       |
-|      3 | KCHOL.IS | AL       |     0.1823 |      18231.7712 |              0.0185 |             337.7953 |       207.7797 |     189.4813 |        0.2603 | MEDIUM       |
+|      1 | PGSUS.IS | AL       |     0.2246 |      22464.0638 |              0.1091 |            2451.4780 |       171.6932 |     147.0600 |        2.1826 | VERY HIGH    |
+|      2 | GARAN.IS | AL       |     0.1930 |      19304.1695 |              0.0085 |             164.5719 |       156.1197 |     147.0600 |        0.1705 | MEDIUM       |
+|      3 | KCHOL.IS | AL       |     0.1823 |      18231.7667 |              0.0185 |             337.7930 |       207.7797 |     189.4813 |        0.2603 | MEDIUM       |
 |      4 | CASH     | CASH     |     0.4000 |      40000.0000 |              0.0000 |               0.0000 |                |              |               | CASH         |
 
 ## Portföy Önerisi
 
 |   Sıra | Hisse    | Aksiyon   |   Giriş Fiyatı |   Hedef Alt % |   Hedef Orta % |   Hedef Üst % |   Hedef Alt Fiyat |   Hedef Orta Fiyat |   Hedef Üst Fiyat |   Stop / Risk Fiyatı | Öneri Kalitesi   |   Güven Puanı | Ana Sebep                                                        | Risk Notu                                                                  |
 |-------:|:---------|:----------|---------------:|--------------:|---------------:|--------------:|------------------:|-------------------:|------------------:|---------------------:|:-----------------|--------------:|:-----------------------------------------------------------------|:---------------------------------------------------------------------------|
-|      1 | GARAN.IS | AL        |       154.8000 |       -0.0475 |         0.0085 |        0.0762 |          147.4409 |           156.1197 |          166.5883 |             147.0600 | MEDIUM           |       83.8400 | 6A momentum pozitif; 3A momentum destekli; trend desteği var     | Risk sinyali sınırlı                                                       |
+|      1 | GARAN.IS | AL        |       154.8000 |       -0.0475 |         0.0085 |        0.0762 |          147.4408 |           156.1197 |          166.5883 |             147.0600 | MEDIUM           |       83.8400 | 6A momentum pozitif; 3A momentum destekli; trend desteği var     | Risk sinyali sınırlı                                                       |
 |      2 | BIMAS.IS | TUT       |       377.5000 |       -0.0206 |         0.0061 |        0.0684 |          369.7393 |           379.7910 |          403.3385 |             358.6250 | LOW              |       83.8400 | 3A momentum destekli; trend desteği var; hacim artışı var        | kisa vadeli momentum negatif                                               |
 |      3 | KCHOL.IS | AL        |       204.0000 |       -0.0712 |         0.0185 |        0.0690 |          189.4813 |           207.7797 |          218.0849 |             189.4813 | MEDIUM           |       83.8400 | 3A momentum destekli; trend desteği var; volatilite görece düşük | kisa vadeli momentum negatif; alt bant riski belirgin                      |
 |      4 | THYAO.IS | SAT       |       314.7500 |       -0.0516 |        -0.0374 |        0.0459 |          298.5150 |           302.9719 |          329.1881 |             298.5150 | LOW              |       83.8400 | 6A momentum pozitif; 3A momentum destekli; trend desteği var     | alt bant riski belirgin                                                    |
@@ -98,8 +98,8 @@ Cash allocation %: %40
 
 | Gösterge               | Değer                                                        |
 |:-----------------------|:-------------------------------------------------------------|
-| BIST100 Güncel Kapanış | 11666.400390625                                              |
-| BIST100 MA200          | 13549.347016601563                                           |
+| BIST100 Güncel Kapanış | 11811.2001953125                                             |
+| BIST100 MA200          | 13543.439516601562                                           |
 | Risk ON / Risk OFF     | Risk OFF                                                     |
 | Aktif Model            | low_volatility                                               |
 | Güven Puanı            | 83.84                                                        |
