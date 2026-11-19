@@ -2,49 +2,49 @@
 
 - Start date: 2026-06-01
 - Starting portfolio: EREGL.IS, SISE.IS, BIMAS.IS
-- Current portfolio return: -13.01%
-- BIST100 return: -14.91%
-- Excess return: 1.89%
+- Current portfolio return: -14.40%
+- BIST100 return: -16.25%
+- Excess return: 1.84%
 
 ## Per-Stock Contribution
 
 | symbol   | sector           |   weight |   start_price |   current_price |   return |   portfolio_contribution |
 |:---------|:-----------------|---------:|--------------:|----------------:|---------:|-------------------------:|
-| EREGL.IS | Steel            |   0.3333 |       40.0000 |         31.8600 |  -0.2035 |                  -0.0678 |
-| SISE.IS  | Glass/Industrial |   0.3333 |       45.5000 |         34.3000 |  -0.2462 |                  -0.0821 |
-| BIMAS.IS | Retail           |   0.3333 |      371.2500 |        393.2500 |   0.0593 |                   0.0198 |
+| EREGL.IS | Steel            |   0.3333 |       40.0000 |         31.2000 |  -0.2200 |                  -0.0733 |
+| SISE.IS  | Glass/Industrial |   0.3333 |       45.5000 |         33.5800 |  -0.2620 |                  -0.0873 |
+| BIMAS.IS | Retail           |   0.3333 |      371.2500 |        389.7500 |   0.0498 |                   0.0166 |
 
 ## Universe Leaders During Follow-Up
 
 | symbol   | sector          |   period_return |
 |:---------|:----------------|----------------:|
-| TUPRS.IS | Energy/Refinery |          0.4350 |
-| GARAN.IS | Banks           |          0.2080 |
-| YKBNK.IS | Banks           |          0.1179 |
-| THYAO.IS | Airlines        |          0.1055 |
-| KCHOL.IS | Holdings        |          0.0860 |
-| AKBNK.IS | Banks           |          0.0840 |
-| BIMAS.IS | Retail          |          0.0712 |
-| PGSUS.IS | Airlines        |         -0.0570 |
-| TCELL.IS | Telecom         |         -0.0614 |
-| SAHOL.IS | Holdings        |         -0.0674 |
+| TUPRS.IS | Energy/Refinery |          0.4371 |
+| GARAN.IS | Banks           |          0.1836 |
+| THYAO.IS | Airlines        |          0.1106 |
+| YKBNK.IS | Banks           |          0.0928 |
+| BIMAS.IS | Retail          |          0.0617 |
+| AKBNK.IS | Banks           |          0.0534 |
+| KCHOL.IS | Holdings        |          0.0505 |
+| TCELL.IS | Telecom         |         -0.0770 |
+| PGSUS.IS | Airlines        |         -0.0796 |
+| SAHOL.IS | Holdings        |         -0.0944 |
 
 ## Sector/Proxy Group Leaders
 
 | sector             |   period_return |
 |:-------------------|----------------:|
-| Energy/Refinery    |          0.4350 |
-| Banks              |          0.1366 |
-| Retail             |          0.0712 |
-| Airlines           |          0.0242 |
-| Holdings           |          0.0093 |
-| Telecom            |         -0.0614 |
-| Defense/Technology |         -0.1107 |
-| Autos              |         -0.1647 |
-| Steel              |         -0.1927 |
-| Glass/Industrial   |         -0.2462 |
-| Petrochemicals     |         -0.2984 |
-| Durables           |         -0.3538 |
+| Energy/Refinery    |          0.4371 |
+| Banks              |          0.1099 |
+| Retail             |          0.0617 |
+| Airlines           |          0.0155 |
+| Holdings           |         -0.0219 |
+| Telecom            |         -0.0770 |
+| Defense/Technology |         -0.1048 |
+| Autos              |         -0.1657 |
+| Steel              |         -0.2094 |
+| Glass/Industrial   |         -0.2620 |
+| Petrochemicals     |         -0.3322 |
+| Durables           |         -0.3639 |
 
 ## Leadership Rotation Finding
 
@@ -54,12 +54,12 @@ The fixed Top3 basket made money, but the strongest benchmark-relative move came
 
 | symbol   | sector          |   period_return |
 |:---------|:----------------|----------------:|
-| TUPRS.IS | Energy/Refinery |          0.4350 |
-| GARAN.IS | Banks           |          0.2080 |
-| YKBNK.IS | Banks           |          0.1179 |
-| THYAO.IS | Airlines        |          0.1055 |
-| KCHOL.IS | Holdings        |          0.0860 |
-| AKBNK.IS | Banks           |          0.0840 |
-| PGSUS.IS | Airlines        |         -0.0570 |
-| TCELL.IS | Telecom         |         -0.0614 |
-| SAHOL.IS | Holdings        |         -0.0674 |
+| TUPRS.IS | Energy/Refinery |          0.4371 |
+| GARAN.IS | Banks           |          0.1836 |
+| THYAO.IS | Airlines        |          0.1106 |
+| YKBNK.IS | Banks           |          0.0928 |
+| AKBNK.IS | Banks           |          0.0534 |
+| KCHOL.IS | Holdings        |          0.0505 |
+| TCELL.IS | Telecom         |         -0.0770 |
+| PGSUS.IS | Airlines        |         -0.0796 |
+| SAHOL.IS | Holdings        |         -0.0944 |
