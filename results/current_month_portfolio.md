@@ -3,70 +3,70 @@
 - Policy: defensive_mode
 - Base model: volume_heavy Top10
 - Active model: low_volatility Top5
-- Snapshot date: 2026-11-19
-- BIST100 date: 2026-11-19
+- Snapshot date: 2026-11-20
+- BIST100 date: 2026-11-20
 - Regime status: BELOW_MA200_DEFENSIVE
-- BIST100 close: 11400.10
-- BIST100 MA200: 13497.75
+- BIST100 close: 11131.30
+- BIST100 MA200: 13485.30
 - BIST100 below MA200: True
-- Confidence score: 83.80/100
+- Confidence score: 82.78/100
 - Minimum BUY expected return floor: 0.00%
 - Opportunity filter percentile: 50%
-- Effective BUY threshold: 1.64%
+- Effective BUY threshold: 1.24%
 
 ## Recommended Portfolio
 
 |   rank | symbol   |   score | action   |   expected_return_low |   expected_return_mid |   expected_return_high |   momentum_1m |   momentum_3m |   momentum_6m |   volume_increase |   above_ma |   volatility |
 |-------:|:---------|--------:|:---------|----------------------:|----------------------:|-----------------------:|--------------:|--------------:|--------------:|------------------:|-----------:|-------------:|
-|      1 | BIMAS.IS |  0.8441 | BUY      |               -0.0366 |                0.0438 |                 0.0814 |       -0.0039 |       -0.0725 |       -0.0112 |            0.0825 |     0.5000 |       0.0202 |
-|      2 | GARAN.IS |  0.7794 | BUY      |               -0.0469 |                0.0164 |                 0.1175 |        0.0877 |        0.1270 |        0.1279 |           -0.0564 |     1.0000 |       0.0247 |
-|      3 | THYAO.IS |  0.7118 | SELL     |               -0.0473 |               -0.0368 |                 0.0704 |        0.2002 |        0.0905 |        0.1127 |           -0.0060 |     1.0000 |       0.0250 |
-|      4 | PGSUS.IS |  0.6765 | BUY      |                0.0214 |                0.0785 |                 0.2953 |        0.1864 |        0.0475 |       -0.0969 |            0.0087 |     0.5000 |       0.0249 |
-|      5 | KCHOL.IS |  0.6382 | HOLD     |               -0.0130 |                0.0090 |                 0.0854 |       -0.0705 |       -0.1290 |       -0.0117 |            0.0658 |     0.0000 |       0.0209 |
+|      1 | BIMAS.IS |  0.7750 | BUY      |               -0.0339 |                0.0190 |                 0.0723 |       -0.0292 |       -0.0867 |        0.0052 |            0.0797 |     0.0000 |       0.0204 |
+|      2 | GARAN.IS |  0.7632 | HOLD     |               -0.0504 |                0.0100 |                 0.1132 |        0.0875 |        0.0957 |        0.2017 |           -0.0339 |     1.0000 |       0.0248 |
+|      3 | THYAO.IS |  0.7162 | SELL     |               -0.0473 |               -0.0368 |                 0.0704 |        0.2415 |        0.0948 |        0.2007 |            0.0072 |     1.0000 |       0.0250 |
+|      4 | PGSUS.IS |  0.6618 | BUY      |                0.0357 |                0.1091 |                 0.3075 |        0.2111 |        0.0468 |       -0.0387 |            0.0410 |     0.5000 |       0.0249 |
+|      5 | KCHOL.IS |  0.6485 | BUY      |               -0.0290 |                0.0124 |                 0.0854 |       -0.0792 |       -0.1444 |        0.0213 |            0.0894 |     0.0000 |       0.0212 |
 
 ## Top 20 Ranked Stocks
 
 |   rank | symbol   |   score | recommended   | action   |   momentum_1m |   momentum_3m |   momentum_6m |   volume_increase |   above_ma |   volatility |
 |-------:|:---------|--------:|:--------------|:---------|--------------:|--------------:|--------------:|------------------:|-----------:|-------------:|
-|      1 | BIMAS.IS |  0.8441 | True          | BUY      |       -0.0039 |       -0.0725 |       -0.0112 |            0.0825 |     0.5000 |       0.0202 |
-|      2 | GARAN.IS |  0.7794 | True          | BUY      |        0.0877 |        0.1270 |        0.1279 |           -0.0564 |     1.0000 |       0.0247 |
-|      3 | THYAO.IS |  0.7118 | True          | SELL     |        0.2002 |        0.0905 |        0.1127 |           -0.0060 |     1.0000 |       0.0250 |
-|      4 | PGSUS.IS |  0.6765 | True          | BUY      |        0.1864 |        0.0475 |       -0.0969 |            0.0087 |     0.5000 |       0.0249 |
-|      5 | KCHOL.IS |  0.6382 | True          | HOLD     |       -0.0705 |       -0.1290 |       -0.0117 |            0.0658 |     0.0000 |       0.0209 |
-|      6 | TCELL.IS |  0.6294 | False         | EXCLUDE  |       -0.0471 |       -0.1079 |       -0.1432 |           -0.0477 |     0.0000 |       0.0209 |
-|      7 | YKBNK.IS |  0.6294 | False         | EXCLUDE  |        0.0027 |        0.0473 |        0.0303 |           -0.0168 |     1.0000 |       0.0264 |
-|      8 | TUPRS.IS |  0.6235 | False         | SELL     |       -0.0753 |       -0.1623 |        0.3630 |           -0.1101 |     0.5000 |       0.0240 |
-|      9 | FROTO.IS |  0.5735 | False         | EXCLUDE  |        0.0475 |       -0.1060 |       -0.1725 |           -0.0593 |     0.0000 |       0.0237 |
-|     10 | SAHOL.IS |  0.5382 | False         | EXCLUDE  |       -0.1009 |       -0.1320 |       -0.1344 |           -0.1070 |     0.0000 |       0.0228 |
-|     11 | AKBNK.IS |  0.5147 | False         | EXCLUDE  |       -0.0212 |       -0.0409 |       -0.0326 |           -0.1808 |     0.0000 |       0.0249 |
-|     12 | ARCLK.IS |  0.4824 | False         | SELL     |       -0.1464 |       -0.2941 |       -0.3937 |           -0.0837 |     0.0000 |       0.0204 |
-|     13 | TOASO.IS |  0.4059 | False         | SELL     |        0.0488 |       -0.1136 |       -0.1389 |            0.2074 |     0.0000 |       0.0306 |
-|     14 | ASELS.IS |  0.2971 | False         | EXCLUDE  |       -0.0168 |       -0.1643 |       -0.1436 |            0.0742 |     0.0000 |       0.0312 |
-|     15 | EREGL.IS |  0.2912 | False         | EXCLUDE  |       -0.1587 |       -0.1799 |       -0.1795 |            0.0843 |     0.0000 |       0.0273 |
-|     16 | SISE.IS  |  0.2412 | False         | EXCLUDE  |       -0.0806 |       -0.1649 |       -0.2691 |           -0.3356 |     0.0000 |       0.0286 |
-|     17 | PETKM.IS |  0.1235 | False         | EXCLUDE  |       -0.2148 |       -0.2522 |       -0.3677 |           -0.2337 |     0.0000 |       0.0362 |
+|      1 | BIMAS.IS |  0.7750 | True          | BUY      |       -0.0292 |       -0.0867 |        0.0052 |            0.0797 |     0.0000 |       0.0204 |
+|      2 | GARAN.IS |  0.7632 | True          | HOLD     |        0.0875 |        0.0957 |        0.2017 |           -0.0339 |     1.0000 |       0.0248 |
+|      3 | THYAO.IS |  0.7162 | True          | SELL     |        0.2415 |        0.0948 |        0.2007 |            0.0072 |     1.0000 |       0.0250 |
+|      4 | PGSUS.IS |  0.6618 | True          | BUY      |        0.2111 |        0.0468 |       -0.0387 |            0.0410 |     0.5000 |       0.0249 |
+|      5 | KCHOL.IS |  0.6485 | True          | BUY      |       -0.0792 |       -0.1444 |        0.0213 |            0.0894 |     0.0000 |       0.0212 |
+|      6 | TUPRS.IS |  0.6294 | False         | EXCLUDE  |       -0.1016 |       -0.1797 |        0.3593 |           -0.0941 |     0.5000 |       0.0243 |
+|      7 | TCELL.IS |  0.6191 | False         | EXCLUDE  |       -0.0437 |       -0.1188 |       -0.1429 |           -0.0362 |     0.0000 |       0.0211 |
+|      8 | YKBNK.IS |  0.6118 | False         | SELL     |       -0.0071 |       -0.0099 |        0.1258 |           -0.0053 |     0.5000 |       0.0260 |
+|      9 | AKBNK.IS |  0.5809 | False         | SELL     |       -0.0305 |       -0.0964 |        0.0474 |           -0.1770 |     0.0000 |       0.0247 |
+|     10 | FROTO.IS |  0.5515 | False         | EXCLUDE  |        0.0501 |       -0.1236 |       -0.1475 |           -0.0468 |     0.0000 |       0.0239 |
+|     11 | SAHOL.IS |  0.5397 | False         | EXCLUDE  |       -0.1095 |       -0.1671 |       -0.1003 |           -0.1043 |     0.0000 |       0.0228 |
+|     12 | ARCLK.IS |  0.4868 | False         | SELL     |       -0.1443 |       -0.3134 |       -0.3750 |           -0.0754 |     0.0000 |       0.0205 |
+|     13 | TOASO.IS |  0.4279 | False         | EXCLUDE  |        0.0816 |       -0.1109 |       -0.1204 |            0.2128 |     0.0000 |       0.0306 |
+|     14 | EREGL.IS |  0.3221 | False         | EXCLUDE  |       -0.1714 |       -0.2074 |       -0.1282 |            0.1153 |     0.0000 |       0.0276 |
+|     15 | ASELS.IS |  0.2868 | False         | EXCLUDE  |       -0.0542 |       -0.1820 |       -0.1343 |            0.0581 |     0.0000 |       0.0313 |
+|     16 | SISE.IS  |  0.2515 | False         | EXCLUDE  |       -0.0874 |       -0.1902 |       -0.2401 |           -0.3221 |     0.0000 |       0.0289 |
+|     17 | PETKM.IS |  0.1279 | False         | EXCLUDE  |       -0.2121 |       -0.2784 |       -0.3405 |           -0.2229 |     0.0000 |       0.0363 |
 
 ## Factor Contribution Breakdown
 
 |   rank | symbol   |   score |   momentum_1m_relative_contribution |   momentum_3m_relative_contribution |   momentum_6m_relative_contribution |   volume_increase_relative_contribution |   above_ma_relative_contribution |   volatility_penalty_relative_contribution |
 |-------:|:---------|--------:|------------------------------------:|------------------------------------:|------------------------------------:|----------------------------------------:|---------------------------------:|-------------------------------------------:|
-|      1 | BIMAS.IS |  0.8441 |                              0.0767 |                              0.1254 |                              0.1359 |                                  0.0523 |                           0.1359 |                                     0.4739 |
-|      2 | GARAN.IS |  0.7794 |                              0.1132 |                              0.1925 |                              0.1811 |                                  0.0302 |                           0.1811 |                                     0.3019 |
-|      3 | THYAO.IS |  0.7118 |                              0.1405 |                              0.1983 |                              0.1860 |                                  0.0455 |                           0.1983 |                                     0.2314 |
-|      4 | PGSUS.IS |  0.6765 |                              0.1391 |                              0.1957 |                              0.1304 |                                  0.0522 |                           0.1696 |                                     0.3130 |
-|      5 | KCHOL.IS |  0.6382 |                              0.0645 |                              0.1106 |                              0.1659 |                                  0.0599 |                           0.0829 |                                     0.5161 |
+|      1 | BIMAS.IS |  0.7750 |                              0.0835 |                              0.1480 |                              0.1252 |                                  0.0531 |                           0.0740 |                                     0.5161 |
+|      2 | GARAN.IS |  0.7632 |                              0.1156 |                              0.1965 |                              0.1850 |                                  0.0347 |                           0.1908 |                                     0.2775 |
+|      3 | THYAO.IS |  0.7162 |                              0.1396 |                              0.1971 |                              0.1848 |                                  0.0452 |                           0.2033 |                                     0.2300 |
+|      4 | PGSUS.IS |  0.6618 |                              0.1422 |                              0.2000 |                              0.1333 |                                  0.0533 |                           0.1867 |                                     0.2844 |
+|      5 | KCHOL.IS |  0.6485 |                              0.0635 |                              0.1088 |                              0.1633 |                                  0.0680 |                           0.0884 |                                     0.5079 |
 
 ## Buy List
 
-BIMAS.IS, GARAN.IS, PGSUS.IS
+BIMAS.IS, PGSUS.IS, KCHOL.IS
 
 ## Hold List
 
-KCHOL.IS
+GARAN.IS
 
 ## Sell List
 
-THYAO.IS, TUPRS.IS, ARCLK.IS, TOASO.IS
+THYAO.IS, YKBNK.IS, AKBNK.IS, ARCLK.IS
 
 ## Why These Stocks Were Selected
 
@@ -78,16 +78,16 @@ Excluded top-20 names did not rank inside the active portfolio size. They may st
 
 |   rank | symbol   |   score | action   |
 |-------:|:---------|--------:|:---------|
-|      6 | TCELL.IS |  0.6294 | EXCLUDE  |
-|      7 | YKBNK.IS |  0.6294 | EXCLUDE  |
-|      8 | TUPRS.IS |  0.6235 | SELL     |
-|      9 | FROTO.IS |  0.5735 | EXCLUDE  |
-|     10 | SAHOL.IS |  0.5382 | EXCLUDE  |
-|     11 | AKBNK.IS |  0.5147 | EXCLUDE  |
-|     12 | ARCLK.IS |  0.4824 | SELL     |
-|     13 | TOASO.IS |  0.4059 | SELL     |
-|     14 | ASELS.IS |  0.2971 | EXCLUDE  |
-|     15 | EREGL.IS |  0.2912 | EXCLUDE  |
+|      6 | TUPRS.IS |  0.6294 | EXCLUDE  |
+|      7 | TCELL.IS |  0.6191 | EXCLUDE  |
+|      8 | YKBNK.IS |  0.6118 | SELL     |
+|      9 | AKBNK.IS |  0.5809 | SELL     |
+|     10 | FROTO.IS |  0.5515 | EXCLUDE  |
+|     11 | SAHOL.IS |  0.5397 | EXCLUDE  |
+|     12 | ARCLK.IS |  0.4868 | SELL     |
+|     13 | TOASO.IS |  0.4279 | EXCLUDE  |
+|     14 | EREGL.IS |  0.3221 | EXCLUDE  |
+|     15 | ASELS.IS |  0.2868 | EXCLUDE  |
 
 ## Main Risks This Month
 
